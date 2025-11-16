@@ -1,27 +1,5 @@
-import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { type Request, type Response, type NextFunction } from "express";
-import { env } from "./env";
-
-const JWT_SECRET = env.JWT_SECRET;
-const JWT_EXPIRES_IN = "7d";
-
-export interface JWTPayload {
-  userId: string;
-}
-
-export function generateToken(userId: string): string {
-  return jwt.sign({ userId }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
-}
-
-export function verifyToken(token: string): JWTPayload | null {
-  try {
-    const payload = jwt.verify(token, JWT_SECRET) as JWTPayload;
-    return payload;
-  } catch (error) {
-    return null;
-  }
-}
 
 export async function hashPassword(password: string): Promise<string> {
   const salt = await bcrypt.genSalt(10);
@@ -47,25 +25,13 @@ export async function authenticateToken(
   next: NextFunction
 ): Promise<void> {
   try {
-    const authHeader = req.headers.authorization;
-    const token = authHeader && authHeader.split(" ")[1];
-
-    if (!token) {
+    if (!req.session || !req.session.userId) {
       res.status(401).json({ message: "Требуется аутентификация" });
       return;
     }
 
-    const payload = verifyToken(token);
-    if (!payload) {
-      res.status(401).json({ message: "Недействительный токен" });
-      return;
-    }
-
-    req.userId = payload.userId;
-
-    const { storage } = await import("./storage");
-    const roles = await storage.getUserRoles(payload.userId);
-    req.userRoles = roles.map(r => r.role);
+    req.userId = req.session.userId;
+    req.userRoles = req.session.userRoles || [];
 
     next();
   } catch (error) {

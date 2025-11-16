@@ -4,6 +4,7 @@ import { setupVite, serveStatic, log } from "./vite";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import { env } from "./env";
+import { sessionMiddleware } from "./session";
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(helmet({
 }));
 
 app.use(cookieParser());
+app.use(sessionMiddleware);
 
 if (env.NODE_ENV === 'development') {
   app.use((req, res, next) => {
@@ -41,11 +43,12 @@ declare module 'http' {
   }
 }
 app.use(express.json({
+  limit: '50mb',
   verify: (req, _res, buf) => {
     req.rawBody = buf;
   }
 }));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ limit: '50mb', extended: false }));
 
 app.use((req, res, next) => {
   const start = Date.now();

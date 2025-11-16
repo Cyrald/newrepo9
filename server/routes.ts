@@ -3,7 +3,6 @@ import { createServer, type Server } from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { storage } from "./storage";
 import {
-  generateToken,
   hashPassword,
   comparePassword,
   authenticateToken,
@@ -18,6 +17,7 @@ import {
   chatAttachmentsUpload,
   validateTotalFileSize,
 } from "./upload";
+import { processProductImage, processChatImage } from "./imageProcessor";
 import { calculateCashback, canUseBonuses } from "./bonuses";
 import { validatePromocode, applyPromocode } from "./promocodes";
 import {
@@ -39,41 +39,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   wss.on("connection", async (ws: any, req: any) => {
     let userId: string | null = null;
-    let isAuthenticated = false;
-    
-    const authTimeout = setTimeout(() => {
-      if (!isAuthenticated) {
-        ws.close(1008, "Время ожидания аутентификации истекло");
-      }
-    }, 10000);
 
     ws.on("message", async (data: any) => {
       try {
         const message = JSON.parse(data.toString());
         
-        if (!isAuthenticated) {
-          if (message.type === "auth" && message.token) {
-            const { verifyToken } = await import("./auth");
-            const payload = verifyToken(message.token);
-            
-            if (!payload) {
-              ws.close(1008, "Недействительный токен");
-              return;
-            }
-            
-            userId = payload.userId;
-            isAuthenticated = true;
-            clearTimeout(authTimeout);
-            
-            ws.send(JSON.stringify({
-              type: "auth_success",
-              message: "Аутентификация успешна",
-            }));
-            return;
-          } else {
-            ws.close(1008, "Требуется аутентификация");
-            return;
-          }
+        if (message.type === "auth" && message.userId) {
+          userId = message.userId;
+          ws.send(JSON.stringify({
+            type: "auth_success",
+            message: "Аутентификация успешна",
+          }));
+          return;
         }
         
         if (message.type === "chat_message" && userId) {
@@ -95,10 +72,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } catch (error) {
         console.error("WebSocket message error:", error);
       }
-    });
-    
-    ws.on("close", () => {
-      clearTimeout(authTimeout);
     });
   });
 
@@ -136,10 +109,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       await sendVerificationEmail(user.email, verificationToken, user.firstName);
 
-      const token = generateToken(user.id);
+      const roles = await storage.getUserRoles(user.id);
+      
+      req.session.userId = user.id;
+      req.session.userRoles = roles.map(r => r.role);
 
       res.json({
-        token,
         user: {
           id: user.id,
           email: user.email,
@@ -172,10 +147,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(401).json({ message: "Неверный email или пароль" });
       }
 
-      const token = generateToken(user.id);
+      const roles = await storage.getUserRoles(user.id);
+      
+      req.session.userId = user.id;
+      req.session.userRoles = roles.map(r => r.role);
 
       res.json({
-        token,
         user: {
           id: user.id,
           email: user.email,
@@ -191,6 +168,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: error.errors[0].message });
       }
       res.status(500).json({ message: "Ошибка входа" });
+    }
+  });
+
+  app.post("/api/auth/logout", authenticateToken, async (req, res) => {
+    try {
+      req.session.destroy((err) => {
+        if (err) {
+          return res.status(500).json({ message: "Ошибка выхода" });
+        }
+        res.clearCookie('sessionId');
+        res.json({ message: "Выход выполнен успешно" });
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Ошибка выхода" });
     }
   });
 
@@ -654,9 +645,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const images = [];
 
         for (const file of files) {
+          await processProductImage(file.path);
+          
+          const newFilename = file.filename.replace(/\.[^.]+$/, '.webp');
+          
           const image = await storage.addProductImage({
             productId: req.params.id,
-            url: `/uploads/products/${file.filename}`,
+            url: `/uploads/products/${newFilename}`,
             sortOrder: 0,
           });
           images.push(image);

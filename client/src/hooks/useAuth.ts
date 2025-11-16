@@ -11,7 +11,7 @@ export function useLogin() {
   return useMutation({
     mutationFn: (data: LoginInput) => authApi.login(data),
     onSuccess: (response) => {
-      login(response.token, response.user);
+      login(response.user);
       queryClient.invalidateQueries({ queryKey: ["cart"] });
       queryClient.invalidateQueries({ queryKey: ["wishlist"] });
       queryClient.invalidateQueries({ queryKey: ["comparison"] });

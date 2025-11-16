@@ -32,20 +32,15 @@ async function fetchApi<T>(
   endpoint: string,
   options: RequestInit = {},
 ): Promise<T> {
-  const token = localStorage.getItem("auth_token");
-
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
     ...(options.headers as Record<string, string>),
   };
 
-  if (token) {
-    headers["Authorization"] = `Bearer ${token}`;
-  }
-
   const response = await fetch(endpoint, {
     ...options,
     headers,
+    credentials: 'include',
   });
 
   if (!response.ok) {
@@ -61,15 +56,20 @@ async function fetchApi<T>(
 // Аутентификация
 export const authApi = {
   register: (data: RegisterInput) =>
-    fetchApi<{ token: string; user: User }>("/api/auth/register", {
+    fetchApi<{ user: User }>("/api/auth/register", {
       method: "POST",
       body: JSON.stringify(data),
     }),
 
   login: (data: LoginInput) =>
-    fetchApi<{ token: string; user: User }>("/api/auth/login", {
+    fetchApi<{ user: User }>("/api/auth/login", {
       method: "POST",
       body: JSON.stringify(data),
+    }),
+
+  logout: () =>
+    fetchApi<{ message: string }>("/api/auth/logout", {
+      method: "POST",
     }),
 
   verifyEmail: (token: string) =>
