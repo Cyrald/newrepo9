@@ -7,6 +7,7 @@ interface AuthState {
   user: User | null;
   token: string | null;
   isAuthenticated: boolean;
+  authInitialized: boolean;
   
   // Actions
   login: (token: string, user: User) => void;
@@ -21,6 +22,7 @@ export const useAuthStore = create<AuthState>()(
       user: null,
       token: null,
       isAuthenticated: false,
+      authInitialized: false,
 
       login: (token: string, user: User) => {
         localStorage.setItem("auth_token", token);
@@ -28,6 +30,7 @@ export const useAuthStore = create<AuthState>()(
           token,
           user,
           isAuthenticated: true,
+          authInitialized: true,
         });
       },
 
@@ -37,6 +40,7 @@ export const useAuthStore = create<AuthState>()(
           token: null,
           user: null,
           isAuthenticated: false,
+          authInitialized: true,
         });
       },
 
@@ -47,6 +51,7 @@ export const useAuthStore = create<AuthState>()(
       checkAuth: async () => {
         const token = localStorage.getItem("auth_token");
         if (!token) {
+          set({ authInitialized: true });
           get().logout();
           return;
         }
@@ -57,8 +62,10 @@ export const useAuthStore = create<AuthState>()(
             token,
             user,
             isAuthenticated: true,
+            authInitialized: true,
           });
         } catch (error) {
+          set({ authInitialized: true });
           get().logout();
         }
       },

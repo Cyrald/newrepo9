@@ -10,16 +10,17 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { useAuthStore } from "@/stores/authStore"
+import { useCartStore } from "@/stores/cartStore"
 
 export function Header() {
   const [location] = useLocation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
 
-  // TODO: Получить реальные данные из store
-  const cartItemsCount = 0
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+  const cartItemsCount = useCartStore((state) => state.itemCount)
   const wishlistItemsCount = 0
-  const isAuthenticated = false
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()

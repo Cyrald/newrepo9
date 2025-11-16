@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useLocation } from "wouter"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -22,6 +22,13 @@ import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Badge } from "@/components/ui/badge"
+import { Checkbox } from "@/components/ui/checkbox"
+import { useCart } from "@/hooks/useCart"
+import { useMe } from "@/hooks/useAuth"
+import { useCreateOrder } from "@/hooks/useOrders"
+import { useAuthStore } from "@/stores/authStore"
+import { useCartStore } from "@/stores/cartStore"
+import { promocodesApi } from "@/lib/api"
 
 const deliverySchema = z.object({
   city: z.string().min(1, "Укажите город"),
@@ -48,20 +55,61 @@ const STEPS = [
 
 export default function CheckoutPage() {
   const [, setLocation] = useLocation()
-  const { toast } = useToast()
+  const { toast} = useToast()
   const [currentStep, setCurrentStep] = useState(1)
-  const [deliveryMethod, setDeliveryMethod] = useState("cdek")
-  const [paymentMethod, setPaymentMethod] = useState("online")
+  const [deliveryMethod, setDeliveryMethod] = useState<"cdek" | "boxberry">("cdek")
+  const [deliveryType, setDeliveryType] = useState<"pvz" | "postamat" | "courier">("pvz")
+  const [paymentMethod, setPaymentMethod] = useState<"online" | "on_delivery">("online")
   const [useBonuses, setUseBonuses] = useState(false)
   const [promocode, setPromocode] = useState("")
+  const [promocodeId, setPromocodeId] = useState<string | undefined>()
+  const [promocodeDiscount, setPromocodeDiscount] = useState(0)
+  const [bonusesUsed, setBonusesUsed] = useState(0)
+  
+  const authInitialized = useAuthStore((state) => state.authInitialized)
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+  const { data: user } = useMe()
+  const { data: cartData, isLoading: cartLoading } = useCart()
+  const cartItems = useCartStore((state) => state.items)
+  const createOrder = useCreateOrder()
 
-  // TODO: Fetch cart items, user data, bonuses
-  const cartItems = []
-  const subtotal = 0
+  useEffect(() => {
+    if (authInitialized && !isAuthenticated) {
+      setLocation("/login?returnUrl=/checkout")
+    }
+  }, [authInitialized, isAuthenticated, setLocation])
+
+  useEffect(() => {
+    if (authInitialized && isAuthenticated && cartItems && cartItems.length === 0) {
+      setLocation("/cart")
+    }
+  }, [authInitialized, isAuthenticated, cartItems, setLocation])
+
+  if (!authInitialized || cartLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Загрузка...</p>
+        </div>
+      </div>
+    )
+  }
+
+  const subtotal = cartItems.reduce((sum, item) => {
+    if (!item.product?.price) return sum
+    const price = typeof item.product.price === 'string' 
+      ? parseFloat(item.product.price) 
+      : Number(item.product.price)
+    if (isNaN(price) || price < 0) return sum
+    return sum + (price * item.quantity)
+  }, 0)
+  
   const deliveryCost = 300
-  const discount = 0
-  const bonusPoints = 500
-  const total = subtotal + deliveryCost - discount
+  const bonusPoints = user?.bonusBalance || 0
+  const baseTotal = Math.max(0, subtotal + deliveryCost - promocodeDiscount)
+  const cappedBonusesUsed = Math.min(bonusesUsed, baseTotal)
+  const finalTotal = Math.max(0, baseTotal - cappedBonusesUsed)
 
   const form = useForm<DeliveryFormData>({
     resolver: zodResolver(deliverySchema),
@@ -80,7 +128,19 @@ export default function CheckoutPage() {
     },
   })
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    if (currentStep === 1) {
+      const isValid = await form.trigger()
+      if (!isValid) {
+        toast({
+          title: "Ошибка",
+          description: "Заполните все обязательные поля",
+          variant: "destructive",
+        })
+        return
+      }
+    }
+    
     if (currentStep < STEPS.length) {
       setCurrentStep(currentStep + 1)
     }
@@ -99,31 +159,92 @@ export default function CheckoutPage() {
 
   const handleSubmitOrder = async () => {
     try {
-      // TODO: Implement order creation API call
-      console.log("Creating order...")
+      const deliveryData = form.getValues()
+      
+      const orderItems = cartItems.map((item) => ({
+        productId: item.productId,
+        name: item.product?.name || "",
+        price: parseFloat(item.product?.price || "0"),
+        quantity: item.quantity,
+        discount: parseFloat(item.product?.discountPercentage || "0"),
+      }))
+
+      await createOrder.mutateAsync({
+        items: orderItems,
+        deliveryService: deliveryMethod,
+        deliveryType: deliveryType,
+        deliveryAddress: {
+          city: deliveryData.city,
+          street: deliveryData.street,
+          building: deliveryData.building,
+          apartment: deliveryData.apartment || undefined,
+          postalCode: deliveryData.postalCode,
+        },
+        paymentMethod,
+        promocodeId,
+        bonusesUsed: cappedBonusesUsed,
+      })
       
       toast({
         title: "Заказ оформлен!",
         description: "Мы отправили подтверждение на вашу почту",
       })
       
-      setLocation("/profile/orders")
-    } catch (error) {
+      setLocation("/profile")
+    } catch (error: any) {
       toast({
         title: "Ошибка",
-        description: error instanceof Error ? error.message : "Не удалось создать заказ",
+        description: error.message || "Не удалось создать заказ",
         variant: "destructive",
       })
     }
   }
 
-  const handleApplyPromocode = () => {
-    // TODO: Implement promocode validation
-    if (promocode) {
+  const handleApplyPromocode = async () => {
+    if (!promocode) {
       toast({
-        title: "Промокод применен",
-        description: `Скидка 10% на заказ`,
+        title: "Ошибка",
+        description: "Введите промокод",
+        variant: "destructive",
       })
+      return
+    }
+
+    try {
+      const orderTotal = subtotal + deliveryCost
+      const result = await promocodesApi.validate(promocode, orderTotal)
+      
+      if (result.valid && result.promocode) {
+        const discount = Math.floor(orderTotal * (parseFloat(result.promocode.discountPercentage || "0") / 100))
+        setPromocodeId(result.promocode.id)
+        setPromocodeDiscount(discount)
+        toast({
+          title: "Промокод применен",
+          description: `Скидка ${result.promocode.discountPercentage}% на заказ (-${discount} ₽)`,
+        })
+      } else {
+        toast({
+          title: "Ошибка",
+          description: result.error || "Промокод недействителен",
+          variant: "destructive",
+        })
+      }
+    } catch (error: any) {
+      toast({
+        title: "Ошибка",
+        description: error.message || "Не удалось применить промокод",
+        variant: "destructive",
+      })
+    }
+  }
+
+  const handleUseBonuses = (checked: boolean) => {
+    setUseBonuses(checked)
+    const maxBonuses = Math.floor(baseTotal * 0.2)
+    if (checked) {
+      setBonusesUsed(Math.min(bonusPoints, maxBonuses))
+    } else {
+      setBonusesUsed(0)
     }
   }
 
@@ -378,7 +499,7 @@ export default function CheckoutPage() {
                       <h2 className="mb-6 font-serif text-2xl font-semibold">
                         Способ доставки
                       </h2>
-                      <RadioGroup value={deliveryMethod} onValueChange={setDeliveryMethod}>
+                      <RadioGroup value={deliveryMethod} onValueChange={(value) => setDeliveryMethod(value as "cdek" | "boxberry")}>
                         <div className="space-y-4">
                           <Card className={deliveryMethod === "cdek" ? "border-primary" : ""}>
                             <CardContent className="p-4">
@@ -435,7 +556,7 @@ export default function CheckoutPage() {
                       <h2 className="mb-6 font-serif text-2xl font-semibold">
                         Способ оплаты
                       </h2>
-                      <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
+                      <RadioGroup value={paymentMethod} onValueChange={(value) => setPaymentMethod(value as "online" | "on_delivery")}>
                         <div className="space-y-4">
                           <Card className={paymentMethod === "online" ? "border-primary" : ""}>
                             <CardContent className="p-4">
@@ -453,10 +574,10 @@ export default function CheckoutPage() {
                             </CardContent>
                           </Card>
 
-                          <Card className={paymentMethod === "cash" ? "border-primary" : ""}>
+                          <Card className={paymentMethod === "on_delivery" ? "border-primary" : ""}>
                             <CardContent className="p-4">
                               <div className="flex items-start gap-3">
-                                <RadioGroupItem value="cash" id="cash" data-testid="radio-cash-payment" />
+                                <RadioGroupItem value="on_delivery" id="on_delivery" data-testid="radio-cash-payment" />
                                 <div className="flex-1">
                                   <label htmlFor="cash" className="font-semibold cursor-pointer">
                                     При получении
@@ -565,10 +686,16 @@ export default function CheckoutPage() {
                       <span className="text-muted-foreground">Доставка</span>
                       <span data-testid="text-delivery">{deliveryCost.toFixed(2)} ₽</span>
                     </div>
-                    {discount > 0 && (
+                    {promocodeDiscount > 0 && (
                       <div className="flex justify-between text-primary">
-                        <span>Скидка</span>
-                        <span>-{discount.toFixed(2)} ₽</span>
+                        <span>Скидка по промокоду</span>
+                        <span data-testid="text-discount">-{promocodeDiscount.toFixed(2)} ₽</span>
+                      </div>
+                    )}
+                    {cappedBonusesUsed > 0 && (
+                      <div className="flex justify-between text-primary">
+                        <span>Бонусы</span>
+                        <span data-testid="text-bonuses">-{cappedBonusesUsed.toFixed(2)} ₽</span>
                       </div>
                     )}
                   </div>
@@ -597,12 +724,25 @@ export default function CheckoutPage() {
                   {/* Bonuses */}
                   {bonusPoints > 0 && (
                     <div>
-                      <div className="flex items-center justify-between">
-                        <label className="text-sm font-medium">
-                          Использовать бонусы
-                        </label>
-                        <Badge variant="secondary">{bonusPoints} б.</Badge>
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <Checkbox 
+                            id="use-bonuses" 
+                            checked={useBonuses}
+                            onCheckedChange={handleUseBonuses}
+                            data-testid="checkbox-use-bonuses"
+                          />
+                          <label htmlFor="use-bonuses" className="text-sm font-medium cursor-pointer">
+                            Использовать бонусы
+                          </label>
+                        </div>
+                        <Badge variant="secondary">Доступно: {bonusPoints} б.</Badge>
                       </div>
+                      {useBonuses && cappedBonusesUsed > 0 && (
+                        <p className="text-sm text-muted-foreground">
+                          Будет использовано: {cappedBonusesUsed} бонусов (макс. 20% от суммы)
+                        </p>
+                      )}
                     </div>
                   )}
 
@@ -610,7 +750,7 @@ export default function CheckoutPage() {
 
                   <div className="flex justify-between text-lg font-semibold">
                     <span>Итого</span>
-                    <span data-testid="text-total">{total.toFixed(2)} ₽</span>
+                    <span data-testid="text-total">{finalTotal.toFixed(2)} ₽</span>
                   </div>
                 </CardContent>
               </Card>

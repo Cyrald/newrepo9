@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { User, Package, Star, MapPin, LogOut } from "lucide-react"
 import { useLocation } from "wouter"
 import { Header } from "@/components/header"
@@ -11,38 +11,113 @@ import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
+import { useAuthStore } from "@/stores/authStore"
+import { useMe, useUpdateProfile, useUpdatePassword } from "@/hooks/useAuth"
+import { useOrders } from "@/hooks/useOrders"
+import { useAddresses } from "@/hooks/useAddresses"
 
 export default function ProfilePage() {
   const [, setLocation] = useLocation()
   const { toast } = useToast()
+  const authInitialized = useAuthStore((state) => state.authInitialized)
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+  const logout = useAuthStore((state) => state.logout)
+  
+  const { data: user, isLoading: userLoading } = useMe()
+  const { data: orders, isLoading: ordersLoading } = useOrders()
+  const { data: addresses, isLoading: addressesLoading } = useAddresses()
+  
+  const updateProfile = useUpdateProfile()
+  const updatePassword = useUpdatePassword()
 
-  // TODO: Fetch user data from API
-  const user = {
-    firstName: "Иван",
-    lastName: "Иванов",
-    email: "ivan@example.com",
-    phone: "+7 (900) 123-45-67",
-    bonusPoints: 500,
+  const [profileData, setProfileData] = useState({
+    firstName: "",
+    lastName: "",
+    patronymic: "",
+    phone: "",
+  })
+
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  })
+
+  useEffect(() => {
+    if (authInitialized && !isAuthenticated) {
+      setLocation("/login?returnUrl=/profile")
+    }
+  }, [authInitialized, isAuthenticated, setLocation])
+
+  if (!authInitialized) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Загрузка...</p>
+        </div>
+      </div>
+    )
   }
 
-  const orders = [] // TODO: Fetch from API
-  const addresses = [] // TODO: Fetch from API
-
   const handleLogout = () => {
-    // TODO: Implement logout
+    logout()
     toast({
       title: "Вы вышли из системы",
     })
     setLocation("/")
   }
 
-  const handleUpdateProfile = (e: React.FormEvent) => {
+  const handleUpdateProfile = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Implement profile update
-    toast({
-      title: "Профиль обновлен",
-      description: "Изменения сохранены",
-    })
+    try {
+      await updateProfile.mutateAsync(profileData)
+      toast({
+        title: "Профиль обновлен",
+        description: "Изменения успешно сохранены",
+      })
+    } catch (error: any) {
+      toast({
+        title: "Ошибка",
+        description: error.message || "Не удалось обновить профиль",
+        variant: "destructive",
+      })
+    }
+  }
+
+  const handleUpdatePassword = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      toast({
+        title: "Ошибка",
+        description: "Пароли не совпадают",
+        variant: "destructive",
+      })
+      return
+    }
+
+    try {
+      await updatePassword.mutateAsync({
+        currentPassword: passwordData.currentPassword,
+        newPassword: passwordData.newPassword,
+      })
+      toast({
+        title: "Пароль изменен",
+        description: "Пароль успешно обновлен",
+      })
+      setPasswordData({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      })
+    } catch (error: any) {
+      toast({
+        title: "Ошибка",
+        description: error.message || "Не удалось изменить пароль",
+        variant: "destructive",
+      })
+    }
   }
 
   return (
@@ -56,9 +131,11 @@ export default function ProfilePage() {
               <h1 className="font-serif text-3xl md:text-4xl font-semibold" data-testid="text-page-title">
                 Профиль
               </h1>
-              <p className="mt-1 text-muted-foreground">
-                {user.firstName} {user.lastName}
-              </p>
+              {user && (
+                <p className="mt-1 text-muted-foreground">
+                  {user.firstName} {user.lastName}
+                </p>
+              )}
             </div>
             <Button variant="outline" onClick={handleLogout} data-testid="button-logout">
               <LogOut className="mr-2 h-4 w-4" />
@@ -102,7 +179,8 @@ export default function ProfilePage() {
                         <Label htmlFor="firstName">Имя</Label>
                         <Input
                           id="firstName"
-                          defaultValue={user.firstName}
+                          defaultValue={user?.firstName || ""}
+                          onChange={(e) => setProfileData({...profileData, firstName: e.target.value})}
                           data-testid="input-first-name"
                         />
                       </div>
@@ -111,19 +189,20 @@ export default function ProfilePage() {
                         <Label htmlFor="lastName">Фамилия</Label>
                         <Input
                           id="lastName"
-                          defaultValue={user.lastName}
+                          defaultValue={user?.lastName || ""}
+                          onChange={(e) => setProfileData({...profileData, lastName: e.target.value})}
                           data-testid="input-last-name"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
+                      <Label htmlFor="patronymic">Отчество</Label>
                       <Input
-                        id="email"
-                        type="email"
-                        defaultValue={user.email}
-                        data-testid="input-email"
+                        id="patronymic"
+                        defaultValue={user?.patronymic || ""}
+                        onChange={(e) => setProfileData({...profileData, patronymic: e.target.value})}
+                        data-testid="input-patronymic"
                       />
                     </div>
 
@@ -132,18 +211,31 @@ export default function ProfilePage() {
                       <Input
                         id="phone"
                         type="tel"
-                        defaultValue={user.phone}
+                        defaultValue={user?.phone || ""}
+                        onChange={(e) => setProfileData({...profileData, phone: e.target.value})}
                         data-testid="input-phone"
                       />
                     </div>
 
-                    <Separator />
+                    <div className="flex justify-end">
+                      <Button type="submit" disabled={updateProfile.isPending} data-testid="button-save-profile">
+                        {updateProfile.isPending ? "Сохранение..." : "Сохранить изменения"}
+                      </Button>
+                    </div>
+                  </form>
 
+                  <Separator className="my-6" />
+
+                  <form onSubmit={handleUpdatePassword} className="space-y-4">
+                    <h3 className="text-lg font-semibold">Изменить пароль</h3>
+                    
                     <div className="space-y-2">
                       <Label htmlFor="currentPassword">Текущий пароль</Label>
                       <Input
                         id="currentPassword"
                         type="password"
+                        value={passwordData.currentPassword}
+                        onChange={(e) => setPasswordData({...passwordData, currentPassword: e.target.value})}
                         data-testid="input-current-password"
                       />
                     </div>
@@ -154,6 +246,8 @@ export default function ProfilePage() {
                         <Input
                           id="newPassword"
                           type="password"
+                          value={passwordData.newPassword}
+                          onChange={(e) => setPasswordData({...passwordData, newPassword: e.target.value})}
                           data-testid="input-new-password"
                         />
                       </div>
@@ -163,14 +257,16 @@ export default function ProfilePage() {
                         <Input
                           id="confirmPassword"
                           type="password"
+                          value={passwordData.confirmPassword}
+                          onChange={(e) => setPasswordData({...passwordData, confirmPassword: e.target.value})}
                           data-testid="input-confirm-password"
                         />
                       </div>
                     </div>
 
                     <div className="flex justify-end">
-                      <Button type="submit" data-testid="button-save-profile">
-                        Сохранить изменения
+                      <Button type="submit" disabled={updatePassword.isPending} data-testid="button-change-password">
+                        {updatePassword.isPending ? "Изменение..." : "Изменить пароль"}
                       </Button>
                     </div>
                   </form>
@@ -188,7 +284,9 @@ export default function ProfilePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {orders.length === 0 ? (
+                  {ordersLoading ? (
+                    <div className="text-center py-8">Загрузка...</div>
+                  ) : !orders || orders.length === 0 ? (
                     <div className="py-12 text-center">
                       <Package className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
                       <p className="text-lg font-semibold mb-2">У вас пока нет заказов</p>
@@ -201,7 +299,7 @@ export default function ProfilePage() {
                     </div>
                   ) : (
                     <div className="space-y-4">
-                      {orders.map((order: any) => (
+                      {orders.map((order) => (
                         <Card key={order.id}>
                           <CardContent className="p-6">
                             <div className="flex items-start justify-between mb-4">
@@ -222,7 +320,7 @@ export default function ProfilePage() {
                             <Separator className="my-4" />
                             <div className="flex justify-between items-center">
                               <p className="text-lg font-semibold">
-                                {parseFloat(order.totalAmount)} ₽
+                                {order.totalAmount.toFixed(0)} ₽
                               </p>
                               <Button variant="outline" size="sm">
                                 Подробнее
@@ -253,7 +351,7 @@ export default function ProfilePage() {
                         Доступные бонусы
                       </p>
                       <p className="text-4xl font-bold text-primary" data-testid="text-bonus-points">
-                        {user.bonusPoints}
+                        {user?.bonusBalance || 0}
                       </p>
                       <p className="text-sm text-muted-foreground mt-2">
                         1 бонус = 1 рубль
@@ -293,7 +391,9 @@ export default function ProfilePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {addresses.length === 0 ? (
+                  {addressesLoading ? (
+                    <div className="text-center py-8">Загрузка...</div>
+                  ) : !addresses || addresses.length === 0 ? (
                     <div className="py-12 text-center">
                       <MapPin className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
                       <p className="text-lg font-semibold mb-2">Нет сохраненных адресов</p>
@@ -309,7 +409,7 @@ export default function ProfilePage() {
                       <Button className="w-full" data-testid="button-add-address">
                         Добавить новый адрес
                       </Button>
-                      {addresses.map((address: any) => (
+                      {addresses.map((address) => (
                         <Card key={address.id}>
                           <CardContent className="p-4">
                             <div className="flex items-start justify-between">
@@ -317,9 +417,9 @@ export default function ProfilePage() {
                                 {address.isDefault && (
                                   <Badge className="mb-2" variant="default">Основной</Badge>
                                 )}
-                                <p className="font-semibold">{address.city}</p>
+                                <p className="font-semibold">{address.label}</p>
                                 <p className="text-sm text-muted-foreground">
-                                  {address.street}, д. {address.building}
+                                  {address.city}, {address.street}, д. {address.building}
                                   {address.apartment && `, кв. ${address.apartment}`}
                                 </p>
                                 <p className="text-sm text-muted-foreground">

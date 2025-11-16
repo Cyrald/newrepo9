@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { GitCompare, X } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -5,14 +6,50 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { EmptyState } from "@/components/empty-state"
 import { Badge } from "@/components/ui/badge"
-import { Link } from "wouter"
+import { Link, useLocation } from "wouter"
+import { useComparison, useRemoveFromComparison } from "@/hooks/useComparison"
+import { useToast } from "@/hooks/use-toast"
+import { useAuthStore } from "@/stores/authStore"
 
 export default function ComparisonPage() {
-  // TODO: Fetch comparison from API
-  const comparisonItems = []
+  const [, setLocation] = useLocation()
+  const authInitialized = useAuthStore((state) => state.authInitialized)
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+  const { data: comparisonItems, isLoading } = useComparison()
+  const removeFromComparison = useRemoveFromComparison()
+  const { toast } = useToast()
 
-  const handleRemoveItem = (productId: string) => {
-    // TODO: Implement
+  useEffect(() => {
+    if (authInitialized && !isAuthenticated) {
+      setLocation("/login?returnUrl=/comparison")
+    }
+  }, [authInitialized, isAuthenticated, setLocation])
+
+  if (!authInitialized) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Загрузка...</p>
+        </div>
+      </div>
+    )
+  }
+
+  const handleRemoveItem = async (productId: string) => {
+    try {
+      await removeFromComparison.mutateAsync(productId)
+      toast({
+        title: "Удалено из сравнения",
+        description: "Товар удален из списка сравнения",
+      })
+    } catch (error: any) {
+      toast({
+        title: "Ошибка",
+        description: error.message || "Не удалось удалить товар",
+        variant: "destructive",
+      })
+    }
   }
 
   const characteristics = [
@@ -34,14 +71,16 @@ export default function ComparisonPage() {
             Сравнение товаров
           </h1>
 
-          {comparisonItems.length === 0 ? (
+          {isLoading ? (
+            <div className="text-center py-8">Загрузка...</div>
+          ) : !comparisonItems || comparisonItems.length === 0 ? (
             <EmptyState
               icon={GitCompare}
               title="Нет товаров для сравнения"
               description="Добавьте товары в сравнение, чтобы увидеть их характеристики"
               action={{
                 label: "Перейти в каталог",
-                onClick: () => window.location.href = "/catalog",
+                onClick: () => setLocation("/catalog"),
               }}
             />
           ) : (

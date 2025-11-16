@@ -502,8 +502,23 @@ export type CartItemWithProduct = CartItem & {
 export type WishlistItem = typeof wishlistItems.$inferSelect;
 export type InsertWishlistItem = z.infer<typeof insertWishlistItemSchema>;
 
+// Wishlist item with joined product data
+export type WishlistItemWithProduct = WishlistItem & {
+  product: Product;
+};
+
 export type ComparisonItem = typeof comparisonItems.$inferSelect;
 export type InsertComparisonItem = z.infer<typeof insertComparisonItemSchema>;
+
+// Comparison item with joined product data
+export type ComparisonItemWithProduct = ComparisonItem & {
+  product: Product;
+};
+
+// Order with computed total amount
+export type OrderWithTotal = Order & {
+  totalAmount: number;
+};
 
 export type SupportMessage = typeof supportMessages.$inferSelect;
 export type InsertSupportMessage = z.infer<typeof insertSupportMessageSchema>;

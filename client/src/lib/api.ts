@@ -7,8 +7,11 @@ import type {
   CartItem,
   CartItemWithProduct,
   WishlistItem,
+  WishlistItemWithProduct,
   ComparisonItem,
+  ComparisonItemWithProduct,
   Order,
+  OrderWithTotal,
   UserAddress,
   UserPaymentCard,
   Promocode,
@@ -31,9 +34,9 @@ async function fetchApi<T>(
 ): Promise<T> {
   const token = localStorage.getItem("auth_token");
 
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     "Content-Type": "application/json",
-    ...options.headers,
+    ...(options.headers as Record<string, string>),
   };
 
   if (token) {
@@ -206,7 +209,7 @@ export const cartApi = {
 
 // Избранное
 export const wishlistApi = {
-  get: () => fetchApi<WishlistItem[]>("/api/wishlist"),
+  get: () => fetchApi<WishlistItemWithProduct[]>("/api/wishlist"),
 
   add: (productId: string) =>
     fetchApi<{ success: boolean }>("/api/wishlist", {
@@ -222,7 +225,7 @@ export const wishlistApi = {
 
 // Сравнение
 export const comparisonApi = {
-  get: () => fetchApi<ComparisonItem[]>("/api/comparison"),
+  get: () => fetchApi<ComparisonItemWithProduct[]>("/api/comparison"),
 
   add: (productId: string) =>
     fetchApi<{ success: boolean }>("/api/comparison", {
@@ -341,9 +344,9 @@ export const promocodesApi = {
 
 // Заказы
 export const ordersApi = {
-  getAll: () => fetchApi<Order[]>("/api/orders"),
+  getAll: () => fetchApi<OrderWithTotal[]>("/api/orders"),
 
-  getById: (id: string) => fetchApi<Order>(`/api/orders/${id}`),
+  getById: (id: string) => fetchApi<OrderWithTotal>(`/api/orders/${id}`),
 
   create: (data: {
     items: Array<{

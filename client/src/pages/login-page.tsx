@@ -125,7 +125,7 @@ export default function LoginPage() {
               <p className="text-muted-foreground">
                 Нет аккаунта?{" "}
                 <Link href="/register">
-                  <Button variant="link" className="p-0" data-testid="link-register">
+                  <Button variant="ghost" className="p-0" data-testid="link-register">
                     Зарегистрироваться
                   </Button>
                 </Link>

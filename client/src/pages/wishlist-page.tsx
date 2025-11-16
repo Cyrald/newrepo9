@@ -1,14 +1,73 @@
+import { useEffect } from "react"
 import { Heart } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ProductCard } from "@/components/product-card"
 import { ProductGridSkeleton } from "@/components/loading-state"
 import { EmptyState } from "@/components/empty-state"
+import { useWishlist, useRemoveFromWishlist } from "@/hooks/useWishlist"
+import { useAddToCart } from "@/hooks/useCart"
+import { useToast } from "@/hooks/use-toast"
+import { useAuthStore } from "@/stores/authStore"
+import { useLocation } from "wouter"
 
 export default function WishlistPage() {
-  // TODO: Fetch wishlist from API
-  const isLoading = false
-  const wishlistItems = []
+  const [, setLocation] = useLocation()
+  const authInitialized = useAuthStore((state) => state.authInitialized)
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+  const { data: wishlistItems, isLoading } = useWishlist()
+  const removeFromWishlist = useRemoveFromWishlist()
+  const addToCart = useAddToCart()
+  const { toast } = useToast()
+
+  useEffect(() => {
+    if (authInitialized && !isAuthenticated) {
+      setLocation("/login?returnUrl=/wishlist")
+    }
+  }, [authInitialized, isAuthenticated, setLocation])
+
+  if (!authInitialized) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Загрузка...</p>
+        </div>
+      </div>
+    )
+  }
+
+  const handleAddToCart = async (productId: string) => {
+    try {
+      await addToCart.mutateAsync({ productId, quantity: 1 })
+      toast({
+        title: "Добавлено в корзину",
+        description: "Товар успешно добавлен в корзину",
+      })
+    } catch (error: any) {
+      toast({
+        title: "Ошибка",
+        description: error.message || "Не удалось добавить товар в корзину",
+        variant: "destructive",
+      })
+    }
+  }
+
+  const handleRemoveFromWishlist = async (productId: string) => {
+    try {
+      await removeFromWishlist.mutateAsync(productId)
+      toast({
+        title: "Удалено из избранного",
+        description: "Товар удален из избранного",
+      })
+    } catch (error: any) {
+      toast({
+        title: "Ошибка",
+        description: error.message || "Не удалось удалить товар",
+        variant: "destructive",
+      })
+    }
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -22,22 +81,24 @@ export default function WishlistPage() {
 
           {isLoading ? (
             <ProductGridSkeleton />
-          ) : wishlistItems.length === 0 ? (
+          ) : !wishlistItems || wishlistItems.length === 0 ? (
             <EmptyState
               icon={Heart}
               title="Избранное пусто"
               description="Добавьте товары в избранное, чтобы не потерять их"
               action={{
                 label: "Перейти в каталог",
-                onClick: () => window.location.href = "/catalog",
+                onClick: () => setLocation("/catalog"),
               }}
             />
           ) : (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {wishlistItems.map((item: any) => (
+              {wishlistItems.map((item) => (
                 <ProductCard
                   key={item.id}
                   product={item.product}
+                  onAddToCart={handleAddToCart}
+                  onAddToWishlist={handleRemoveFromWishlist}
                 />
               ))}
             </div>
