@@ -4,6 +4,17 @@
 
 This is a full-featured e-commerce platform for natural and organic products, built as a React SPA with a Node.js/Express backend. It provides an online shopping experience for customers and comprehensive admin tools for product, order, and customer management. The platform supports a role-based access control system (administrators, marketers, consultants, customers) and integrates with third-party services for payments, delivery, and email verification.
 
+## Recent Changes
+
+**November 16, 2025** - Initial Replit Environment Setup:
+- Installed all npm dependencies
+- Configured PostgreSQL database and pushed schema using Drizzle
+- Set up Vite development server on port 5000 with proper host configuration (0.0.0.0)
+- Configured HMR for Replit proxy environment (wss protocol on port 443)
+- Set up dev-server workflow for automatic restarts
+- Configured deployment for autoscale with production build
+- Application is fully functional and running
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
