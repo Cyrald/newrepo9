@@ -1,5 +1,12 @@
 import { z } from 'zod';
 import 'dotenv/config';
+import { randomBytes } from 'crypto';
+
+if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
+  const generatedSecret = randomBytes(32).toString('hex');
+  process.env.JWT_SECRET = generatedSecret;
+  console.log('⚠️  JWT_SECRET автоматически сгенерирован. В production используйте постоянный ключ через переменные окружения.');
+}
 
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
