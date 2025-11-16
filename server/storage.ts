@@ -127,6 +127,7 @@ export interface IStorage {
   deleteComparisonItem(userId: string, productId: string): Promise<void>;
   
   getSupportMessages(userId: string): Promise<SupportMessage[]>;
+  getAllSupportConversations(): Promise<{ userId: string; lastMessage: SupportMessage; unreadCount: number }[]>;
   createSupportMessage(message: InsertSupportMessage): Promise<SupportMessage>;
   markMessageAsRead(id: string): Promise<void>;
   
@@ -541,6 +542,34 @@ export class DatabaseStorage implements IStorage {
 
   async getSupportMessages(userId: string): Promise<SupportMessage[]> {
     return db.select().from(supportMessages).where(eq(supportMessages.userId, userId)).orderBy(supportMessages.createdAt);
+  }
+
+  async getAllSupportConversations(): Promise<{ userId: string; lastMessage: SupportMessage; unreadCount: number }[]> {
+    const allMessages = await db.select().from(supportMessages).orderBy(desc(supportMessages.createdAt));
+    
+    const conversationsMap = new Map<string, { lastMessage: SupportMessage; unreadCount: number }>();
+    
+    for (const message of allMessages) {
+      if (!conversationsMap.has(message.userId)) {
+        const unreadCount = await db.select({ count: sql<number>`count(*)` })
+          .from(supportMessages)
+          .where(and(
+            eq(supportMessages.userId, message.userId),
+            eq(supportMessages.isRead, false)
+          ));
+        
+        conversationsMap.set(message.userId, {
+          lastMessage: message,
+          unreadCount: Number(unreadCount[0]?.count || 0)
+        });
+      }
+    }
+    
+    return Array.from(conversationsMap.entries()).map(([userId, data]) => ({
+      userId,
+      lastMessage: data.lastMessage,
+      unreadCount: data.unreadCount
+    }));
   }
 
   async createSupportMessage(message: InsertSupportMessage): Promise<SupportMessage> {

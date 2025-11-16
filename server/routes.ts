@@ -456,7 +456,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/categories", authenticateToken, requireRole("admin"), async (req, res) => {
+  app.post("/api/categories", authenticateToken, requireRole("admin", "marketer"), async (req, res) => {
     try {
       const category = await storage.createCategory(req.body);
       res.json(category);
@@ -465,7 +465,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/categories/:id", authenticateToken, requireRole("admin"), async (req, res) => {
+  app.put("/api/categories/:id", authenticateToken, requireRole("admin", "marketer"), async (req, res) => {
     try {
       const category = await storage.updateCategory(req.params.id, req.body);
       res.json(category);
@@ -474,7 +474,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/categories/:id", authenticateToken, requireRole("admin"), async (req, res) => {
+  app.delete("/api/categories/:id", authenticateToken, requireRole("admin", "marketer"), async (req, res) => {
     try {
       await storage.deleteCategory(req.params.id);
       res.json({ message: "Категория удалена" });
@@ -542,7 +542,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post(
     "/api/products",
     authenticateToken,
-    requireRole("admin"),
+    requireRole("admin", "marketer"),
     async (req, res) => {
       try {
         const product = await storage.createProduct(req.body);
@@ -556,7 +556,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.put(
     "/api/products/:id",
     authenticateToken,
-    requireRole("admin"),
+    requireRole("admin", "marketer"),
     async (req, res) => {
       try {
         const product = await storage.updateProduct(req.params.id, req.body);
@@ -570,7 +570,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.delete(
     "/api/products/:id",
     authenticateToken,
-    requireRole("admin"),
+    requireRole("admin", "marketer"),
     async (req, res) => {
       try {
         await storage.deleteProduct(req.params.id);
@@ -584,7 +584,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post(
     "/api/products/:id/images",
     authenticateToken,
-    requireRole("admin"),
+    requireRole("admin", "marketer"),
     productImagesUpload.array("images", 10),
     async (req, res) => {
       try {
@@ -610,7 +610,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.delete(
     "/api/products/images/:id",
     authenticateToken,
-    requireRole("admin"),
+    requireRole("admin", "marketer"),
     async (req, res) => {
       try {
         await storage.deleteProductImage(req.params.id);
@@ -951,6 +951,45 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error) {
       res.status(500).json({ message: "Ошибка получения статистики" });
+    }
+  });
+
+  app.get("/api/support/conversations", authenticateToken, requireRole("admin", "consultant"), async (req, res) => {
+    try {
+      const conversations = await storage.getAllSupportConversations();
+      res.json(conversations);
+    } catch (error) {
+      res.status(500).json({ message: "Ошибка получения диалогов" });
+    }
+  });
+
+  app.get("/api/support/customer-info/:userId", authenticateToken, requireRole("admin", "consultant"), async (req, res) => {
+    try {
+      const user = await storage.getUser(req.params.userId);
+      if (!user) {
+        return res.status(404).json({ message: "Пользователь не найден" });
+      }
+
+      const orders = await storage.getOrders({ userId: req.params.userId });
+      
+      res.json({
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        patronymic: user.patronymic,
+        phone: user.phone,
+        bonusBalance: user.bonusBalance,
+        orders: orders.map(order => ({
+          id: order.id,
+          orderNumber: order.orderNumber,
+          createdAt: order.createdAt,
+          total: order.total,
+          status: order.status,
+        })),
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Ошибка получения информации о клиенте" });
     }
   });
 

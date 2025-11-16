@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { AuthProvider } from "@/providers/auth-provider";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import NotFound from "@/pages/not-found";
 import HomePage from "@/pages/home-page";
 import CatalogPage from "@/pages/catalog-page";
@@ -28,20 +29,64 @@ function Router() {
       <Route path="/" component={HomePage} />
       <Route path="/catalog" component={CatalogPage} />
       <Route path="/products/:id" component={ProductDetailPage} />
-      <Route path="/cart" component={CartPage} />
-      <Route path="/checkout" component={CheckoutPage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/register" component={RegisterPage} />
       <Route path="/verify-email" component={VerifyEmailPage} />
-      <Route path="/profile" component={ProfilePage} />
-      <Route path="/profile/:tab" component={ProfilePage} />
-      <Route path="/wishlist" component={WishlistPage} />
-      <Route path="/comparison" component={ComparisonPage} />
-      {/* Admin Routes */}
-      <Route path="/admin" component={AdminDashboardPage} />
-      <Route path="/admin/users" component={AdminUsersPage} />
-      <Route path="/admin/products" component={AdminProductsPage} />
-      <Route path="/admin/orders" component={AdminOrdersPage} />
+      
+      {/* Protected Routes - require authentication */}
+      <Route path="/cart">
+        <ProtectedRoute>
+          <CartPage />
+        </ProtectedRoute>
+      </Route>
+      <Route path="/checkout">
+        <ProtectedRoute>
+          <CheckoutPage />
+        </ProtectedRoute>
+      </Route>
+      <Route path="/profile">
+        <ProtectedRoute>
+          <ProfilePage />
+        </ProtectedRoute>
+      </Route>
+      <Route path="/profile/:tab">
+        <ProtectedRoute>
+          <ProfilePage />
+        </ProtectedRoute>
+      </Route>
+      <Route path="/wishlist">
+        <ProtectedRoute>
+          <WishlistPage />
+        </ProtectedRoute>
+      </Route>
+      <Route path="/comparison">
+        <ProtectedRoute>
+          <ComparisonPage />
+        </ProtectedRoute>
+      </Route>
+      
+      {/* Admin Routes - require admin, marketer, or consultant roles */}
+      <Route path="/admin">
+        <ProtectedRoute roles={["admin", "marketer", "consultant"]}>
+          <AdminDashboardPage />
+        </ProtectedRoute>
+      </Route>
+      <Route path="/admin/users">
+        <ProtectedRoute roles={["admin"]}>
+          <AdminUsersPage />
+        </ProtectedRoute>
+      </Route>
+      <Route path="/admin/products">
+        <ProtectedRoute roles={["admin", "marketer"]}>
+          <AdminProductsPage />
+        </ProtectedRoute>
+      </Route>
+      <Route path="/admin/orders">
+        <ProtectedRoute roles={["admin"]}>
+          <AdminOrdersPage />
+        </ProtectedRoute>
+      </Route>
+      
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>

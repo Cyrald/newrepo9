@@ -23,57 +23,71 @@ import {
   SidebarFooter,
   SidebarHeader,
 } from "@/components/ui/sidebar"
+import { useAuthStore } from "@/stores/authStore"
 
 const navItems = [
   {
     title: "Dashboard",
     href: "/admin",
     icon: LayoutDashboard,
+    roles: ["admin", "marketer", "consultant"],
   },
   {
     title: "Пользователи",
     href: "/admin/users",
     icon: Users,
+    roles: ["admin"],
   },
   {
     title: "Товары",
     href: "/admin/products",
     icon: Package,
+    roles: ["admin", "marketer"],
   },
   {
     title: "Категории",
     href: "/admin/categories",
     icon: FolderTree,
+    roles: ["admin", "marketer"],
   },
   {
     title: "Заказы",
     href: "/admin/orders",
     icon: ShoppingCart,
+    roles: ["admin"],
   },
   {
     title: "Промокоды",
     href: "/admin/promocodes",
     icon: Tag,
+    roles: ["admin", "marketer"],
   },
   {
     title: "Статистика",
     href: "/admin/statistics",
     icon: BarChart3,
+    roles: ["admin", "marketer"],
   },
   {
     title: "Поддержка",
     href: "/admin/support",
     icon: MessageSquare,
+    roles: ["admin", "consultant"],
   },
 ]
 
 export function AppSidebarAdmin() {
   const [location] = useLocation()
+  const user = useAuthStore((state) => state.user)
+  const userRoles = user?.roles || []
 
   const handleLogout = () => {
-    // TODO: Implement logout
     window.location.href = "/"
   }
+
+  const visibleNavItems = navItems.filter((item) =>
+    item.roles.some((role) => userRoles.includes(role))
+  )
 
   return (
     <Sidebar>
@@ -91,7 +105,7 @@ export function AppSidebarAdmin() {
           <SidebarGroupLabel>Навигация</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {navItems.map((item) => {
+              {visibleNavItems.map((item) => {
                 const Icon = item.icon
                 const isActive = location === item.href
                 const testId = `link-admin-${item.href.split('/').pop()}`
