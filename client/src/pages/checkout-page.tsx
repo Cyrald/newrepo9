@@ -63,7 +63,7 @@ export default function CheckoutPage() {
   const [useBonuses, setUseBonuses] = useState(false)
   const [promocode, setPromocode] = useState("")
   const [promocodeId, setPromocodeId] = useState<string | undefined>()
-  const [promocodeDiscount, setPromocodeDiscount] = useState(0)
+  const [promocodePercent, setPromocodePercent] = useState(0)
   const [bonusesUsed, setBonusesUsed] = useState(0)
   
   const authInitialized = useAuthStore((state) => state.authInitialized)
@@ -105,9 +105,12 @@ export default function CheckoutPage() {
     return sum + (price * item.quantity)
   }, 0)
   
-  const deliveryCost = 300
+  const deliveryCost = deliveryMethod === "cdek" ? 300 : 250
+  const deliveryEta = deliveryMethod === "cdek" ? "2-5 дней" : "2-4 дня"
   const bonusPoints = user?.bonusBalance || 0
-  const baseTotal = Math.max(0, subtotal + deliveryCost - promocodeDiscount)
+  const orderTotal = subtotal + deliveryCost
+  const promocodeDiscount = Math.floor(orderTotal * (promocodePercent / 100))
+  const baseTotal = Math.max(0, orderTotal - promocodeDiscount)
   const cappedBonusesUsed = Math.min(bonusesUsed, baseTotal)
   const finalTotal = Math.max(0, baseTotal - cappedBonusesUsed)
 
@@ -211,16 +214,16 @@ export default function CheckoutPage() {
     }
 
     try {
-      const orderTotal = subtotal + deliveryCost
       const result = await promocodesApi.validate(promocode, orderTotal)
       
       if (result.valid && result.promocode) {
-        const discount = Math.floor(orderTotal * (parseFloat(result.promocode.discountPercentage || "0") / 100))
+        const percent = parseFloat(result.promocode.discountPercentage || "0")
+        const discount = Math.floor(orderTotal * (percent / 100))
         setPromocodeId(result.promocode.id)
-        setPromocodeDiscount(discount)
+        setPromocodePercent(percent)
         toast({
           title: "Промокод применен",
-          description: `Скидка ${result.promocode.discountPercentage}% на заказ (-${discount} ₽)`,
+          description: `Скидка ${percent}% на заказ (-${discount} ₽)`,
         })
       } else {
         toast({
@@ -499,43 +502,116 @@ export default function CheckoutPage() {
                       <h2 className="mb-6 font-serif text-2xl font-semibold">
                         Способ доставки
                       </h2>
-                      <RadioGroup value={deliveryMethod} onValueChange={(value) => setDeliveryMethod(value as "cdek" | "boxberry")}>
-                        <div className="space-y-4">
-                          <Card className={deliveryMethod === "cdek" ? "border-primary" : ""}>
-                            <CardContent className="p-4">
-                              <div className="flex items-start gap-3">
-                                <RadioGroupItem value="cdek" id="cdek" data-testid="radio-cdek" />
-                                <div className="flex-1">
-                                  <label htmlFor="cdek" className="font-semibold cursor-pointer">
-                                    СДЭК
-                                  </label>
-                                  <p className="text-sm text-muted-foreground">
-                                    Доставка курьером или в пункт выдачи
-                                  </p>
-                                  <p className="mt-2 font-semibold">300 ₽ • 2-5 дней</p>
+                      
+                      {/* Delivery Service Selection */}
+                      <div className="mb-6">
+                        <h3 className="mb-4 text-sm font-semibold">Служба доставки</h3>
+                        <RadioGroup value={deliveryMethod} onValueChange={(value) => setDeliveryMethod(value as "cdek" | "boxberry")}>
+                          <div className="space-y-3">
+                            <Card className={deliveryMethod === "cdek" ? "border-primary" : ""}>
+                              <CardContent className="p-4">
+                                <div className="flex items-start gap-3">
+                                  <RadioGroupItem value="cdek" id="cdek" data-testid="radio-cdek" />
+                                  <div className="flex-1">
+                                    <label htmlFor="cdek" className="font-semibold cursor-pointer">
+                                      СДЭК
+                                    </label>
+                                    <p className="text-sm text-muted-foreground">
+                                      Доставка курьером или в пункт выдачи
+                                    </p>
+                                    <p className="mt-2 font-semibold">300 ₽ • 2-5 дней</p>
+                                  </div>
                                 </div>
-                              </div>
-                            </CardContent>
-                          </Card>
+                              </CardContent>
+                            </Card>
 
-                          <Card className={deliveryMethod === "boxberry" ? "border-primary" : ""}>
-                            <CardContent className="p-4">
-                              <div className="flex items-start gap-3">
-                                <RadioGroupItem value="boxberry" id="boxberry" data-testid="radio-boxberry" />
-                                <div className="flex-1">
-                                  <label htmlFor="boxberry" className="font-semibold cursor-pointer">
-                                    Boxberry
-                                  </label>
-                                  <p className="text-sm text-muted-foreground">
-                                    Доставка в пункт выдачи
-                                  </p>
-                                  <p className="mt-2 font-semibold">250 ₽ • 2-4 дня</p>
+                            <Card className={deliveryMethod === "boxberry" ? "border-primary" : ""}>
+                              <CardContent className="p-4">
+                                <div className="flex items-start gap-3">
+                                  <RadioGroupItem value="boxberry" id="boxberry" data-testid="radio-boxberry" />
+                                  <div className="flex-1">
+                                    <label htmlFor="boxberry" className="font-semibold cursor-pointer">
+                                      Boxberry
+                                    </label>
+                                    <p className="text-sm text-muted-foreground">
+                                      Доставка в пункт выдачи
+                                    </p>
+                                    <p className="mt-2 font-semibold">250 ₽ • 2-4 дня</p>
+                                  </div>
                                 </div>
-                              </div>
-                            </CardContent>
-                          </Card>
-                        </div>
-                      </RadioGroup>
+                              </CardContent>
+                            </Card>
+                          </div>
+                        </RadioGroup>
+                      </div>
+
+                      {/* Delivery Type Selection */}
+                      <div>
+                        <h3 className="mb-4 text-sm font-semibold">Тип доставки</h3>
+                        <RadioGroup value={deliveryType} onValueChange={(value) => setDeliveryType(value as "pvz" | "postamat" | "courier")}>
+                          <div className="space-y-3">
+                            <Card className={deliveryType === "pvz" ? "border-primary" : ""}>
+                              <CardContent className="p-4">
+                                <div className="flex items-start gap-3">
+                                  <RadioGroupItem value="pvz" id="pvz" data-testid="radio-pvz" />
+                                  <div className="flex-1">
+                                    <label htmlFor="pvz" className="font-semibold cursor-pointer">
+                                      Пункт выдачи заказов (ПВЗ)
+                                    </label>
+                                    <p className="text-sm text-muted-foreground">
+                                      Заберите заказ в удобное время
+                                    </p>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+
+                            <Card className={deliveryType === "postamat" ? "border-primary" : ""}>
+                              <CardContent className="p-4">
+                                <div className="flex items-start gap-3">
+                                  <RadioGroupItem value="postamat" id="postamat" data-testid="radio-postamat" />
+                                  <div className="flex-1">
+                                    <label htmlFor="postamat" className="font-semibold cursor-pointer">
+                                      Постамат
+                                    </label>
+                                    <p className="text-sm text-muted-foreground">
+                                      Круглосуточная выдача из постамата
+                                    </p>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+
+                            <Card className={deliveryType === "courier" ? "border-primary" : ""}>
+                              <CardContent className="p-4">
+                                <div className="flex items-start gap-3">
+                                  <RadioGroupItem value="courier" id="courier" data-testid="radio-courier" />
+                                  <div className="flex-1">
+                                    <label htmlFor="courier" className="font-semibold cursor-pointer">
+                                      Курьером до двери
+                                    </label>
+                                    <p className="text-sm text-muted-foreground">
+                                      Доставка по указанному адресу
+                                    </p>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                          </div>
+                        </RadioGroup>
+
+                        {/* Mock city/pickup point selection for PVZ/Postamat */}
+                        {(deliveryType === "pvz" || deliveryType === "postamat") && (
+                          <div className="mt-4 p-4 bg-muted/50 rounded-lg">
+                            <p className="text-sm text-muted-foreground">
+                              📍 <strong>Выбранная точка:</strong> {form.getValues("city") || "Москва"}, {deliveryType === "pvz" ? "ПВЗ" : "Постамат"} на ул. Ленина, 15
+                            </p>
+                            <p className="text-xs text-muted-foreground mt-1">
+                              (Интеграция с API СДЭК/Boxberry для выбора точек будет добавлена позже)
+                            </p>
+                          </div>
+                        )}
+                      </div>
 
                       <div className="mt-6 flex justify-between">
                         <Button variant="outline" onClick={handleBack} data-testid="button-back">
@@ -613,43 +689,113 @@ export default function CheckoutPage() {
                       </h2>
 
                       <div className="space-y-6">
+                        {/* Contact Info */}
+                        <div>
+                          <h3 className="mb-2 font-semibold">Контактная информация</h3>
+                          <div className="text-sm text-muted-foreground space-y-1">
+                            <p>{form.getValues("firstName")} {form.getValues("lastName")}</p>
+                            <p>{form.getValues("phone")}</p>
+                            <p>{form.getValues("email")}</p>
+                          </div>
+                        </div>
+
+                        <Separator />
+
+                        {/* Delivery Address */}
                         <div>
                           <h3 className="mb-2 font-semibold">Адрес доставки</h3>
                           <p className="text-sm text-muted-foreground">
-                            {/* TODO: Display address from form */}
-                            Москва, ул. Пушкина, д. 10, кв. 5
+                            {form.getValues("city")}, {form.getValues("postalCode")},<br />
+                            ул. {form.getValues("street")}, д. {form.getValues("building")}
+                            {form.getValues("apartment") && `, кв. ${form.getValues("apartment")}`}
                           </p>
+                          {form.getValues("comment") && (
+                            <p className="mt-2 text-sm text-muted-foreground">
+                              <strong>Комментарий:</strong> {form.getValues("comment")}
+                            </p>
+                          )}
                         </div>
 
                         <Separator />
 
+                        {/* Delivery Method */}
                         <div>
-                          <h3 className="mb-2 font-semibold">Доставка</h3>
+                          <h3 className="mb-2 font-semibold">Способ доставки</h3>
                           <p className="text-sm text-muted-foreground">
-                            {deliveryMethod === "cdek" ? "СДЭК" : "Boxberry"} • {deliveryCost} ₽
+                            {deliveryMethod === "cdek" ? "СДЭК" : "Boxberry"} •{" "}
+                            {deliveryType === "pvz" ? "ПВЗ" : deliveryType === "postamat" ? "Постамат" : "Курьер до двери"}
+                          </p>
+                          <p className="mt-1 text-sm font-semibold">
+                            {deliveryCost} ₽ • {deliveryEta}
                           </p>
                         </div>
 
                         <Separator />
 
+                        {/* Payment Method */}
                         <div>
-                          <h3 className="mb-2 font-semibold">Оплата</h3>
+                          <h3 className="mb-2 font-semibold">Способ оплаты</h3>
                           <p className="text-sm text-muted-foreground">
-                            {paymentMethod === "online" ? "Онлайн-оплата (ЮKassa)" : "При получении"}
+                            {paymentMethod === "online" ? "Онлайн-оплата (ЮKassa)" : "Оплата при получении"}
                           </p>
                         </div>
 
                         <Separator />
 
+                        {/* Order Items */}
                         <div>
-                          <h3 className="mb-2 font-semibold">Товары</h3>
-                          <div className="space-y-2">
+                          <h3 className="mb-3 font-semibold">Товары в заказе</h3>
+                          <div className="space-y-3">
                             {cartItems.map((item: any) => (
-                              <div key={item.id} className="flex justify-between text-sm">
-                                <span>{item.product.name} × {item.quantity}</span>
-                                <span>{parseFloat(item.product.price) * item.quantity} ₽</span>
+                              <div key={item.id} className="flex items-start gap-3 pb-3 border-b last:border-0 last:pb-0">
+                                {item.product?.images?.[0] && (
+                                  <img 
+                                    src={item.product.images[0].url} 
+                                    alt={item.product.name}
+                                    className="w-16 h-16 object-cover rounded"
+                                  />
+                                )}
+                                <div className="flex-1 min-w-0">
+                                  <p className="font-medium text-sm truncate">{item.product?.name}</p>
+                                  <p className="text-sm text-muted-foreground">
+                                    {parseFloat(item.product?.price || "0")} ₽ × {item.quantity}
+                                  </p>
+                                </div>
+                                <p className="font-semibold text-sm whitespace-nowrap">
+                                  {(parseFloat(item.product?.price || "0") * item.quantity).toFixed(2)} ₽
+                                </p>
                               </div>
                             ))}
+                          </div>
+                        </div>
+
+                        {/* Order Summary in Confirmation */}
+                        <Separator />
+                        <div className="space-y-2 text-sm">
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Товары:</span>
+                            <span>{subtotal.toFixed(2)} ₽</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Доставка:</span>
+                            <span>{deliveryCost.toFixed(2)} ₽</span>
+                          </div>
+                          {promocodeDiscount > 0 && (
+                            <div className="flex justify-between text-primary">
+                              <span>Скидка по промокоду:</span>
+                              <span>-{promocodeDiscount.toFixed(2)} ₽</span>
+                            </div>
+                          )}
+                          {cappedBonusesUsed > 0 && (
+                            <div className="flex justify-between text-primary">
+                              <span>Бонусов списано:</span>
+                              <span>-{cappedBonusesUsed.toFixed(2)} ₽</span>
+                            </div>
+                          )}
+                          <Separator />
+                          <div className="flex justify-between text-lg font-semibold pt-2">
+                            <span>Итого к оплате:</span>
+                            <span>{finalTotal.toFixed(2)} ₽</span>
                           </div>
                         </div>
                       </div>
@@ -659,8 +805,8 @@ export default function CheckoutPage() {
                           <ChevronLeft className="mr-2 h-4 w-4" />
                           Назад
                         </Button>
-                        <Button onClick={handleSubmitOrder} data-testid="button-submit-order">
-                          Оформить заказ
+                        <Button onClick={handleSubmitOrder} disabled={createOrder.isPending} data-testid="button-submit-order">
+                          {createOrder.isPending ? "Оформление..." : "Оформить заказ"}
                         </Button>
                       </div>
                     </div>
