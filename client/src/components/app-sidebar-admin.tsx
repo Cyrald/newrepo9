@@ -27,7 +27,7 @@ import { useAuthStore } from "@/stores/authStore"
 
 const navItems = [
   {
-    title: "Dashboard",
+    title: "Главная",
     href: "/admin",
     icon: LayoutDashboard,
     roles: ["admin", "marketer", "consultant"],

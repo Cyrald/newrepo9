@@ -143,7 +143,7 @@ export const promocodes = pgTable("promocodes", {
   code: text("code").notNull().unique(),
   discountPercentage: decimal("discount_percentage").notNull(),
   minOrderAmount: decimal("min_order_amount").default("0").notNull(),
-  maxOrderAmount: decimal("max_order_amount"),
+  maxDiscountAmount: decimal("max_discount_amount"),
   type: text("type").notNull(), // 'single_use' | 'temporary'
   expiresAt: timestamp("expires_at"),
   isActive: boolean("is_active").default(true).notNull(),

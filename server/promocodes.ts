@@ -45,16 +45,6 @@ export async function validatePromocode(
     };
   }
 
-  if (promocode.maxOrderAmount) {
-    const maxAmount = parseFloat(promocode.maxOrderAmount);
-    if (orderAmount > maxAmount) {
-      return {
-        valid: false,
-        error: `Максимальная сумма заказа для этого промокода: ${maxAmount} ₽`,
-      };
-    }
-  }
-
   if (promocode.type === "temporary") {
     const [usage] = await db
       .select()
@@ -73,7 +63,10 @@ export async function validatePromocode(
   }
 
   const discountPercentage = parseFloat(promocode.discountPercentage);
-  const discountAmount = Math.floor(orderAmount * (discountPercentage / 100));
+  const baseAmount = promocode.maxDiscountAmount 
+    ? Math.min(orderAmount, parseFloat(promocode.maxDiscountAmount))
+    : orderAmount;
+  const discountAmount = Math.floor(baseAmount * (discountPercentage / 100));
 
   return {
     valid: true,

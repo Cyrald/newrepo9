@@ -104,10 +104,10 @@ export function Header() {
                 {cartItemsCount > 0 && (
                   <Badge
                     variant="destructive"
-                    className="absolute -right-2 -top-2 h-5 min-w-5 px-1 text-xs"
+                    className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center px-1 text-xs"
                     data-testid="badge-cart-count"
                   >
-                    {cartItemsCount}
+                    {cartItemsCount > 99 ? "99+" : cartItemsCount}
                   </Badge>
                 )}
               </div>
@@ -124,9 +124,9 @@ export function Header() {
                 className="hidden sm:inline-flex gap-2"
                 data-testid="link-admin-panel"
               >
-                <Link href="/admin/support">
-                  <MessageCircle className="h-4 w-4" />
-                  Чат поддержки
+                <Link href="/admin">
+                  <LayoutDashboard className="h-4 w-4" />
+                  Админ панель
                 </Link>
               </Button>
             ) : (
@@ -196,10 +196,10 @@ export function Header() {
                 </Link>
                 {isAuthenticated && (
                   hasStaffRole ? (
-                    <Link href="/admin/support" onClick={() => setMobileMenuOpen(false)}>
+                    <Link href="/admin" onClick={() => setMobileMenuOpen(false)}>
                       <Button variant="outline" className="w-full justify-start gap-2" data-testid="link-admin-panel-mobile">
-                        <MessageCircle className="h-4 w-4" />
-                        Чат поддержки
+                        <LayoutDashboard className="h-4 w-4" />
+                        Админ панель
                       </Button>
                     </Link>
                   ) : (

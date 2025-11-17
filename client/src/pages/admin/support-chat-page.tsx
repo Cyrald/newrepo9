@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { apiRequest } from "@/lib/queryClient"
 import { wsClient } from "@/lib/websocket"
 import { useAuthStore } from "@/stores/authStore"
+import { AdminLayout } from "@/components/admin-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -164,7 +165,7 @@ export default function AdminSupportChatPage() {
   }
 
   return (
-    <div className="p-6">
+    <AdminLayout>
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-2">Чат поддержки</h1>
         <p className="text-muted-foreground">
@@ -172,7 +173,7 @@ export default function AdminSupportChatPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-12 gap-6 h-[calc(100vh-240px)]">
+      <div className="grid grid-cols-12 gap-6 h-[calc(100vh-200px)]">
         {/* Conversations List - Left Sidebar */}
         <Card className="col-span-3">
           <CardHeader>
@@ -402,6 +403,6 @@ export default function AdminSupportChatPage() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </AdminLayout>
   )
 }

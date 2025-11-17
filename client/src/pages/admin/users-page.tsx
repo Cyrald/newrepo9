@@ -126,7 +126,7 @@ export default function AdminUsersPage() {
                       <TableHead>Email</TableHead>
                       <TableHead>Имя</TableHead>
                       <TableHead>Роли</TableHead>
-                      <TableHead>Статус</TableHead>
+                      <TableHead>Номер телефона</TableHead>
                       <TableHead>Дата регистрации</TableHead>
                       <TableHead className="w-[70px]"></TableHead>
                     </TableRow>
@@ -152,9 +152,7 @@ export default function AdminUsersPage() {
                           </div>
                         </TableCell>
                         <TableCell>
-                          <Badge variant={user.isEmailVerified ? "default" : "secondary"}>
-                            {user.isEmailVerified ? "Активен" : "Не подтвержден"}
-                          </Badge>
+                          {user.phone || "—"}
                         </TableCell>
                         <TableCell>
                           {format(new Date(user.createdAt), "dd.MM.yyyy", { locale: ru })}
