@@ -36,6 +36,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useToast } from "@/hooks/use-toast"
 import { useCreateProduct, useUpdateProduct, useUploadProductImages, useProduct, useDeleteProductImage } from "@/hooks/useProducts"
 import { useCategories } from "@/hooks/useCategories"
+import { productsApi } from "@/lib/api"
 import type { Product } from "@shared/schema"
 
 const productSchema = z.object({
@@ -201,6 +202,28 @@ export function ProductFormDialog({ open, onOpenChange, product }: ProductFormDi
     setPreviewUrls(newPreviewUrls)
   }
 
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    
+    const files = Array.from(e.dataTransfer.files).filter(file => 
+      file.type.startsWith('image/')
+    )
+    
+    if (files.length === 0) return
+    
+    const newSelectedImages = [...selectedImages, ...files].slice(0, 10)
+    setSelectedImages(newSelectedImages)
+
+    const newPreviewUrls = newSelectedImages.map((file) => URL.createObjectURL(file))
+    setPreviewUrls(newPreviewUrls)
+  }
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
   const handleRemoveImage = (index: number) => {
     setSelectedImages((prev) => prev.filter((_, i) => i !== index))
     URL.revokeObjectURL(previewUrls[index])
@@ -224,11 +247,34 @@ export function ProductFormDialog({ open, onOpenChange, product }: ProductFormDi
     }
   }
 
+  const moveExistingImage = (fromIndex: number, toIndex: number) => {
+    const newImages = [...existingImages]
+    const [movedImage] = newImages.splice(fromIndex, 1)
+    newImages.splice(toIndex, 0, movedImage)
+    setExistingImages(newImages)
+  }
+
+  const moveSelectedImage = (fromIndex: number, toIndex: number) => {
+    const newImages = [...selectedImages]
+    const newUrls = [...previewUrls]
+    
+    const [movedImage] = newImages.splice(fromIndex, 1)
+    const [movedUrl] = newUrls.splice(fromIndex, 1)
+    
+    newImages.splice(toIndex, 0, movedImage)
+    newUrls.splice(toIndex, 0, movedUrl)
+    
+    setSelectedImages(newImages)
+    setPreviewUrls(newUrls)
+  }
+
   const totalImagesCount = existingImages.length + selectedImages.length
   const canAddMore = totalImagesCount < 10
 
   const onSubmit = async (data: ProductFormData) => {
     try {
+      const currentImageOrder = [...existingImages]
+      
       const formData = new FormData()
       
       formData.append("categoryId", data.categoryId)
@@ -284,7 +330,7 @@ export function ProductFormDialog({ open, onOpenChange, product }: ProductFormDi
             isArchived: !data.isPublished,
           },
         })
-
+        
         if (selectedImages.length > 0) {
           const imagesFormData = new FormData()
           selectedImages.forEach((image) => {
@@ -294,8 +340,33 @@ export function ProductFormDialog({ open, onOpenChange, product }: ProductFormDi
             productId: product.id,
             images: imagesFormData,
           })
-          await refetch()
+          
+          const updatedProduct = await refetch()
+          const serverImages = (updatedProduct.data as any)?.images || []
+          
+          const existingImageIds = new Set(currentImageOrder.map((img: any) => img.id))
+          const newlyUploadedImages = serverImages.filter((img: any) => !existingImageIds.has(img.id))
+          
+          const finalImageOrder = [...currentImageOrder, ...newlyUploadedImages]
+          
+          if (finalImageOrder.length > 0) {
+            const imageOrders = finalImageOrder.map((img: any, index: number) => ({
+              imageId: img.id,
+              sortOrder: index,
+            }))
+            
+            await productsApi.reorderImages(product.id, imageOrders)
+          }
+        } else if (currentImageOrder.length > 0) {
+          const imageOrders = currentImageOrder.map((img: any, index: number) => ({
+            imageId: img.id,
+            sortOrder: index,
+          }))
+          
+          await productsApi.reorderImages(product.id, imageOrders)
         }
+        
+        await refetch()
 
         toast({
           title: "Товар обновлен",
@@ -699,18 +770,53 @@ export function ProductFormDialog({ open, onOpenChange, product }: ProductFormDi
 
               {/* Images Tab */}
               <TabsContent value="images" className="space-y-4 mt-4">
+                <div className="bg-muted/50 p-4 rounded-lg mb-4">
+                  <h4 className="text-sm font-semibold mb-2">Требования к изображениям</h4>
+                  <ul className="text-xs text-muted-foreground space-y-1">
+                    <li>• Минимальное разрешение: 900×1200 пикселей</li>
+                    <li>• Соотношение сторон: 3:4 (вертикальное)</li>
+                    <li>• Форматы: PNG, JPG, WEBP</li>
+                    <li>• Максимальный размер файла: 50 МБ</li>
+                    <li>• Первое изображение отображается в каталоге</li>
+                    <li>• Перетаскивайте изображения для изменения порядка</li>
+                  </ul>
+                </div>
+                
                 <div className="space-y-4">
                   {isEditMode && existingImages.length > 0 && (
                     <div>
                       <h4 className="text-sm font-semibold mb-3">Текущие изображения ({existingImages.length})</h4>
                       <div className="grid grid-cols-3 gap-4">
                         {existingImages.map((image: any, index: number) => (
-                          <div key={image.id} className="relative group">
-                            <img
-                              src={image.url}
-                              alt={`Текущее ${index + 1}`}
-                              className="w-full h-32 object-cover rounded-lg border"
-                            />
+                          <div 
+                            key={image.id} 
+                            className="relative group cursor-move"
+                            draggable
+                            onDragStart={(e) => {
+                              e.dataTransfer.effectAllowed = "move"
+                              e.dataTransfer.setData("text/plain", index.toString())
+                              e.dataTransfer.setData("type", "existing")
+                            }}
+                            onDragOver={(e) => {
+                              e.preventDefault()
+                              e.dataTransfer.dropEffect = "move"
+                            }}
+                            onDrop={(e) => {
+                              e.preventDefault()
+                              const fromIndex = parseInt(e.dataTransfer.getData("text/plain"))
+                              const type = e.dataTransfer.getData("type")
+                              if (type === "existing" && fromIndex !== index) {
+                                moveExistingImage(fromIndex, index)
+                              }
+                            }}
+                          >
+                            <div className="aspect-[3/4] w-full">
+                              <img
+                                src={image.url}
+                                alt={`Текущее ${index + 1}`}
+                                className="w-full h-full object-cover rounded-lg border"
+                              />
+                            </div>
                             <button
                               type="button"
                               onClick={() => handleRemoveExistingImage(image.id)}
@@ -719,7 +825,7 @@ export function ProductFormDialog({ open, onOpenChange, product }: ProductFormDi
                               <X className="h-4 w-4" />
                             </button>
                             <div className="absolute bottom-2 left-2 bg-black/50 text-white text-xs px-2 py-1 rounded">
-                              {index + 1}
+                              {index === 0 ? "Главное" : index + 1}
                             </div>
                           </div>
                         ))}
@@ -727,7 +833,11 @@ export function ProductFormDialog({ open, onOpenChange, product }: ProductFormDi
                     </div>
                   )}
 
-                  <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-8 hover:border-muted-foreground/50 transition-colors">
+                  <div 
+                    className="border-2 border-dashed border-muted-foreground/25 rounded-lg hover:border-muted-foreground/50 transition-colors aspect-[3/4] max-w-xs mx-auto"
+                    onDrop={handleDrop}
+                    onDragOver={handleDragOver}
+                  >
                     <input
                       type="file"
                       accept="image/*"
@@ -739,7 +849,7 @@ export function ProductFormDialog({ open, onOpenChange, product }: ProductFormDi
                     />
                     <label
                       htmlFor="image-upload"
-                      className={`flex flex-col items-center justify-center cursor-pointer ${
+                      className={`flex flex-col items-center justify-center h-full cursor-pointer p-8 ${
                         !canAddMore ? "opacity-50 cursor-not-allowed" : ""
                       }`}
                     >
@@ -747,10 +857,10 @@ export function ProductFormDialog({ open, onOpenChange, product }: ProductFormDi
                       <p className="text-sm text-muted-foreground text-center">
                         {!canAddMore
                           ? `Максимум 10 изображений (уже ${totalImagesCount})`
-                          : `Добавить изображения (${totalImagesCount}/10)`}
+                          : `Нажмите или перетащите изображения сюда`}
                       </p>
                       <p className="text-xs text-muted-foreground/75 mt-2">
-                        PNG, JPG, WEBP до 50MB
+                        ({totalImagesCount}/10)
                       </p>
                     </label>
                   </div>
@@ -760,12 +870,35 @@ export function ProductFormDialog({ open, onOpenChange, product }: ProductFormDi
                       <h4 className="text-sm font-semibold mb-3">Новые изображения ({selectedImages.length})</h4>
                       <div className="grid grid-cols-3 gap-4">
                         {previewUrls.map((url, index) => (
-                          <div key={index} className="relative group">
-                            <img
-                              src={url}
-                              alt={`Новое ${index + 1}`}
-                              className="w-full h-32 object-cover rounded-lg border border-primary"
-                            />
+                          <div 
+                            key={index} 
+                            className="relative group cursor-move"
+                            draggable
+                            onDragStart={(e) => {
+                              e.dataTransfer.effectAllowed = "move"
+                              e.dataTransfer.setData("text/plain", index.toString())
+                              e.dataTransfer.setData("type", "selected")
+                            }}
+                            onDragOver={(e) => {
+                              e.preventDefault()
+                              e.dataTransfer.dropEffect = "move"
+                            }}
+                            onDrop={(e) => {
+                              e.preventDefault()
+                              const fromIndex = parseInt(e.dataTransfer.getData("text/plain"))
+                              const type = e.dataTransfer.getData("type")
+                              if (type === "selected" && fromIndex !== index) {
+                                moveSelectedImage(fromIndex, index)
+                              }
+                            }}
+                          >
+                            <div className="aspect-[3/4] w-full">
+                              <img
+                                src={url}
+                                alt={`Новое ${index + 1}`}
+                                className="w-full h-full object-cover rounded-lg border border-primary"
+                              />
+                            </div>
                             <button
                               type="button"
                               onClick={() => handleRemoveImage(index)}

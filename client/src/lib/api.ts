@@ -186,6 +186,12 @@ export const productsApi = {
     fetchApi<{ success: boolean }>(`/api/products/images/${imageId}`, {
       method: "DELETE",
     }),
+  
+  reorderImages: (productId: string, imageOrders: Array<{ imageId: string; sortOrder: number }>) =>
+    fetchApi<{ message: string }>(`/api/products/${productId}/images/reorder`, {
+      method: "PATCH",
+      body: JSON.stringify({ imageOrders }),
+    }),
 };
 
 // Корзина

@@ -23,7 +23,7 @@ export function ProductCard({ product, onAddToCart, onToggleWishlist, isInWishli
   return (
     <Card className="group relative overflow-hidden transition-all duration-200 flex flex-col">
       <Link href={`/products/${product.id}`}>
-        <div className="relative aspect-[4/5] overflow-hidden bg-muted">
+        <div className="relative aspect-[3/4] overflow-hidden bg-muted">
           {firstImage ? (
             <img
               src={firstImage}

@@ -786,7 +786,7 @@ export default function CheckoutPage() {
                                   <img 
                                     src={item.product.images[0].url} 
                                     alt={item.product.name}
-                                    className="w-16 h-16 object-cover rounded"
+                                    className="w-16 aspect-[3/4] object-cover rounded"
                                   />
                                 )}
                                 <div className="flex-1 min-w-0">

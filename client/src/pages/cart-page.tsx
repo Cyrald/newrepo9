@@ -78,7 +78,7 @@ export default function CartPage() {
                     <CardContent className="p-4">
                       <div className="flex gap-4">
                         {/* Product Image */}
-                        <div className="h-24 w-24 shrink-0 overflow-hidden rounded-md bg-muted">
+                        <div className="w-20 shrink-0 overflow-hidden rounded-md bg-muted aspect-[3/4]">
                           {item.product.images?.[0]?.url && (
                             <img
                               src={item.product.images[0].url}

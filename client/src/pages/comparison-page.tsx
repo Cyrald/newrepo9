@@ -109,7 +109,7 @@ export default function ComparisonPage() {
                                 <img
                                   src={item.product.images[0].url}
                                   alt={item.product.name}
-                                  className="aspect-square w-full rounded-md object-cover"
+                                  className="aspect-[3/4] w-full rounded-md object-cover"
                                 />
                               )}
                             </div>

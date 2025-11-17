@@ -158,7 +158,7 @@ export default function ProductDetailPage() {
             {/* Images */}
             <div>
               {/* Main Image */}
-              <div className="mb-4 aspect-square overflow-hidden rounded-lg bg-muted">
+              <div className="mb-4 aspect-[3/4] overflow-hidden rounded-lg bg-muted">
                 {images.length > 0 && images[selectedImage]?.url ? (
                   <img
                     src={images[selectedImage].url}
@@ -175,12 +175,12 @@ export default function ProductDetailPage() {
 
               {/* Thumbnail Images */}
               {images.length > 1 && (
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-5 gap-2">
                   {images.map((image: any, index: number) => (
                     <button
                       key={image.id}
                       onClick={() => setSelectedImage(index)}
-                      className={`aspect-square overflow-hidden rounded-md border-2 transition-all ${
+                      className={`aspect-[3/4] overflow-hidden rounded-md border-2 transition-all ${
                         selectedImage === index
                           ? "border-primary"
                           : "border-transparent hover-elevate"

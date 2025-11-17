@@ -31,7 +31,6 @@ import {
   type InsertSupportMessage,
   type SupportMessageAttachment,
   type InsertSupportMessageAttachment,
-  type SupportConversation,
   users,
   userRoles,
   categories,
@@ -89,6 +88,7 @@ export interface IStorage {
   
   getProductImages(productId: string): Promise<ProductImage[]>;
   addProductImage(image: InsertProductImage): Promise<ProductImage>;
+  updateProductImageOrder(imageId: string, sortOrder: number): Promise<void>;
   deleteProductImage(id: string): Promise<void>;
   
   getUserAddresses(userId: string): Promise<UserAddress[]>;
@@ -374,6 +374,12 @@ export class DatabaseStorage implements IStorage {
   async addProductImage(image: InsertProductImage): Promise<ProductImage> {
     const [productImage] = await db.insert(productImages).values(image).returning();
     return productImage;
+  }
+
+  async updateProductImageOrder(imageId: string, sortOrder: number): Promise<void> {
+    await db.update(productImages)
+      .set({ sortOrder })
+      .where(eq(productImages.id, imageId));
   }
 
   async deleteProductImage(id: string): Promise<void> {

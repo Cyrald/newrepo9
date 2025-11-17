@@ -712,6 +712,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   );
 
+  app.patch(
+    "/api/products/:productId/images/reorder",
+    authenticateToken,
+    requireRole("admin", "marketer"),
+    async (req, res) => {
+      try {
+        const { imageOrders } = req.body;
+        const productId = req.params.productId;
+        
+        if (!Array.isArray(imageOrders)) {
+          return res.status(400).json({ message: "Неверный формат данных" });
+        }
+        
+        const productImages = await storage.getProductImages(productId);
+        const validImageIds = new Set(productImages.map(img => img.id));
+        
+        for (const { imageId, sortOrder } of imageOrders) {
+          if (!validImageIds.has(imageId)) {
+            return res.status(400).json({ 
+              message: "Одно или несколько изображений не принадлежат этому товару" 
+            });
+          }
+          
+          if (typeof sortOrder !== 'number' || sortOrder < 0) {
+            return res.status(400).json({ message: "Неверный порядок сортировки" });
+          }
+          
+          await storage.updateProductImageOrder(imageId, sortOrder);
+        }
+        
+        res.json({ message: "Порядок изображений обновлен" });
+      } catch (error) {
+        console.error('Error reordering images:', error);
+        res.status(500).json({ message: "Ошибка обновления порядка изображений" });
+      }
+    }
+  );
+
   app.delete(
     "/api/products/images/:id",
     authenticateToken,
