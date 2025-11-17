@@ -655,24 +655,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     async (req, res) => {
       try {
         const files = req.files as Express.Multer.File[];
+        
+        if (!files || files.length === 0) {
+          return res.status(400).json({ message: "Файлы не загружены" });
+        }
+        
         const images = [];
 
         for (const file of files) {
-          await processProductImage(file.path);
-          
-          const newFilename = file.filename.replace(/\.[^.]+$/, '.webp');
-          
-          const image = await storage.addProductImage({
-            productId: req.params.id,
-            url: `/uploads/products/${newFilename}`,
-            sortOrder: 0,
-          });
-          images.push(image);
+          try {
+            await processProductImage(file.path);
+            
+            const newFilename = file.filename.replace(/\.[^.]+$/, '.webp');
+            
+            const image = await storage.addProductImage({
+              productId: req.params.id,
+              url: `/uploads/products/${newFilename}`,
+              sortOrder: 0,
+            });
+            images.push(image);
+          } catch (fileError) {
+            console.error(`Error processing file ${file.filename}:`, fileError);
+            throw fileError;
+          }
         }
 
         res.json(images);
-      } catch (error) {
-        res.status(500).json({ message: "Ошибка загрузки изображений" });
+      } catch (error: any) {
+        console.error('Error uploading images:', error);
+        res.status(500).json({ message: error.message || "Ошибка загрузки изображений" });
       }
     }
   );
@@ -949,6 +960,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let discountAmount = 0;
       let promocodeId = null;
 
+      const bonusesUsed = data.bonusesUsed || 0;
+
+      // Проверка: нельзя одновременно использовать промокод и бонусы
+      if (data.promocodeId && bonusesUsed > 0) {
+        return res.status(400).json({ 
+          message: "Нельзя одновременно использовать промокод и бонусы. Выберите что-то одно." 
+        });
+      }
+
       if (data.promocodeId) {
         const promocodeValidation = await validatePromocode(
           data.promocodeId,
@@ -961,15 +981,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
 
-      const bonusesUsed = data.bonusesUsed || 0;
-      const { maxUsable } = canUseBonuses(user.bonusBalance, subtotal);
+      // Промокод применяется только к стоимости товаров (subtotal)
+      const subtotalAfterPromocode = subtotal - discountAmount;
+      
+      // Бонусы применяются к стоимости товаров после промокода
+      const { maxUsable } = canUseBonuses(user.bonusBalance, subtotalAfterPromocode);
       
       if (bonusesUsed > maxUsable) {
         return res.status(400).json({ message: `Можно использовать максимум ${maxUsable} бонусов` });
       }
 
+      const subtotalAfterBonuses = subtotalAfterPromocode - bonusesUsed;
+      
+      // Доставка добавляется к итогу отдельно
       const deliveryCost = 300;
-      const total = subtotal - discountAmount - bonusesUsed + deliveryCost;
+      const total = subtotalAfterBonuses + deliveryCost;
 
       const bonusesEarned = calculateCashback(
         total,
@@ -1143,7 +1169,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/support/conversations", authenticateToken, requireRole("admin", "consultant"), async (req, res) => {
     try {
-      const conversations = await storage.getAllSupportConversations();
+      const status = req.query.status as 'active' | 'archived' | undefined;
+      const conversations = await storage.getAllSupportConversations(status);
       res.json(conversations);
     } catch (error) {
       res.status(500).json({ message: "Ошибка получения диалогов" });
@@ -1211,6 +1238,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         userId = req.body.userId;
       }
       
+      // Create or activate conversation when user sends a message
+      await storage.getOrCreateConversation(userId);
+      
       const message = await storage.createSupportMessage({
         userId: userId,
         senderId: req.userId!,
@@ -1240,6 +1270,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(message);
     } catch (error) {
       res.status(500).json({ message: "Ошибка отправки сообщения" });
+    }
+  });
+
+  // Archive conversation
+  app.put("/api/support/conversations/:userId/archive", authenticateToken, requireRole("admin", "consultant"), async (req, res) => {
+    try {
+      await storage.archiveConversation(req.params.userId);
+      res.json({ message: "Обращение закрыто" });
+    } catch (error) {
+      res.status(500).json({ message: "Ошибка закрытия обращения" });
     }
   });
 

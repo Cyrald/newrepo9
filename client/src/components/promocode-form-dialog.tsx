@@ -38,7 +38,10 @@ const promocodeSchema = z.object({
   code: z.string().min(1, "Укажите код промокода").toUpperCase(),
   discountPercentage: z.coerce.number().min(1, "Минимум 1%").max(100, "Максимум 100%"),
   minOrderAmount: z.coerce.number().min(0, "Сумма не может быть отрицательной").default(0),
-  maxOrderAmount: z.coerce.number().min(0).optional().or(z.literal("")),
+  maxDiscountAmount: z.preprocess(
+    (val) => (val === "" || val === null || val === undefined) ? undefined : Number(val),
+    z.number().min(0, "Сумма не может быть отрицательной").optional()
+  ),
   type: z.enum(["single_use", "temporary"]),
   expiresAt: z.string().optional(),
   isActive: z.boolean().default(true),
@@ -66,7 +69,7 @@ export function PromocodeFormDialog({ open, onOpenChange, promocode }: Promocode
       code: promocode?.code || "",
       discountPercentage: promocode?.discountPercentage ? Number(promocode.discountPercentage) : 10,
       minOrderAmount: promocode?.minOrderAmount ? Number(promocode.minOrderAmount) : 0,
-      maxOrderAmount: promocode?.maxOrderAmount ? Number(promocode.maxOrderAmount) : "" as any,
+      maxDiscountAmount: promocode?.maxDiscountAmount ? Number(promocode.maxDiscountAmount) : "" as any,
       type: (promocode?.type as "single_use" | "temporary") || "single_use",
       expiresAt: promocode?.expiresAt
         ? new Date(promocode.expiresAt).toISOString().split("T")[0]
@@ -81,7 +84,7 @@ export function PromocodeFormDialog({ open, onOpenChange, promocode }: Promocode
         code: promocode.code || "",
         discountPercentage: promocode.discountPercentage ? Number(promocode.discountPercentage) : 10,
         minOrderAmount: promocode.minOrderAmount ? Number(promocode.minOrderAmount) : 0,
-        maxOrderAmount: promocode.maxOrderAmount ? Number(promocode.maxOrderAmount) : "" as any,
+        maxDiscountAmount: promocode.maxDiscountAmount ? Number(promocode.maxDiscountAmount) : "" as any,
         type: (promocode.type as "single_use" | "temporary") || "single_use",
         expiresAt: promocode.expiresAt
           ? new Date(promocode.expiresAt).toISOString().split("T")[0]
@@ -93,7 +96,7 @@ export function PromocodeFormDialog({ open, onOpenChange, promocode }: Promocode
         code: "",
         discountPercentage: 10,
         minOrderAmount: 0,
-        maxOrderAmount: "" as any,
+        maxDiscountAmount: "" as any,
         type: "single_use",
         expiresAt: "",
         isActive: true,
@@ -107,7 +110,7 @@ export function PromocodeFormDialog({ open, onOpenChange, promocode }: Promocode
         code: data.code.toUpperCase(),
         discountPercentage: data.discountPercentage.toString(),
         minOrderAmount: data.minOrderAmount.toString(),
-        maxOrderAmount: data.maxOrderAmount ? data.maxOrderAmount.toString() : undefined,
+        maxDiscountAmount: data.maxDiscountAmount ? data.maxDiscountAmount.toString() : undefined,
         type: data.type,
         expiresAt: data.expiresAt ? new Date(data.expiresAt) : undefined,
         isActive: data.isActive,
@@ -252,10 +255,10 @@ export function PromocodeFormDialog({ open, onOpenChange, promocode }: Promocode
 
                 <FormField
                   control={form.control}
-                  name="maxOrderAmount"
+                  name="maxDiscountAmount"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Макс. сумма заказа (₽)</FormLabel>
+                      <FormLabel>Макс. сумма скидки (₽)</FormLabel>
                       <FormControl>
                         <Input
                           type="number"
@@ -267,7 +270,7 @@ export function PromocodeFormDialog({ open, onOpenChange, promocode }: Promocode
                         />
                       </FormControl>
                       <FormDescription>
-                        Оставьте пустым если нет ограничений
+                        Максимальная сумма скидки, которую можно получить по промокоду
                       </FormDescription>
                       <FormMessage />
                     </FormItem>

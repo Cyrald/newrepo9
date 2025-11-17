@@ -160,7 +160,7 @@ export default function AdminPromocodesPage() {
                       <TableHead>Код</TableHead>
                       <TableHead>Скидка</TableHead>
                       <TableHead>Мин. сумма</TableHead>
-                      <TableHead>Макс. сумма</TableHead>
+                      <TableHead>Макс. скидка</TableHead>
                       <TableHead>Тип</TableHead>
                       <TableHead>Истекает</TableHead>
                       <TableHead>Статус</TableHead>
@@ -180,8 +180,8 @@ export default function AdminPromocodesPage() {
                           {Number(promocode.minOrderAmount).toLocaleString()} ₽
                         </TableCell>
                         <TableCell className="text-muted-foreground">
-                          {promocode.maxOrderAmount
-                            ? `${Number(promocode.maxOrderAmount).toLocaleString()} ₽`
+                          {promocode.maxDiscountAmount
+                            ? `${Number(promocode.maxDiscountAmount).toLocaleString()} ₽`
                             : "—"}
                         </TableCell>
                         <TableCell>

@@ -42,6 +42,7 @@ interface CustomerInfo {
 export default function AdminSupportChatPage() {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null)
   const [message, setMessage] = useState("")
+  const [statusFilter, setStatusFilter] = useState<'active' | 'archived' | 'all'>('active')
   const scrollAreaRef = useRef<HTMLDivElement>(null)
   const { toast } = useToast()
   const queryClient = useQueryClient()
@@ -49,7 +50,15 @@ export default function AdminSupportChatPage() {
 
   // Fetch all conversations
   const { data: conversations = [] } = useQuery<Conversation[]>({
-    queryKey: ["/api/support/conversations"],
+    queryKey: ["/api/support/conversations", statusFilter],
+    queryFn: async () => {
+      const url = statusFilter === 'all' 
+        ? '/api/support/conversations'
+        : `/api/support/conversations?status=${statusFilter}`;
+      const response = await fetch(url, { credentials: 'include' });
+      if (!response.ok) throw new Error('Failed to fetch conversations');
+      return response.json();
+    },
     refetchInterval: 5000, // Refresh every 5 seconds
   })
 
@@ -178,9 +187,27 @@ export default function AdminSupportChatPage() {
         <Card className="col-span-3">
           <CardHeader>
             <CardTitle className="text-lg">Диалоги</CardTitle>
+            <div className="flex gap-2 mt-3">
+              <Button
+                variant={statusFilter === 'active' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setStatusFilter('active')}
+                className="flex-1"
+              >
+                Активные
+              </Button>
+              <Button
+                variant={statusFilter === 'archived' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setStatusFilter('archived')}
+                className="flex-1"
+              >
+                Архив
+              </Button>
+            </div>
           </CardHeader>
           <CardContent className="p-0">
-            <ScrollArea className="h-[calc(100vh-340px)]">
+            <ScrollArea className="h-[calc(100vh-400px)]">
               {conversations.length === 0 ? (
                 <div className="p-6 text-center text-muted-foreground">
                   <MessageCircle className="h-12 w-12 mx-auto mb-2 opacity-50" />
@@ -228,12 +255,35 @@ export default function AdminSupportChatPage() {
         {/* Active Chat - Center */}
         <Card className="col-span-6">
           <CardHeader className="border-b">
-            <CardTitle className="text-lg flex items-center gap-2">
-              <MessageCircle className="h-5 w-5" />
-              {selectedUserId ? `Диалог с клиентом` : "Выберите диалог"}
-            </CardTitle>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-lg flex items-center gap-2">
+                <MessageCircle className="h-5 w-5" />
+                {selectedUserId ? `Диалог с клиентом` : "Выберите диалог"}
+              </CardTitle>
+              {selectedUserId && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={async () => {
+                    try {
+                      await fetch(`/api/support/conversations/${selectedUserId}/archive`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                      });
+                      toast({ title: "Обращение закрыто" });
+                      queryClient.invalidateQueries({ queryKey: ["/api/support/conversations"] });
+                      setSelectedUserId(null);
+                    } catch {
+                      toast({ title: "Ошибка", description: "Не удалось закрыть обращение", variant: "destructive" });
+                    }
+                  }}
+                >
+                  Закрыть обращение
+                </Button>
+              )}
+            </div>
           </CardHeader>
-          <CardContent className="p-0 flex flex-col h-[calc(100vh-340px)]">
+          <CardContent className="p-0 flex flex-col h-[calc(100vh-280px)]">
             {!selectedUserId ? (
               <div className="flex-1 flex items-center justify-center text-muted-foreground">
                 <div className="text-center">

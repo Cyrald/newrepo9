@@ -63,10 +63,12 @@ export async function validatePromocode(
   }
 
   const discountPercentage = parseFloat(promocode.discountPercentage);
-  const baseAmount = promocode.maxDiscountAmount 
-    ? Math.min(orderAmount, parseFloat(promocode.maxDiscountAmount))
-    : orderAmount;
-  const discountAmount = Math.floor(baseAmount * (discountPercentage / 100));
+  const calculatedDiscount = Math.floor(orderAmount * (discountPercentage / 100));
+  
+  // Применяем ограничение максимальной скидки, если оно установлено
+  const discountAmount = promocode.maxDiscountAmount 
+    ? Math.min(calculatedDiscount, parseFloat(promocode.maxDiscountAmount))
+    : calculatedDiscount;
 
   return {
     valid: true,

@@ -108,11 +108,18 @@ export default function CheckoutPage() {
   const deliveryCost = deliveryMethod === "cdek" ? 300 : 250
   const deliveryEta = deliveryMethod === "cdek" ? "2-5 дней" : "2-4 дня"
   const bonusPoints = user?.bonusBalance || 0
-  const orderTotal = subtotal + deliveryCost
-  const promocodeDiscount = Math.floor(orderTotal * (promocodePercent / 100))
-  const baseTotal = Math.max(0, orderTotal - promocodeDiscount)
-  const cappedBonusesUsed = Math.min(bonusesUsed, baseTotal)
-  const finalTotal = Math.max(0, baseTotal - cappedBonusesUsed)
+  
+  // Промокод применяется только к стоимости товаров (subtotal)
+  const promocodeDiscount = Math.floor(subtotal * (promocodePercent / 100))
+  const subtotalAfterPromocode = Math.max(0, subtotal - promocodeDiscount)
+  
+  // Бонусы применяются к стоимости товаров после промокода
+  const maxBonuses = Math.floor(subtotalAfterPromocode * 0.2)
+  const cappedBonusesUsed = Math.min(bonusesUsed, Math.min(bonusPoints, maxBonuses))
+  const subtotalAfterBonuses = Math.max(0, subtotalAfterPromocode - cappedBonusesUsed)
+  
+  // Доставка добавляется к итогу отдельно
+  const finalTotal = subtotalAfterBonuses + deliveryCost
 
   const form = useForm<DeliveryFormData>({
     resolver: zodResolver(deliverySchema),
@@ -213,17 +220,27 @@ export default function CheckoutPage() {
       return
     }
 
+    // Проверка: нельзя одновременно использовать промокод и бонусы
+    if (bonusesUsed > 0) {
+      toast({
+        title: "Ошибка",
+        description: "Нельзя одновременно использовать промокод и бонусы. Сначала отключите использование бонусов.",
+        variant: "destructive",
+      })
+      return
+    }
+
     try {
-      const result = await promocodesApi.validate(promocode, orderTotal)
+      const result = await promocodesApi.validate(promocode, subtotal)
       
       if (result.valid && result.promocode) {
         const percent = parseFloat(result.promocode.discountPercentage || "0")
-        const discount = Math.floor(orderTotal * (percent / 100))
+        const discount = Math.floor(subtotal * (percent / 100))
         setPromocodeId(result.promocode.id)
         setPromocodePercent(percent)
         toast({
           title: "Промокод применен",
-          description: `Скидка ${percent}% на заказ (-${discount} ₽)`,
+          description: `Скидка ${percent}% на товары (-${discount} ₽)`,
         })
       } else {
         toast({
@@ -242,8 +259,18 @@ export default function CheckoutPage() {
   }
 
   const handleUseBonuses = (checked: boolean) => {
+    // Проверка: нельзя одновременно использовать промокод и бонусы
+    if (checked && promocodeId) {
+      toast({
+        title: "Ошибка",
+        description: "Нельзя одновременно использовать промокод и бонусы. Сначала отмените промокод.",
+        variant: "destructive",
+      })
+      return
+    }
+
     setUseBonuses(checked)
-    const maxBonuses = Math.floor(baseTotal * 0.2)
+    const maxBonuses = Math.floor(subtotalAfterPromocode * 0.2)
     if (checked) {
       setBonusesUsed(Math.min(bonusPoints, maxBonuses))
     } else {

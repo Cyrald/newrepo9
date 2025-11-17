@@ -31,6 +31,7 @@ import {
   type InsertSupportMessage,
   type SupportMessageAttachment,
   type InsertSupportMessageAttachment,
+  type SupportConversation,
   users,
   userRoles,
   categories,
@@ -44,6 +45,7 @@ import {
   cartItems,
   wishlistItems,
   comparisonItems,
+  supportConversations,
   supportMessages,
   supportMessageAttachments,
 } from "@shared/schema";
@@ -130,12 +132,17 @@ export interface IStorage {
   deleteComparisonItem(userId: string, productId: string): Promise<void>;
   
   getSupportMessages(userId: string): Promise<SupportMessage[]>;
-  getAllSupportConversations(): Promise<{ userId: string; lastMessage: SupportMessage; unreadCount: number }[]>;
+  getAllSupportConversations(status?: 'active' | 'archived'): Promise<{ userId: string; lastMessage: SupportMessage; unreadCount: number; status: string }[]>;
   createSupportMessage(message: InsertSupportMessage): Promise<SupportMessage>;
   markMessageAsRead(id: string): Promise<void>;
   
   getSupportMessageAttachments(messageId: string): Promise<SupportMessageAttachment[]>;
   addSupportMessageAttachment(attachment: InsertSupportMessageAttachment): Promise<SupportMessageAttachment>;
+  
+  getOrCreateConversation(userId: string): Promise<SupportConversation>;
+  archiveConversation(userId: string): Promise<void>;
+  activateConversation(userId: string): Promise<void>;
+  deleteOldMessages(olderThanDays: number): Promise<number>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -738,32 +745,45 @@ export class DatabaseStorage implements IStorage {
     return db.select().from(supportMessages).where(eq(supportMessages.userId, userId)).orderBy(supportMessages.createdAt);
   }
 
-  async getAllSupportConversations(): Promise<{ userId: string; lastMessage: SupportMessage; unreadCount: number }[]> {
-    const allMessages = await db.select().from(supportMessages).orderBy(desc(supportMessages.createdAt));
+  async getAllSupportConversations(status?: 'active' | 'archived'): Promise<{ userId: string; lastMessage: SupportMessage; unreadCount: number; status: string }[]> {
+    // Get all conversations with optional status filter
+    let conversationQuery = db.select().from(supportConversations);
     
-    const conversationsMap = new Map<string, { lastMessage: SupportMessage; unreadCount: number }>();
+    if (status) {
+      conversationQuery = conversationQuery.where(eq(supportConversations.status, status)) as any;
+    }
     
-    for (const message of allMessages) {
-      if (!conversationsMap.has(message.userId)) {
+    const allConversations = await conversationQuery;
+    
+    const result = [];
+    
+    for (const conv of allConversations) {
+      // Get last message for this conversation
+      const [lastMessage] = await db
+        .select()
+        .from(supportMessages)
+        .where(eq(supportMessages.userId, conv.userId))
+        .orderBy(desc(supportMessages.createdAt))
+        .limit(1);
+      
+      if (lastMessage) {
         const unreadCount = await db.select({ count: sql<number>`count(*)` })
           .from(supportMessages)
           .where(and(
-            eq(supportMessages.userId, message.userId),
+            eq(supportMessages.userId, conv.userId),
             eq(supportMessages.isRead, false)
           ));
         
-        conversationsMap.set(message.userId, {
-          lastMessage: message,
-          unreadCount: Number(unreadCount[0]?.count || 0)
+        result.push({
+          userId: conv.userId,
+          lastMessage,
+          unreadCount: Number(unreadCount[0]?.count || 0),
+          status: conv.status
         });
       }
     }
     
-    return Array.from(conversationsMap.entries()).map(([userId, data]) => ({
-      userId,
-      lastMessage: data.lastMessage,
-      unreadCount: data.unreadCount
-    }));
+    return result;
   }
 
   async createSupportMessage(message: InsertSupportMessage): Promise<SupportMessage> {
@@ -782,6 +802,58 @@ export class DatabaseStorage implements IStorage {
   async addSupportMessageAttachment(attachment: InsertSupportMessageAttachment): Promise<SupportMessageAttachment> {
     const [messageAttachment] = await db.insert(supportMessageAttachments).values(attachment).returning();
     return messageAttachment;
+  }
+
+  async getOrCreateConversation(userId: string): Promise<SupportConversation> {
+    const [existing] = await db
+      .select()
+      .from(supportConversations)
+      .where(eq(supportConversations.userId, userId))
+      .limit(1);
+    
+    if (existing) {
+      // If conversation is archived, activate it when user sends a message
+      if (existing.status === 'archived') {
+        const [activated] = await db
+          .update(supportConversations)
+          .set({ status: 'active', updatedAt: new Date(), archivedAt: null })
+          .where(eq(supportConversations.userId, userId))
+          .returning();
+        return activated;
+      }
+      return existing;
+    }
+    
+    const [conversation] = await db
+      .insert(supportConversations)
+      .values({ userId, status: 'active' })
+      .returning();
+    return conversation;
+  }
+
+  async archiveConversation(userId: string): Promise<void> {
+    await db
+      .update(supportConversations)
+      .set({ status: 'archived', archivedAt: new Date(), updatedAt: new Date() })
+      .where(eq(supportConversations.userId, userId));
+  }
+
+  async activateConversation(userId: string): Promise<void> {
+    await db
+      .update(supportConversations)
+      .set({ status: 'active', archivedAt: null, updatedAt: new Date() })
+      .where(eq(supportConversations.userId, userId));
+  }
+
+  async deleteOldMessages(olderThanDays: number): Promise<number> {
+    const dateThreshold = new Date();
+    dateThreshold.setDate(dateThreshold.getDate() - olderThanDays);
+    
+    const result = await db
+      .delete(supportMessages)
+      .where(lte(supportMessages.createdAt, dateThreshold));
+    
+    return result.rowCount || 0;
   }
 }
 

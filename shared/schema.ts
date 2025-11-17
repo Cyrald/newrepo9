@@ -254,6 +254,18 @@ export const comparisonItems = pgTable("comparison_items", {
 // SUPPORT CHAT
 // ============================================
 
+export const supportConversations = pgTable("support_conversations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull().unique().references(() => users.id, { onDelete: "cascade" }),
+  status: text("status").notNull().default("active"), // 'active' | 'archived'
+  archivedAt: timestamp("archived_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  userIdIdx: index("support_conversations_user_id_idx").on(table.userId),
+  statusIdx: index("support_conversations_status_idx").on(table.status),
+}));
+
 export const supportMessages = pgTable("support_messages", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   userId: varchar("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
@@ -329,6 +341,13 @@ export const ordersRelations = relations(orders, ({ one }) => ({
   promocode: one(promocodes, {
     fields: [orders.promocodeId],
     references: [promocodes.id],
+  }),
+}));
+
+export const supportConversationsRelations = relations(supportConversations, ({ one }) => ({
+  user: one(users, {
+    fields: [supportConversations.userId],
+    references: [users.id],
   }),
 }));
 

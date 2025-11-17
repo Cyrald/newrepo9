@@ -12,10 +12,18 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
+  // Определяем, является ли data FormData или другим типом файлов
+  const isFormData = data instanceof FormData;
+  const isBlob = data instanceof Blob;
+  const isFile = typeof File !== 'undefined' && data instanceof File;
+  const isFileUpload = isFormData || isBlob || isFile;
+
   const res = await fetch(url, {
     method,
-    headers: data ? { "Content-Type": "application/json" } : {},
-    body: data ? JSON.stringify(data) : undefined,
+    // Не устанавливаем Content-Type для FormData - браузер сам установит с boundary
+    headers: (data && !isFileUpload) ? { "Content-Type": "application/json" } : {},
+    // Не stringify для FormData - отправляем как есть
+    body: isFileUpload ? (data as any) : (data ? JSON.stringify(data) : undefined),
     credentials: "include",
   });
 

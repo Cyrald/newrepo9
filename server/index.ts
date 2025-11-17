@@ -42,13 +42,22 @@ declare module 'http' {
     rawBody: unknown
   }
 }
+
+// JSON parser - только для application/json запросов
 app.use(express.json({
   limit: '50mb',
   verify: (req, _res, buf) => {
     req.rawBody = buf;
-  }
+  },
+  type: 'application/json' // Явно указываем тип
 }));
-app.use(express.urlencoded({ limit: '50mb', extended: false }));
+
+// URL-encoded parser - только для application/x-www-form-urlencoded
+app.use(express.urlencoded({ 
+  limit: '50mb', 
+  extended: false,
+  type: 'application/x-www-form-urlencoded' // Явно указываем тип
+}));
 
 app.use((req, res, next) => {
   const start = Date.now();

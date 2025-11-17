@@ -202,11 +202,11 @@ export function SupportChatWidget({ isOpen, onClose }: SupportChatWidgetProps) {
     )
   }
 
-  // Show chat widget in bottom right corner
+  // Show chat widget in bottom right corner like Telegram
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col w-[400px] h-[600px] bg-background border rounded-lg shadow-2xl">
+    <div className="fixed bottom-4 right-4 z-50 flex flex-col w-[420px] h-[600px] bg-background border rounded-2xl shadow-2xl animate-in slide-in-from-bottom-4 duration-300">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b bg-primary text-primary-foreground">
+      <div className="flex items-center justify-between p-4 border-b bg-primary text-primary-foreground rounded-t-2xl">
         <div className="flex items-center gap-2">
           <MessageCircle className="h-5 w-5" />
           <h3 className="font-semibold">Техническая поддержка</h3>
