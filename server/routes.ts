@@ -17,7 +17,7 @@ import {
   chatAttachmentsUpload,
   validateTotalFileSize,
 } from "./upload";
-import { processProductImage, processChatImage } from "./imageProcessor";
+import { processProductImage, processChatImage, deleteProductImage } from "./imageService";
 import { calculateCashback, canUseBonuses } from "./bonuses";
 import { validatePromocode, applyPromocode } from "./promocodes";
 import {
@@ -653,6 +653,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     requireRole("admin", "marketer"),
     productImagesUpload.array("images", 10),
     async (req, res) => {
+      const uploadedFiles: string[] = [];
+      
       try {
         const files = req.files as Express.Multer.File[];
         
@@ -663,26 +665,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const images = [];
 
         for (const file of files) {
-          try {
-            await processProductImage(file.path);
+          uploadedFiles.push(file.path);
+          
+          const processedImage = await processProductImage(file.path);
             
-            const newFilename = file.filename.replace(/\.[^.]+$/, '.webp');
-            
-            const image = await storage.addProductImage({
-              productId: req.params.id,
-              url: `/uploads/products/${newFilename}`,
-              sortOrder: 0,
-            });
-            images.push(image);
-          } catch (fileError) {
-            console.error(`Error processing file ${file.filename}:`, fileError);
-            throw fileError;
-          }
+          const image = await storage.addProductImage({
+            productId: req.params.id,
+            url: processedImage.url,
+            sortOrder: 0,
+          });
+          images.push(image);
         }
 
         res.json(images);
       } catch (error: any) {
         console.error('Error uploading images:', error);
+        
+        for (const filePath of uploadedFiles) {
+          try {
+            const fs = require('fs/promises');
+            await fs.unlink(filePath);
+          } catch {}
+        }
+        
         res.status(500).json({ message: error.message || "Ошибка загрузки изображений" });
       }
     }

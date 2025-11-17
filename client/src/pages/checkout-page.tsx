@@ -62,8 +62,11 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState<"online" | "on_delivery">("online")
   const [useBonuses, setUseBonuses] = useState(false)
   const [promocode, setPromocode] = useState("")
-  const [promocodeId, setPromocodeId] = useState<string | undefined>()
-  const [promocodePercent, setPromocodePercent] = useState(0)
+  const [appliedPromocode, setAppliedPromocode] = useState<{
+    id: string;
+    code: string;
+    discountAmount: number;
+  } | null>(null)
   const [bonusesUsed, setBonusesUsed] = useState(0)
   
   const authInitialized = useAuthStore((state) => state.authInitialized)
@@ -109,17 +112,21 @@ export default function CheckoutPage() {
   const deliveryEta = deliveryMethod === "cdek" ? "2-5 дней" : "2-4 дня"
   const bonusPoints = user?.bonusBalance || 0
   
-  // Промокод применяется только к стоимости товаров (subtotal)
-  const promocodeDiscount = Math.floor(subtotal * (promocodePercent / 100))
+  const promocodeDiscount = appliedPromocode?.discountAmount || 0
   const subtotalAfterPromocode = Math.max(0, subtotal - promocodeDiscount)
   
-  // Бонусы применяются к стоимости товаров после промокода
   const maxBonuses = Math.floor(subtotalAfterPromocode * 0.2)
   const cappedBonusesUsed = Math.min(bonusesUsed, Math.min(bonusPoints, maxBonuses))
   const subtotalAfterBonuses = Math.max(0, subtotalAfterPromocode - cappedBonusesUsed)
   
-  // Доставка добавляется к итогу отдельно
-  const finalTotal = subtotalAfterBonuses + deliveryCost
+  const finalTotal = Math.max(0, subtotalAfterBonuses + deliveryCost)
+
+  useEffect(() => {
+    if (appliedPromocode && subtotal > 0) {
+      setAppliedPromocode(null)
+      setPromocode("")
+    }
+  }, [cartItems])
 
   const form = useForm<DeliveryFormData>({
     resolver: zodResolver(deliverySchema),
@@ -191,7 +198,7 @@ export default function CheckoutPage() {
           postalCode: deliveryData.postalCode,
         },
         paymentMethod,
-        promocodeId,
+        promocodeId: appliedPromocode?.id,
         bonusesUsed: cappedBonusesUsed,
       })
       
@@ -233,14 +240,15 @@ export default function CheckoutPage() {
     try {
       const result = await promocodesApi.validate(promocode, subtotal)
       
-      if (result.valid && result.promocode) {
-        const percent = parseFloat(result.promocode.discountPercentage || "0")
-        const discount = Math.floor(subtotal * (percent / 100))
-        setPromocodeId(result.promocode.id)
-        setPromocodePercent(percent)
+      if (result.valid && result.promocode && result.discountAmount !== undefined) {
+        setAppliedPromocode({
+          id: result.promocode.id,
+          code: result.promocode.code,
+          discountAmount: result.discountAmount,
+        })
         toast({
           title: "Промокод применен",
-          description: `Скидка ${percent}% на товары (-${discount} ₽)`,
+          description: `Скидка -${result.discountAmount} ₽`,
         })
       } else {
         toast({
@@ -259,8 +267,7 @@ export default function CheckoutPage() {
   }
 
   const handleUseBonuses = (checked: boolean) => {
-    // Проверка: нельзя одновременно использовать промокод и бонусы
-    if (checked && promocodeId) {
+    if (checked && appliedPromocode) {
       toast({
         title: "Ошибка",
         description: "Нельзя одновременно использовать промокод и бонусы. Сначала отмените промокод.",

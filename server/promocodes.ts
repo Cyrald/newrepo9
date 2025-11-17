@@ -65,10 +65,11 @@ export async function validatePromocode(
   const discountPercentage = parseFloat(promocode.discountPercentage);
   const calculatedDiscount = Math.floor(orderAmount * (discountPercentage / 100));
   
-  // Применяем ограничение максимальной скидки, если оно установлено
   const discountAmount = promocode.maxDiscountAmount 
     ? Math.min(calculatedDiscount, parseFloat(promocode.maxDiscountAmount))
     : calculatedDiscount;
+  
+  const finalDiscountAmount = Math.min(discountAmount, orderAmount);
 
   return {
     valid: true,
@@ -77,7 +78,7 @@ export async function validatePromocode(
       code: promocode.code,
       discountPercentage: promocode.discountPercentage,
     },
-    discountAmount,
+    discountAmount: finalDiscountAmount,
   };
 }
 

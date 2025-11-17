@@ -90,6 +90,8 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  app.use('/uploads', express.static('uploads'));
+  
   const server = await registerRoutes(app);
 
   app.use((err: any, req: Request, res: Response, _next: NextFunction) => {

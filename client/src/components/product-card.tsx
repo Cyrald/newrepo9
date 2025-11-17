@@ -21,7 +21,7 @@ export function ProductCard({ product, onAddToCart, onToggleWishlist, isInWishli
   const firstImage = product.images?.[0]?.url
 
   return (
-    <Card className="group relative overflow-hidden transition-all duration-200">
+    <Card className="group relative overflow-hidden transition-all duration-200 flex flex-col">
       <Link href={`/products/${product.id}`}>
         <div className="relative aspect-[4/5] overflow-hidden bg-muted">
           {firstImage ? (
@@ -71,9 +71,9 @@ export function ProductCard({ product, onAddToCart, onToggleWishlist, isInWishli
         </div>
       </Link>
 
-      <CardContent className="p-2.5">
+      <CardContent className="p-2.5 flex flex-col flex-grow">
         <Link href={`/products/${product.id}`}>
-          <h3 className="mb-0.5 line-clamp-2 text-sm font-semibold" data-testid={`text-product-name-${product.id}`}>
+          <h3 className="mb-0.5 line-clamp-2 text-sm font-semibold min-h-[2.5rem]" data-testid={`text-product-name-${product.id}`}>
             {product.name}
           </h3>
         </Link>
@@ -100,27 +100,29 @@ export function ProductCard({ product, onAddToCart, onToggleWishlist, isInWishli
           )}
         </div>
 
-        {product.stockQuantity > 0 ? (
-          <Button
-            className="w-full h-8 text-xs"
-            size="sm"
-            onClick={() => onAddToCart?.(product.id)}
-            data-testid={`button-add-to-cart-${product.id}`}
-          >
-            <ShoppingCart className="mr-1.5 h-3.5 w-3.5" />
-            В корзину
-          </Button>
-        ) : (
-          <Button
-            className="w-full h-8 text-xs"
-            size="sm"
-            variant="secondary"
-            disabled
-            data-testid={`button-out-of-stock-${product.id}`}
-          >
-            Нет в наличии
-          </Button>
-        )}
+        <div className="mt-auto">
+          {product.stockQuantity > 0 ? (
+            <Button
+              className="w-full h-8 text-xs"
+              size="sm"
+              onClick={() => onAddToCart?.(product.id)}
+              data-testid={`button-add-to-cart-${product.id}`}
+            >
+              <ShoppingCart className="mr-1.5 h-3.5 w-3.5" />
+              В корзину
+            </Button>
+          ) : (
+            <Button
+              className="w-full h-8 text-xs"
+              size="sm"
+              variant="secondary"
+              disabled
+              data-testid={`button-out-of-stock-${product.id}`}
+            >
+              Нет в наличии
+            </Button>
+          )}
+        </div>
       </CardContent>
     </Card>
   )
