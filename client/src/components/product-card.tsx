@@ -4,8 +4,10 @@ import { ShoppingCart, Heart, Eye } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { Product } from "@shared/schema"
 import { useCartStore } from "@/stores/cartStore"
+import { useUpdateCartItem } from "@/hooks/useCart"
 
 interface ProductCardProps {
   product: Product & { images?: { url: string }[] }
@@ -17,10 +19,12 @@ interface ProductCardProps {
 export function ProductCard({ product, onAddToCart, onToggleWishlist, isInWishlist = false }: ProductCardProps) {
   const [isWishlistLoading, setIsWishlistLoading] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [localQuantity, setLocalQuantity] = useState<string>("")
   
   // Get cart quantity for this product
   const cartItems = useCartStore((state) => state.items)
   const cartQuantity = cartItems.find(item => item.productId === product.id)?.quantity || 0
+  const updateCartItem = useUpdateCartItem()
   const hasDiscount = parseFloat(product.discountPercentage) > 0
   const discountedPrice = hasDiscount
     ? parseFloat(product.price) * (1 - parseFloat(product.discountPercentage) / 100)
@@ -44,6 +48,16 @@ export function ProductCard({ product, onAddToCart, onToggleWishlist, isInWishli
       await onToggleWishlist(product.id)
     } finally {
       setIsWishlistLoading(false)
+    }
+  }
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setLocalQuantity(value)
+    
+    const newQuantity = parseInt(value, 10)
+    if (!isNaN(newQuantity) && newQuantity > 0 && newQuantity <= product.stockQuantity) {
+      updateCartItem.mutate({ productId: product.id, quantity: newQuantity })
     }
   }
 
@@ -133,22 +147,40 @@ export function ProductCard({ product, onAddToCart, onToggleWishlist, isInWishli
 
         <div className="mt-auto">
           {product.stockQuantity > 0 ? (
-            <Button
-              className="w-full h-8 text-xs relative"
-              size="sm"
-              onClick={() => onAddToCart?.(product.id)}
-              data-testid={`button-add-to-cart-${product.id}`}
-            >
-              <ShoppingCart className="mr-1.5 h-3.5 w-3.5" />
-              В корзину
-              {cartQuantity > 0 && (
-                <Badge 
-                  className="absolute -right-1 -top-1 h-5 min-w-[1.25rem] px-1 text-[10px] bg-[#ef4444] hover:bg-[#ef4444] text-white border-0 pointer-events-none"
+            cartQuantity > 0 ? (
+              <div className="flex items-center gap-1.5">
+                <Button
+                  className="flex-1 h-8 text-xs bg-secondary/80 hover:bg-secondary text-secondary-foreground"
+                  size="sm"
+                  variant="secondary"
+                  disabled
+                  data-testid={`button-in-cart-${product.id}`}
                 >
-                  {cartQuantity}
-                </Badge>
-              )}
-            </Button>
+                  <ShoppingCart className="mr-1.5 h-3.5 w-3.5" />
+                  Уже в корзине
+                </Button>
+                <Input
+                  type="number"
+                  min="1"
+                  max={product.stockQuantity}
+                  value={localQuantity || cartQuantity}
+                  onChange={handleQuantityChange}
+                  onClick={(e) => e.stopPropagation()}
+                  className="w-14 h-8 text-xs text-center"
+                  data-testid={`input-quantity-${product.id}`}
+                />
+              </div>
+            ) : (
+              <Button
+                className="w-full h-8 text-xs"
+                size="sm"
+                onClick={() => onAddToCart?.(product.id)}
+                data-testid={`button-add-to-cart-${product.id}`}
+              >
+                <ShoppingCart className="mr-1.5 h-3.5 w-3.5" />
+                В корзину
+              </Button>
+            )
           ) : (
             <Button
               className="w-full h-8 text-xs"

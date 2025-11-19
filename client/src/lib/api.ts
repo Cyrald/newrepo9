@@ -174,6 +174,11 @@ export const productsApi = {
       method: "DELETE",
     }),
 
+  permanentDelete: (id: string) =>
+    fetchApi<{ success: boolean }>(`/api/products/${id}/permanent`, {
+      method: "DELETE",
+    }),
+
   uploadImages: (productId: string, images: FormData) =>
     fetchApi<{ images: string[] }>(`/api/products/${productId}/images`, {
       method: "POST",

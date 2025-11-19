@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react"
-import { Plus, Search, MoreHorizontal, Pencil, Archive, Eye, ImageIcon, ArrowUpAZ, ArrowDownAZ } from "lucide-react"
+import { Plus, Search, MoreHorizontal, Pencil, Archive, Eye, ImageIcon, ArrowUpAZ, ArrowDownAZ, Trash2 } from "lucide-react"
 import { useQuery } from "@tanstack/react-query"
 import { useLocation } from "wouter"
 import { AdminLayout } from "@/components/admin-layout"
@@ -42,7 +42,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import { productsApi } from "@/lib/api"
-import { useArchiveProduct, useUnarchiveProduct } from "@/hooks/useProducts"
+import { useArchiveProduct, useUnarchiveProduct, usePermanentDeleteProduct } from "@/hooks/useProducts"
 import { useCategories } from "@/hooks/useCategories"
 import type { Product } from "@shared/schema"
 
@@ -101,6 +101,8 @@ export default function AdminProductsPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
   const [isArchiveDialogOpen, setIsArchiveDialogOpen] = useState(false)
   const [productToArchive, setProductToArchive] = useState<string | null>(null)
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+  const [productToDelete, setProductToDelete] = useState<string | null>(null)
 
   const { data, isLoading } = useQuery({
     queryKey: ["adminProducts"],
@@ -112,6 +114,7 @@ export default function AdminProductsPage() {
 
   const archiveProduct = useArchiveProduct()
   const unarchiveProduct = useUnarchiveProduct()
+  const permanentDeleteProduct = usePermanentDeleteProduct()
 
   const products = data?.products || []
 
@@ -192,6 +195,32 @@ export default function AdminProductsPage() {
     } finally {
       setIsArchiveDialogOpen(false)
       setProductToArchive(null)
+    }
+  }
+
+  const handleDeleteProduct = (productId: string) => {
+    setProductToDelete(productId)
+    setIsDeleteDialogOpen(true)
+  }
+
+  const confirmDelete = async () => {
+    if (!productToDelete) return
+
+    try {
+      await permanentDeleteProduct.mutateAsync(productToDelete)
+      toast({
+        title: "Товар удалён",
+        description: "Товар успешно удалён из системы",
+      })
+    } catch (error: any) {
+      toast({
+        title: "Ошибка",
+        description: error.message || "Не удалось удалить товар",
+        variant: "destructive",
+      })
+    } finally {
+      setIsDeleteDialogOpen(false)
+      setProductToDelete(null)
     }
   }
 
@@ -352,6 +381,13 @@ export default function AdminProductsPage() {
                                       Разархивировать
                                     </DropdownMenuItem>
                                   )}
+                                  <DropdownMenuItem
+                                    className="text-red-600"
+                                    onClick={() => handleDeleteProduct(product.id)}
+                                  >
+                                    <Trash2 className="mr-2 h-4 w-4" />
+                                    Удалить
+                                  </DropdownMenuItem>
                                 </DropdownMenuContent>
                               </DropdownMenu>
                             </TableCell>
@@ -387,6 +423,24 @@ export default function AdminProductsPage() {
             <AlertDialogCancel>Отмена</AlertDialogCancel>
             <AlertDialogAction onClick={confirmArchive} className="bg-orange-600 hover:bg-orange-700 text-white">
               Архивировать
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Удалить товар навсегда?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Это действие нельзя отменить. Товар будет удалён из системы навсегда вместе со всеми связанными данными.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Отмена</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete} className="bg-red-600 hover:bg-red-700 text-white">
+              Удалить навсегда
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

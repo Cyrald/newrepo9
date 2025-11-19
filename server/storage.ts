@@ -81,6 +81,7 @@ export interface IStorage {
   createProduct(product: InsertProduct): Promise<Product>;
   updateProduct(id: string, data: Partial<InsertProduct>): Promise<Product | undefined>;
   deleteProduct(id: string): Promise<void>;
+  permanentDeleteProduct(id: string): Promise<void>;
   incrementProductView(id: string): Promise<void>;
   
   getProductImages(productId: string): Promise<ProductImage[]>;
@@ -346,6 +347,11 @@ export class DatabaseStorage implements IStorage {
 
   async deleteProduct(id: string): Promise<void> {
     await db.update(products).set({ isArchived: true }).where(eq(products.id, id));
+  }
+
+  async permanentDeleteProduct(id: string): Promise<void> {
+    await db.delete(productImages).where(eq(productImages.productId, id));
+    await db.delete(products).where(eq(products.id, id));
   }
 
   async incrementProductView(id: string): Promise<void> {

@@ -89,6 +89,18 @@ export function useDeleteProduct() {
   });
 }
 
+export function usePermanentDeleteProduct() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: string) => productsApi.permanentDelete(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: ["adminProducts"] });
+    },
+  });
+}
+
 export function useUploadProductImages() {
   const queryClient = useQueryClient();
 

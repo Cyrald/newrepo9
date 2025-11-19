@@ -54,8 +54,8 @@ function getNetworkSpeed(): NetworkSpeed {
 
 function getConcurrency(networkSpeed: NetworkSpeed): number {
   switch (networkSpeed) {
-    case 'slow': return 1;
-    case 'medium': return 2;
+    case 'slow': return 2;
+    case 'medium': return 3;
     case 'fast': return 3;
   }
 }
@@ -174,6 +174,7 @@ export function usePrefetchRoutes() {
   const user = useAuthStore((state) => state.user);
   const previousAuthState = useRef<boolean | null>(null);
   const previousStaffState = useRef<boolean | null>(null);
+  const previousLocation = useRef<string>('');
   const [location] = useLocation();
 
   useEffect(() => {
@@ -187,8 +188,10 @@ export function usePrefetchRoutes() {
     
     const authChanged = previousAuthState.current !== isAuthenticated;
     const staffChanged = previousStaffState.current !== hasStaffRole;
+    const locationChanged = previousLocation.current !== location;
+    const isOnAdminPage = location.startsWith('/admin');
     
-    if (!authChanged && !staffChanged) {
+    if (!authChanged && !staffChanged && !(locationChanged && isOnAdminPage && hasStaffRole)) {
       return;
     }
 
@@ -221,6 +224,7 @@ export function usePrefetchRoutes() {
 
     previousAuthState.current = isAuthenticated;
     previousStaffState.current = hasStaffRole;
+    previousLocation.current = location;
   }, [isAuthenticated, authInitialized, user, location]);
 }
 

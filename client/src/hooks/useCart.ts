@@ -13,6 +13,8 @@ export function useCart() {
     queryKey: ["cart"],
     queryFn: cartApi.get,
     enabled: isAuthenticated,
+    refetchOnWindowFocus: true,
+    refetchOnMount: true,
   });
 
   useEffect(() => {

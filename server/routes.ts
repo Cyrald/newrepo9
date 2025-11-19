@@ -693,6 +693,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   );
 
+  app.delete(
+    "/api/products/:id/permanent",
+    authenticateToken,
+    requireRole("admin"),
+    async (req, res) => {
+      try {
+        await storage.permanentDeleteProduct(req.params.id);
+        res.json({ message: "Товар удалён навсегда" });
+      } catch (error) {
+        res.status(500).json({ message: "Ошибка удаления товара" });
+      }
+    }
+  );
+
   app.post(
     "/api/products/:id/images",
     authenticateToken,
