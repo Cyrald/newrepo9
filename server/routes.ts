@@ -40,17 +40,21 @@ import {
   uploadLimiter,
   searchLimiter,
   generalApiLimiter,
+  orderLimiter,
 } from "./middleware/rateLimiter";
 import { sanitizeSearchQuery, sanitizeNumericParam, sanitizeId } from "./utils/sanitize";
 import { eq, sql, and } from "drizzle-orm";
 import * as cookieSignature from "cookie-signature";
 import { env } from "./env";
+import { logLoginAttempt, logRegistration } from "./utils/securityLogger";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
   const wss = new WebSocketServer({ server: httpServer, path: "/ws" });
 
   const connectedUsers = new Map<string, { ws: any, roles: string[] }>();
+
+  const SESSION_ID_REGEX = /^[a-zA-Z0-9_-]{20,128}$/;
 
   async function validateSessionFromCookie(cookieHeader: string | undefined): Promise<{ userId: string; userRoles: string[] } | null> {
     if (!cookieHeader) return null;
@@ -78,6 +82,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
     
     const sid = unsignedValue;
+    
+    if (!SESSION_ID_REGEX.test(sid)) {
+      console.warn('Invalid session ID format detected');
+      return null;
+    }
     
     try {
       const result = await db.execute(sql`SELECT sess FROM session WHERE sid = ${sid}`);
@@ -144,6 +153,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             type: "error",
             message: "Необходима аутентификация",
           }));
+          ws.close();
           return;
         }
       } catch (error) {
@@ -161,8 +171,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/auth/register", registerLimiter, async (req, res) => {
     try {
       const data = registerSchema.parse(req.body);
+      
+      const sanitizedEmail = data.email.toLowerCase().trim();
 
-      const existingUser = await storage.getUserByEmail(data.email);
+      const existingUser = await storage.getUserByEmail(sanitizedEmail);
       if (existingUser) {
         return res.status(400).json({ message: "Email уже зарегистрирован" });
       }
@@ -172,12 +184,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const verificationTokenExpires = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
       const user = await storage.createUser({
-        email: data.email,
+        email: sanitizedEmail,
         passwordHash,
-        firstName: data.firstName,
-        lastName: data.lastName || null,
-        patronymic: data.patronymic || null,
-        phone: data.phone,
+        firstName: data.firstName.trim(),
+        lastName: data.lastName?.trim() || null,
+        patronymic: data.patronymic?.trim() || null,
+        phone: data.phone.trim(),
       });
 
       await storage.updateUser(user.id, {
@@ -195,20 +207,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const roles = await storage.getUserRoles(user.id);
       const roleNames = roles.map(r => r.role);
       
-      req.session.userId = user.id;
-      req.session.userRoles = roleNames;
-
-      res.json({
-        user: {
-          id: user.id,
+      req.session.regenerate((err) => {
+        if (err) {
+          console.error('Session regeneration error during registration:', err);
+          return res.status(500).json({ message: "Ошибка регистрации" });
+        }
+        
+        req.session.userId = user.id;
+        req.session.userRoles = roleNames;
+        
+        logRegistration({
           email: user.email,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          phone: user.phone,
-          isVerified: user.isVerified,
-          bonusBalance: user.bonusBalance,
-          roles: roleNames,
-        },
+          userId: user.id,
+          ip: req.ip,
+          userAgent: req.get('user-agent'),
+        });
+
+        res.json({
+          user: {
+            id: user.id,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            phone: user.phone,
+            isVerified: user.isVerified,
+            bonusBalance: user.bonusBalance,
+            roles: roleNames,
+          },
+        });
       });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -221,14 +247,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/auth/login", authLimiter, async (req, res) => {
     try {
       const data = loginSchema.parse(req.body);
+      
+      const sanitizedEmail = data.email.toLowerCase().trim();
 
-      const user = await storage.getUserByEmail(data.email);
+      const user = await storage.getUserByEmail(sanitizedEmail);
       if (!user) {
+        logLoginAttempt({
+          email: sanitizedEmail,
+          ip: req.ip,
+          userAgent: req.get('user-agent'),
+          success: false,
+          failureReason: 'USER_NOT_FOUND',
+        });
         return res.status(401).json({ message: "Неверный email или пароль" });
       }
 
       const isValidPassword = await comparePassword(data.password, user.passwordHash);
       if (!isValidPassword) {
+        logLoginAttempt({
+          email: sanitizedEmail,
+          userId: user.id,
+          ip: req.ip,
+          userAgent: req.get('user-agent'),
+          success: false,
+          failureReason: 'INVALID_PASSWORD',
+        });
         return res.status(401).json({ message: "Неверный email или пароль" });
       }
 
@@ -242,6 +285,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         
         req.session.userId = user.id;
         req.session.userRoles = roleNames;
+        
+        logLoginAttempt({
+          email: sanitizedEmail,
+          userId: user.id,
+          ip: req.ip,
+          userAgent: req.get('user-agent'),
+          success: true,
+        });
 
         res.json({
           user: {
@@ -452,6 +503,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.put("/api/addresses/:id", authenticateToken, async (req, res) => {
     try {
+      const existingAddress = await storage.getUserAddress(req.params.id);
+      if (!existingAddress || existingAddress.userId !== req.userId) {
+        return res.status(404).json({ message: "Адрес не найден" });
+      }
+      
       const addressUpdateSchema = z.object({
         label: z.string().optional(),
         fullAddress: z.string().optional(),
@@ -491,6 +547,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.delete("/api/addresses/:id", authenticateToken, async (req, res) => {
     try {
+      const address = await storage.getUserAddress(req.params.id);
+      if (!address || address.userId !== req.userId) {
+        return res.status(404).json({ message: "Адрес не найден" });
+      }
       await storage.deleteUserAddress(req.params.id);
       res.json({ message: "Адрес удалён" });
     } catch (error) {
@@ -500,6 +560,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.put("/api/addresses/:id/set-default", authenticateToken, async (req, res) => {
     try {
+      const address = await storage.getUserAddress(req.params.id);
+      if (!address || address.userId !== req.userId) {
+        return res.status(404).json({ message: "Адрес не найден" });
+      }
       await storage.setDefaultAddress(req.userId!, req.params.id);
       res.json({ message: "Адрес установлен по умолчанию" });
     } catch (error) {
@@ -545,6 +609,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.delete("/api/payment-cards/:id", authenticateToken, async (req, res) => {
     try {
+      const card = await storage.getUserPaymentCard(req.params.id);
+      if (!card || card.userId !== req.userId) {
+        return res.status(404).json({ message: "Карта не найдена" });
+      }
       await storage.deleteUserPaymentCard(req.params.id);
       res.json({ message: "Карта удалена" });
     } catch (error) {
@@ -554,6 +622,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.put("/api/payment-cards/:id/set-default", authenticateToken, async (req, res) => {
     try {
+      const card = await storage.getUserPaymentCard(req.params.id);
+      if (!card || card.userId !== req.userId) {
+        return res.status(404).json({ message: "Карта не найдена" });
+      }
       await storage.setDefaultPaymentCard(req.userId!, req.params.id);
       res.json({ message: "Карта установлена по умолчанию" });
     } catch (error) {
@@ -582,20 +654,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  const categorySchema = z.object({
+    name: z.string().min(1, "Название обязательно").max(200, "Название слишком длинное").trim(),
+    slug: z.string().min(1, "Slug обязателен").max(200, "Slug слишком длинный").regex(/^[a-z0-9-]+$/, "Slug должен содержать только строчные буквы, цифры и дефисы"),
+    description: z.string().max(5000, "Описание слишком длинное").optional(),
+    sortOrder: z.number().int().min(0).max(9999).optional(),
+  });
+
   app.post("/api/categories", authenticateToken, requireRole("admin", "marketer"), async (req, res) => {
     try {
-      const category = await storage.createCategory(req.body);
+      const data = categorySchema.parse(req.body);
+      const category = await storage.createCategory(data);
       res.json(category);
     } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: error.errors[0].message });
+      }
       res.status(500).json({ message: "Ошибка создания категории" });
     }
   });
 
   app.put("/api/categories/:id", authenticateToken, requireRole("admin", "marketer"), async (req, res) => {
     try {
-      const category = await storage.updateCategory(req.params.id, req.body);
+      const data = categorySchema.partial().parse(req.body);
+      const category = await storage.updateCategory(req.params.id, data);
       res.json(category);
     } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: error.errors[0].message });
+      }
       res.status(500).json({ message: "Ошибка обновления категории" });
     }
   });
@@ -1103,7 +1190,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/orders", authenticateToken, async (req, res) => {
+  app.post("/api/orders", authenticateToken, orderLimiter, async (req, res) => {
     try {
       const data = createOrderSchema.parse(req.body);
       const user = await storage.getUser(req.userId!);
@@ -1162,17 +1249,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const order = await db.transaction(async (tx) => {
         for (const item of data.items) {
-          const lockedProducts = await tx.execute(
-            sql`SELECT * FROM products WHERE id = ${item.productId} FOR UPDATE`
+          const updateResult = await tx.execute(
+            sql`UPDATE products 
+                SET stock_quantity = stock_quantity - ${item.quantity},
+                    updated_at = NOW()
+                WHERE id = ${item.productId}
+                  AND stock_quantity >= ${item.quantity}
+                RETURNING id, name, stock_quantity`
           );
           
-          if (!lockedProducts.rows || lockedProducts.rows.length === 0) {
-            throw new Error(`PRODUCT_NOT_FOUND:${item.productId}`);
-          }
-          
-          const product = lockedProducts.rows[0] as any;
-          if (product.stock_quantity < item.quantity) {
+          if (!updateResult.rows || updateResult.rows.length === 0) {
+            const checkProduct = await tx.execute(
+              sql`SELECT id, name, stock_quantity FROM products WHERE id = ${item.productId}`
+            );
+            if (!checkProduct.rows || checkProduct.rows.length === 0) {
+              throw new Error(`PRODUCT_NOT_FOUND:${item.productId}`);
+            }
+            const product = checkProduct.rows[0] as any;
             throw new Error(`INSUFFICIENT_STOCK:${product.name}:${product.stock_quantity}:${item.quantity}`);
+          }
+        }
+
+        if (bonusesUsed > 0) {
+          const bonusResult = await tx.execute(
+            sql`UPDATE users 
+                SET bonus_balance = bonus_balance - ${bonusesUsed},
+                    updated_at = NOW()
+                WHERE id = ${req.userId}
+                  AND bonus_balance >= ${bonusesUsed}
+                RETURNING id`
+          );
+          
+          if (!bonusResult.rows || bonusResult.rows.length === 0) {
+            throw new Error('INSUFFICIENT_BONUS');
+          }
+        }
+
+        if (promocodeId) {
+          const [promocode] = await tx
+            .select()
+            .from(promocodes)
+            .where(eq(promocodes.id, promocodeId))
+            .limit(1);
+
+          if (promocode) {
+            if (promocode.type === "single_use") {
+              await tx.delete(promocodes).where(eq(promocodes.id, promocodeId));
+            } else if (promocode.type === "temporary") {
+              const existingUsage = await tx.execute(
+                sql`SELECT id FROM promocode_usage 
+                    WHERE promocode_id = ${promocodeId} AND user_id = ${req.userId}
+                    LIMIT 1`
+              );
+              if (existingUsage.rows && existingUsage.rows.length > 0) {
+                throw new Error('PROMOCODE_ALREADY_USED');
+              }
+            }
           }
         }
 
@@ -1201,26 +1333,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
           })
           .returning();
 
-        for (const item of data.items) {
-          await tx
-            .update(products)
-            .set({ 
-              stockQuantity: sql`${products.stockQuantity} - ${item.quantity}`,
-              updatedAt: new Date()
-            })
-            .where(eq(products.id, item.productId));
-        }
-
-        if (bonusesUsed > 0) {
-          await tx
-            .update(users)
-            .set({ 
-              bonusBalance: user.bonusBalance - bonusesUsed,
-              updatedAt: new Date()
-            })
-            .where(eq(users.id, req.userId!));
-        }
-
         if (promocodeId) {
           const [promocode] = await tx
             .select()
@@ -1228,16 +1340,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
             .where(eq(promocodes.id, promocodeId))
             .limit(1);
 
-          if (promocode) {
-            if (promocode.type === "single_use") {
-              await tx.delete(promocodes).where(eq(promocodes.id, promocodeId));
-            } else if (promocode.type === "temporary") {
-              await tx.insert(promocodeUsage).values({
-                promocodeId,
-                userId: req.userId!,
-                orderId: createdOrder.id,
-              });
-            }
+          if (promocode && promocode.type === "temporary") {
+            await tx.insert(promocodeUsage).values({
+              promocodeId,
+              userId: req.userId!,
+              orderId: createdOrder.id,
+            });
           }
         }
 
@@ -1262,6 +1370,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ 
           message: `Недостаточно товара "${productName}". Доступно: ${available}, запрошено: ${requested}` 
         });
+      }
+      
+      if (error.message === 'INSUFFICIENT_BONUS') {
+        return res.status(400).json({ message: "Недостаточно бонусов на счёте" });
+      }
+      
+      if (error.message === 'PROMOCODE_ALREADY_USED') {
+        return res.status(400).json({ message: "Вы уже использовали этот промокод" });
       }
       
       console.error('Order creation error:', error);

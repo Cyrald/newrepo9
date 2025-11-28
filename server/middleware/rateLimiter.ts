@@ -56,3 +56,11 @@ export const generalApiLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
 });
+
+export const orderLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 10,
+  message: 'Слишком много заказов. Максимум 10 в минуту.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});

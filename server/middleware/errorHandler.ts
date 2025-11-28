@@ -53,9 +53,7 @@ export function errorHandler(
   res.status(error.statusCode || 500).json({
     success: false,
     error: {
-      message: process.env.NODE_ENV === 'production'
-        ? 'Внутренняя ошибка сервера'
-        : error.message,
+      message: 'Внутренняя ошибка сервера',
       code: 'INTERNAL_SERVER_ERROR',
     },
   });

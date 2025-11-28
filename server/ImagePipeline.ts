@@ -38,13 +38,57 @@ export class ImagePipeline {
   private tempDir: string;
   private urlPrefix: string;
   private config: ImagePipelineConfig;
-  private tempFiles: Set<string> = new Set();
+  private tempFiles: Map<string, number> = new Map();
+  private cleanupInterval: NodeJS.Timeout | null = null;
+  private readonly TEMP_FILE_MAX_AGE_MS = 30 * 60 * 1000;
 
   constructor(uploadsDir: string, urlPrefix: string, config: Partial<ImagePipelineConfig> = {}) {
     this.uploadsDir = uploadsDir;
     this.tempDir = path.join(uploadsDir, '.temp');
     this.urlPrefix = urlPrefix;
     this.config = { ...DEFAULT_CONFIG, ...config };
+    
+    this.startPeriodicCleanup();
+  }
+  
+  private startPeriodicCleanup(): void {
+    this.cleanupInterval = setInterval(() => {
+      this.cleanupStaleFiles();
+    }, 5 * 60 * 1000);
+  }
+  
+  private async cleanupStaleFiles(): Promise<void> {
+    const now = Date.now();
+    const staleFiles: string[] = [];
+    
+    const entries = Array.from(this.tempFiles.entries());
+    for (const [filePath, timestamp] of entries) {
+      if (now - timestamp > this.TEMP_FILE_MAX_AGE_MS) {
+        staleFiles.push(filePath);
+      }
+    }
+    
+    for (const filePath of staleFiles) {
+      try {
+        await fs.unlink(filePath);
+        this.tempFiles.delete(filePath);
+      } catch (error: any) {
+        if (error.code === 'ENOENT') {
+          this.tempFiles.delete(filePath);
+        }
+      }
+    }
+    
+    if (staleFiles.length > 0) {
+      console.log(`[ImagePipeline] Cleaned up ${staleFiles.length} stale temp files`);
+    }
+  }
+  
+  destroy(): void {
+    if (this.cleanupInterval) {
+      clearInterval(this.cleanupInterval);
+      this.cleanupInterval = null;
+    }
   }
 
   async initialize(): Promise<void> {
@@ -57,7 +101,7 @@ export class ImagePipeline {
     const tempPath = path.join(this.tempDir, `${randomUUID()}${ext}`);
     
     await fs.writeFile(tempPath, buffer);
-    this.tempFiles.add(tempPath);
+    this.tempFiles.set(tempPath, Date.now());
 
     return {
       path: tempPath,
@@ -68,6 +112,8 @@ export class ImagePipeline {
         } catch (error: any) {
           if (error.code !== 'ENOENT') {
             console.warn(`Failed to cleanup temp file ${tempPath}:`, error);
+          } else {
+            this.tempFiles.delete(tempPath);
           }
         }
       }
@@ -120,7 +166,7 @@ export class ImagePipeline {
       const finalPath = path.join(this.uploadsDir, uniqueFilename);
       tempOutputPath = path.join(this.tempDir, `out-${uniqueFilename}`);
       
-      this.tempFiles.add(tempOutputPath);
+      this.tempFiles.set(tempOutputPath, Date.now());
 
       const image = sharp(buffer);
       const metadata = await image.metadata();
@@ -157,11 +203,11 @@ export class ImagePipeline {
     } catch (error) {
       await tempFile.cleanup();
       
-      if (tempOutputPath && this.tempFiles.has(tempOutputPath)) {
+      if (tempOutputPath) {
         try {
           await fs.unlink(tempOutputPath);
-          this.tempFiles.delete(tempOutputPath);
         } catch {}
+        this.tempFiles.delete(tempOutputPath);
       }
 
       throw error;
@@ -208,7 +254,7 @@ export class ImagePipeline {
   }
 
   async cleanup(): Promise<void> {
-    const tempFilesArray = Array.from(this.tempFiles);
+    const tempFilesArray = Array.from(this.tempFiles.keys());
     
     await Promise.allSettled(
       tempFilesArray.map(async (tempPath) => {
@@ -218,6 +264,8 @@ export class ImagePipeline {
         } catch (error: any) {
           if (error.code !== 'ENOENT') {
             console.warn(`Failed to cleanup temp file ${tempPath}:`, error);
+          } else {
+            this.tempFiles.delete(tempPath);
           }
         }
       })

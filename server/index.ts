@@ -9,6 +9,7 @@ import { corsMiddleware } from "./middleware/cors";
 import { requestLogger } from "./middleware/requestLogger";
 import { errorHandler } from "./middleware/errorHandler";
 import { generalApiLimiter } from "./middleware/rateLimiter";
+import { csrfMiddleware, csrfTokenEndpoint } from "./middleware/csrf";
 
 const app = express();
 
@@ -76,6 +77,10 @@ app.use(express.urlencoded({
   app.use('/uploads', express.static('uploads'));
   
   app.use('/api', generalApiLimiter);
+  
+  app.get('/api/csrf-token', csrfTokenEndpoint);
+  
+  app.use('/api', csrfMiddleware);
   
   const server = await registerRoutes(app);
 
