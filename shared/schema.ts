@@ -90,6 +90,9 @@ export const products = pgTable("products", {
   categoryIdIdx: index("products_category_id_idx").on(table.categoryId),
   isArchivedIdx: index("products_is_archived_idx").on(table.isArchived),
   priceIdx: index("products_price_idx").on(table.price),
+  isArchivedPriceIdx: index("products_is_archived_price_idx").on(table.isArchived, table.price),
+  isArchivedRatingIdx: index("products_is_archived_rating_idx").on(table.isArchived, table.rating),
+  isArchivedCreatedAtIdx: index("products_is_archived_created_at_idx").on(table.isArchived, table.createdAt),
 }));
 
 export const productImages = pgTable("product_images", {
@@ -212,6 +215,7 @@ export const orders = pgTable("orders", {
   userIdIdx: index("orders_user_id_idx").on(table.userId),
   statusIdx: index("orders_status_idx").on(table.status),
   createdAtIdx: index("orders_created_at_idx").on(table.createdAt),
+  statusCreatedAtIdx: index("orders_status_created_at_idx").on(table.status, table.createdAt),
 }));
 
 // ============================================

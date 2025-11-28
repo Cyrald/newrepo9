@@ -47,6 +47,7 @@ import { eq, sql, and } from "drizzle-orm";
 import * as cookieSignature from "cookie-signature";
 import { env } from "./env";
 import { logLoginAttempt, logRegistration } from "./utils/securityLogger";
+import { logger } from "./utils/logger";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
@@ -84,7 +85,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const sid = unsignedValue;
     
     if (!SESSION_ID_REGEX.test(sid)) {
-      console.warn('Invalid session ID format detected');
+      logger.warn('Invalid session ID format detected');
       return null;
     }
     
@@ -100,71 +101,90 @@ export async function registerRoutes(app: Express): Promise<Server> {
         userRoles: sessionData.userRoles || []
       };
     } catch (error) {
-      console.error('Session validation error:', error);
+      logger.error('Session validation error', { error });
       return null;
     }
   }
 
+  const connectionRateLimits = new Map<string, { count: number; resetAt: number }>();
+  const messageRateLimits = new Map<string, { count: number; resetAt: number }>();
+  const CONNECTION_LIMIT = 10;
+  const CONNECTION_WINDOW = 60 * 1000;
+  const MESSAGE_LIMIT = 60;
+  const MESSAGE_WINDOW = 60 * 1000;
+
   wss.on("connection", async (ws: any, req: any) => {
-    let userId: string | null = null;
-    let authenticated = false;
+    const clientIp = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.socket.remoteAddress;
+    
+    const now = Date.now();
+    const ipLimit = connectionRateLimits.get(clientIp) || { count: 0, resetAt: now + CONNECTION_WINDOW };
+    
+    if (now > ipLimit.resetAt) {
+      ipLimit.count = 0;
+      ipLimit.resetAt = now + CONNECTION_WINDOW;
+    }
+    
+    if (ipLimit.count >= CONNECTION_LIMIT) {
+      logger.warn('WebSocket connection rate limit exceeded', { clientIp });
+      ws.close(1008, 'Too many connections');
+      return;
+    }
+    
+    ipLimit.count++;
+    connectionRateLimits.set(clientIp, ipLimit);
+    
+    const sessionData = await validateSessionFromCookie(req.headers.cookie);
+    
+    if (!sessionData) {
+      logger.warn('WebSocket connection rejected - invalid session', { clientIp });
+      ws.close(1008, 'Unauthorized - invalid session');
+      return;
+    }
+    
+    const userId = sessionData.userId;
+    const userRoleRecords = await storage.getUserRoles(userId);
+    const userRoles = userRoleRecords.map(r => r.role);
+    connectedUsers.set(userId, { ws, roles: userRoles });
+    
+    logger.info('WebSocket connection established', { userId, roles: userRoles });
+    
+    ws.send(JSON.stringify({
+      type: "auth_success",
+      message: "Подключение установлено",
+    }));
 
     ws.on("message", async (data: any) => {
       try {
+        const msgNow = Date.now();
+        const userMsgLimit = messageRateLimits.get(userId) || { count: 0, resetAt: msgNow + MESSAGE_WINDOW };
+        
+        if (msgNow > userMsgLimit.resetAt) {
+          userMsgLimit.count = 0;
+          userMsgLimit.resetAt = msgNow + MESSAGE_WINDOW;
+        }
+        
+        if (userMsgLimit.count >= MESSAGE_LIMIT) {
+          logger.warn('WebSocket message rate limit exceeded', { userId });
+          ws.send(JSON.stringify({
+            type: "rate_limit",
+            message: "Слишком много сообщений, подождите минуту",
+          }));
+          return;
+        }
+        
+        userMsgLimit.count++;
+        messageRateLimits.set(userId, userMsgLimit);
+        
         const message = JSON.parse(data.toString());
         
-        if (message.type === "auth") {
-          const sessionData = await validateSessionFromCookie(req.headers.cookie);
-          
-          if (!sessionData) {
-            ws.send(JSON.stringify({
-              type: "auth_error",
-              message: "Сессия недействительна. Пожалуйста, войдите заново.",
-            }));
-            ws.close();
-            return;
-          }
-          
-          if (message.userId && message.userId !== sessionData.userId) {
-            ws.send(JSON.stringify({
-              type: "auth_error",
-              message: "Несоответствие идентификатора пользователя",
-            }));
-            ws.close();
-            return;
-          }
-          
-          userId = sessionData.userId;
-          authenticated = true;
-          
-          const userRoleRecords = await storage.getUserRoles(userId);
-          const userRoles = userRoleRecords.map(r => r.role);
-          connectedUsers.set(userId, { ws, roles: userRoles });
-          
-          ws.send(JSON.stringify({
-            type: "auth_success",
-            message: "Подключение установлено",
-          }));
-          return;
-        }
-        
-        if (!authenticated) {
-          ws.send(JSON.stringify({
-            type: "error",
-            message: "Необходима аутентификация",
-          }));
-          ws.close();
-          return;
-        }
       } catch (error) {
-        console.error("WebSocket message error:", error);
+        logger.error("WebSocket message error", { error, userId });
       }
     });
 
     ws.on("close", () => {
-      if (userId) {
-        connectedUsers.delete(userId);
-      }
+      connectedUsers.delete(userId);
+      messageRateLimits.delete(userId);
     });
   });
 

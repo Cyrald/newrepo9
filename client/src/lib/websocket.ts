@@ -29,12 +29,6 @@ class WebSocketClient {
       this.socket.onopen = () => {
         console.log('WebSocket connected');
         this.reconnectAttempts = 0;
-        
-        // Authenticate after connection
-        this.send({
-          type: 'auth',
-          userId: this.userId,
-        });
       };
       
       this.socket.onmessage = (event) => {
@@ -42,7 +36,14 @@ class WebSocketClient {
           const message: WebSocketMessage = JSON.parse(event.data);
           console.log('WebSocket message received:', message);
           
-          // Notify all registered handlers
+          if (message.type === 'auth_success') {
+            console.log('WebSocket authenticated successfully');
+          }
+          
+          if (message.type === 'rate_limit') {
+            console.warn('WebSocket rate limit exceeded:', message.message);
+          }
+          
           this.messageHandlers.forEach(handler => {
             try {
               handler(message);
@@ -59,11 +60,15 @@ class WebSocketClient {
         console.error('WebSocket error:', error);
       };
       
-      this.socket.onclose = () => {
-        console.log('WebSocket disconnected');
+      this.socket.onclose = (event) => {
+        console.log('WebSocket disconnected', event.code, event.reason);
         this.socket = null;
         
-        // Attempt to reconnect
+        if (event.code === 1008) {
+          console.error('WebSocket authentication failed or rate limit exceeded');
+          return;
+        }
+        
         if (this.reconnectAttempts < this.maxReconnectAttempts && this.userId) {
           this.reconnectAttempts++;
           const delay = Math.min(1000 * Math.pow(2, this.reconnectAttempts), 30000);

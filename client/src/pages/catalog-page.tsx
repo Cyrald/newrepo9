@@ -32,6 +32,7 @@ import { useAddToCart } from "@/hooks/useCart"
 import { useAddToWishlist, useRemoveFromWishlist, useWishlist } from "@/hooks/useWishlist"
 import { useToast } from "@/hooks/use-toast"
 import { useAuthStore } from "@/stores/authStore"
+import { useDebounce } from "@/hooks/useDebounce"
 
 export default function CatalogPage() {
   const [, params] = useRoute("/catalog")
@@ -47,8 +48,9 @@ export default function CatalogPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [inputSearch, setInputSearch] = useState(urlParams.get("search") || "")
   const previousSearch = useRef(urlParams.get("search") || "")
+  
+  const debouncedInputSearch = useDebounce(inputSearch, 500)
 
-  // Derive searchQuery and currentPage from URL (single source of truth)
   const searchQuery = urlParams.get("search") || ""
   const currentPage = parseInt(urlParams.get("page") || "1", 10)
 
@@ -78,7 +80,6 @@ export default function CatalogPage() {
   // Create a Set of wishlist product IDs for quick lookup (empty for unauthenticated users)
   const wishlistProductIds = new Set((wishlistItems || []).map((item: any) => item.productId))
 
-  // Sync input with URL changes (for browser back/forward and direct URL loads)
   useEffect(() => {
     const urlSearch = urlParams.get("search") || ""
     if (urlSearch !== previousSearch.current) {
@@ -86,6 +87,12 @@ export default function CatalogPage() {
       setInputSearch(urlSearch)
     }
   }, [searchParams])
+  
+  useEffect(() => {
+    if (debouncedInputSearch !== searchQuery) {
+      updateURL({ search: debouncedInputSearch, resetPage: true })
+    }
+  }, [debouncedInputSearch])
 
   const updateURL = (updates: { search?: string; page?: number; resetPage?: boolean }) => {
     const newParams = new URLSearchParams(searchParams)
@@ -129,8 +136,6 @@ export default function CatalogPage() {
 
   const handleSearchChange = (value: string) => {
     setInputSearch(value)
-    previousSearch.current = value
-    updateURL({ search: value, resetPage: true })
   }
 
   const handlePageChange = (page: number) => {

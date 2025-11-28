@@ -1,70 +1,50 @@
 import { Request, Response, NextFunction } from 'express';
-import { randomBytes } from 'crypto';
+import { doubleCsrf } from 'csrf-csrf';
+import { env } from '../env';
 
-const CSRF_COOKIE_NAME = 'csrf-token';
-const CSRF_HEADER_NAME = 'x-csrf-token';
-const TOKEN_LENGTH = 32;
-
-const SAFE_METHODS = ['GET', 'HEAD', 'OPTIONS'];
-
-function generateToken(): string {
-  return randomBytes(TOKEN_LENGTH).toString('hex');
-}
+const {
+  invalidCsrfTokenError,
+  generateCsrfToken,
+  doubleCsrfProtection,
+} = doubleCsrf({
+  getSecret: () => env.SESSION_SECRET,
+  getSessionIdentifier: (req: Request) => req.session?.id || req.sessionID || 'anonymous',
+  cookieName: 'csrf-token',
+  cookieOptions: {
+    httpOnly: false,
+    secure: env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    maxAge: 365 * 24 * 60 * 60 * 1000,
+  },
+  size: 64,
+  ignoredMethods: ['GET', 'HEAD', 'OPTIONS'],
+  getCsrfTokenFromRequest: (req: Request) => req.headers['x-csrf-token'] as string,
+});
 
 export function csrfMiddleware(req: Request, res: Response, next: NextFunction): void {
-  let csrfToken = req.cookies[CSRF_COOKIE_NAME];
-  
-  if (!csrfToken) {
-    csrfToken = generateToken();
-    res.cookie(CSRF_COOKIE_NAME, csrfToken, {
-      httpOnly: false,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 365 * 24 * 60 * 60 * 1000,
-    });
-  }
-  
-  (req as any).csrfToken = csrfToken;
-  
-  if (SAFE_METHODS.includes(req.method)) {
-    return next();
-  }
-  
   if (req.path.startsWith('/api/webhooks/')) {
     return next();
   }
   
-  const headerToken = req.headers[CSRF_HEADER_NAME] as string;
-  
-  if (!headerToken || headerToken !== csrfToken) {
-    console.warn('CSRF validation failed', {
-      path: req.path,
-      method: req.method,
-      ip: req.ip,
-      hasHeader: !!headerToken,
-      tokenMatch: headerToken === csrfToken,
-    });
-    res.status(403).json({ 
-      message: 'Ошибка безопасности. Пожалуйста, обновите страницу и попробуйте снова.' 
-    });
-    return;
-  }
-  
-  next();
+  doubleCsrfProtection(req, res, (err) => {
+    if (err) {
+      if (err === invalidCsrfTokenError) {
+        console.warn('CSRF validation failed', {
+          path: req.path,
+          method: req.method,
+          ip: req.ip,
+        });
+        return res.status(403).json({ 
+          message: 'Ошибка безопасности. Пожалуйста, обновите страницу и попробуйте снова.' 
+        });
+      }
+      return next(err);
+    }
+    next();
+  });
 }
 
 export function csrfTokenEndpoint(req: Request, res: Response): void {
-  let csrfToken = req.cookies[CSRF_COOKIE_NAME];
-  
-  if (!csrfToken) {
-    csrfToken = generateToken();
-    res.cookie(CSRF_COOKIE_NAME, csrfToken, {
-      httpOnly: false,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 365 * 24 * 60 * 60 * 1000,
-    });
-  }
-  
+  const csrfToken = generateCsrfToken(req, res);
   res.json({ csrfToken });
 }

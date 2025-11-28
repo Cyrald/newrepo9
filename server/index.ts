@@ -10,6 +10,7 @@ import { requestLogger } from "./middleware/requestLogger";
 import { errorHandler } from "./middleware/errorHandler";
 import { generalApiLimiter } from "./middleware/rateLimiter";
 import { csrfMiddleware, csrfTokenEndpoint } from "./middleware/csrf";
+import { logger } from "./utils/logger";
 
 const app = express();
 
@@ -111,6 +112,11 @@ app.use(express.urlencoded({
     host: "0.0.0.0",
     reusePort: true,
   }, () => {
+    logger.info(`Server started`, { 
+      port, 
+      environment: env.NODE_ENV,
+      nodeVersion: process.version 
+    });
     log(`serving on port ${port}`);
   });
 })();
