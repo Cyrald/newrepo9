@@ -224,6 +224,17 @@ router.get("/me", authenticateToken, async (req, res) => {
   });
 });
 
+router.get("/session-status", async (req, res) => {
+  // Check if session exists and has userId
+  const isReady = !!(req.sessionID && req.session?.userId);
+  
+  res.json({ 
+    isReady,
+    hasSession: !!req.sessionID,
+    hasUserId: !!req.session?.userId,
+  });
+});
+
 router.put("/profile", authenticateToken, async (req, res) => {
   try {
     const data = updateProfileSchema.parse(req.body);

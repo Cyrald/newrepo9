@@ -4,6 +4,41 @@ import { authApi } from "@/lib/api";
 import { useAuthStore } from "@/stores/authStore";
 import type { LoginInput, RegisterInput, User } from "@shared/schema";
 
+/**
+ * Retry logic with exponential backoff for CSRF token refresh
+ * Ensures token is obtained even if session is still being persisted to DB
+ */
+async function refreshCsrfTokenWithRetry(maxAttempts = 5) {
+  let lastError: Error | null = null;
+  
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const response = await fetch('/api/csrf-token-init', { 
+        credentials: 'include' 
+      });
+      
+      if (response.ok) {
+        console.log(`✅ CSRF token refreshed (attempt ${attempt})`);
+        return;
+      }
+    } catch (error) {
+      lastError = error as Error;
+      console.warn(`⚠️ CSRF token refresh attempt ${attempt} failed:`, error);
+    }
+    
+    // Exponential backoff: 50ms, 100ms, 200ms, 400ms, 800ms
+    if (attempt < maxAttempts) {
+      const delayMs = 50 * Math.pow(2, attempt - 1);
+      await new Promise(resolve => setTimeout(resolve, delayMs));
+    }
+  }
+  
+  // Log final failure but don't throw - let app continue
+  if (lastError) {
+    console.error('CSRF token refresh failed after all retries:', lastError);
+  }
+}
+
 export function useLogin() {
   const queryClient = useQueryClient();
   const login = useAuthStore((state) => state.login);
@@ -13,14 +48,9 @@ export function useLogin() {
     onSuccess: async (response) => {
       login(response.user);
       
-      // Get fresh CSRF token after login
-      try {
-        await fetch('/api/csrf-token-init', { 
-          credentials: 'include' 
-        });
-      } catch (error) {
-        console.error('Failed to fetch CSRF token after login:', error);
-      }
+      // Refresh CSRF token with retry logic
+      // This ensures token is obtained even if server is slow persisting session
+      await refreshCsrfTokenWithRetry();
       
       queryClient.refetchQueries({ queryKey: ["cart"] });
       queryClient.refetchQueries({ queryKey: ["wishlist"] });
@@ -32,14 +62,9 @@ export function useRegister() {
   return useMutation({
     mutationFn: (data: RegisterInput) => authApi.register(data),
     onSuccess: async () => {
-      // Get fresh CSRF token after registration
-      try {
-        await fetch('/api/csrf-token-init', { 
-          credentials: 'include' 
-        });
-      } catch (error) {
-        console.error('Failed to fetch CSRF token after registration:', error);
-      }
+      // Refresh CSRF token with retry logic
+      // This ensures token is obtained even if server is slow persisting session
+      await refreshCsrfTokenWithRetry();
     },
   });
 }
