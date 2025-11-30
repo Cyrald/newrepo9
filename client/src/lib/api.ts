@@ -70,13 +70,13 @@ async function fetchApi<T>(
 // Аутентификация
 export const authApi = {
   register: (data: RegisterInput) =>
-    fetchApi<{ user: User }>("/api/auth/register", {
+    fetchApi<{ user: User; csrfToken: string }>("/api/auth/register", {
       method: "POST",
       body: JSON.stringify(data),
     }),
 
   login: (data: LoginInput) =>
-    fetchApi<{ user: User }>("/api/auth/login", {
+    fetchApi<{ user: User; csrfToken: string }>("/api/auth/login", {
       method: "POST",
       body: JSON.stringify(data),
     }),

@@ -23,10 +23,20 @@ export function useLogin() {
 }
 
 export function useRegister() {
+  const queryClient = useQueryClient();
+  const login = useAuthStore((state) => state.login);
+
   return useMutation({
     mutationFn: (data: RegisterInput) => authApi.register(data),
-    // CSRF token is already set by server in response
-    // No need to fetch it separately
+    onSuccess: async (response) => {
+      login(response.user);
+      
+      // CSRF token is already set by server in response
+      // No need to fetch it separately
+      
+      queryClient.refetchQueries({ queryKey: ["cart"] });
+      queryClient.refetchQueries({ queryKey: ["wishlist"] });
+    },
   });
 }
 
