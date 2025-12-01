@@ -13,66 +13,89 @@ class WebSocketClient {
   private messageHandlers: Set<MessageHandler> = new Set();
   private userId: string | null = null;
 
+  /**
+   * Get the WebSocket URL safely - works on VPS and development environments
+   */
+  private getWebSocketUrl(): string {
+    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+    
+    // Use window.location.host which includes both hostname and port
+    // If host is empty (shouldn't happen), fallback to localhost:5000
+    const host = window.location.host || "localhost:5000";
+    
+    console.log('[WebSocket] Connecting to:', `${protocol}//${host}/ws`);
+    return `${protocol}//${host}/ws`;
+  }
+
   connect(userId: string) {
     if (this.socket?.readyState === WebSocket.OPEN) {
-      console.log('WebSocket already connected');
+      console.log('[WebSocket] Already connected');
       return;
     }
 
     this.userId = userId;
-    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const wsUrl = `${protocol}//${window.location.host}/ws`;
     
     try {
+      const wsUrl = this.getWebSocketUrl();
+      console.log('[WebSocket] Creating connection to:', wsUrl);
+      
       this.socket = new WebSocket(wsUrl);
       
       this.socket.onopen = () => {
-        console.log('WebSocket connected');
+        console.log('[WebSocket] Connected, sending auth...');
+        
+        // Send authentication message with userId
+        // This is sent AFTER connection, not in URL (more secure than URL params)
+        this.socket?.send(JSON.stringify({
+          type: 'auth',
+          userId: userId,
+        }));
+        
         this.reconnectAttempts = 0;
       };
       
       this.socket.onmessage = (event) => {
         try {
           const message: WebSocketMessage = JSON.parse(event.data);
-          console.log('WebSocket message received:', message);
+          console.log('[WebSocket] Message:', message.type);
           
           if (message.type === 'auth_success') {
-            console.log('WebSocket authenticated successfully');
+            console.log('[WebSocket] Authenticated successfully');
           }
           
           if (message.type === 'rate_limit') {
-            console.warn('WebSocket rate limit exceeded:', message.message);
+            console.warn('[WebSocket] Rate limit exceeded:', message.message);
           }
           
           this.messageHandlers.forEach(handler => {
             try {
               handler(message);
             } catch (error) {
-              console.error('Error in message handler:', error);
+              console.error('[WebSocket] Handler error:', error);
             }
           });
         } catch (error) {
-          console.error('Error parsing WebSocket message:', error);
+          console.error('[WebSocket] Parse error:', error);
         }
       };
       
       this.socket.onerror = (error) => {
-        console.error('WebSocket error:', error);
+        console.error('[WebSocket] Error:', error);
       };
       
       this.socket.onclose = (event) => {
-        console.log('WebSocket disconnected', event.code, event.reason);
+        console.log('[WebSocket] Disconnected', event.code, event.reason);
         this.socket = null;
         
         if (event.code === 1008) {
-          console.error('WebSocket authentication failed or rate limit exceeded');
+          console.error('[WebSocket] Auth failed or rate limit exceeded');
           return;
         }
         
         if (this.reconnectAttempts < this.maxReconnectAttempts && this.userId) {
           this.reconnectAttempts++;
           const delay = Math.min(1000 * Math.pow(2, this.reconnectAttempts), 30000);
-          console.log(`Reconnecting in ${delay}ms (attempt ${this.reconnectAttempts}/${this.maxReconnectAttempts})`);
+          console.log(`[WebSocket] Reconnecting in ${delay}ms (attempt ${this.reconnectAttempts}/${this.maxReconnectAttempts})`);
           
           this.reconnectTimeout = setTimeout(() => {
             this.connect(this.userId!);
@@ -80,7 +103,7 @@ class WebSocketClient {
         }
       };
     } catch (error) {
-      console.error('Error creating WebSocket:', error);
+      console.error('[WebSocket] Creation error:', error);
     }
   }
   
@@ -103,7 +126,7 @@ class WebSocketClient {
     if (this.socket?.readyState === WebSocket.OPEN) {
       this.socket.send(JSON.stringify(data));
     } else {
-      console.warn('WebSocket not connected, cannot send message');
+      console.warn('[WebSocket] Not connected, cannot send:', data.type);
     }
   }
   
