@@ -133,20 +133,30 @@ export async function loginUser(email: string, password: string, req: Request): 
 }
 
 export async function refreshAccessToken(refreshTokenString: string): Promise<{ accessToken: string; refreshToken: string }> {
+  const refreshStartTime = Date.now();
+  logger.info('🔄 REFRESH_START', { timestamp: new Date().toISOString() });
+  
   let payload;
   try {
     payload = verifyRefreshToken(refreshTokenString);
+    logger.info('🔄 REFRESH_TOKEN_VERIFIED', { 
+      jti: payload.jti, 
+      userId: payload.userId, 
+      tfid: payload.tfid,
+      tokenIssuedAt: new Date(payload.iat * 1000).toISOString()
+    });
   } catch (error) {
+    logger.error('🔴 REFRESH_TOKEN_INVALID', { error: error instanceof Error ? error.message : 'unknown' });
     throw new Error('INVALID_REFRESH_TOKEN');
   }
 
   if (tokenBlacklist.isJtiBlacklisted(payload.jti)) {
-    logger.warn('Attempt to use blacklisted refresh token', { jti: payload.jti, userId: payload.userId });
+    logger.warn('🔴 JTI_BLACKLISTED', { jti: payload.jti, userId: payload.userId });
     throw new Error('TOKEN_REVOKED');
   }
 
   if (tokenBlacklist.isFamilyBlacklisted(payload.tfid)) {
-    logger.warn('Attempt to use blacklisted token family', { tfid: payload.tfid, userId: payload.userId });
+    logger.warn('🔴 FAMILY_BLACKLISTED', { tfid: payload.tfid, userId: payload.userId });
     throw new Error('SESSION_REVOKED');
   }
 
@@ -158,12 +168,30 @@ export async function refreshAccessToken(refreshTokenString: string): Promise<{ 
     .limit(1);
 
   if (!storedToken) {
-    logger.warn('Refresh token not found in database', { jti: payload.jti, userId: payload.userId });
+    logger.warn('🔴 TOKEN_NOT_IN_DB', { jti: payload.jti, userId: payload.userId });
     throw new Error('INVALID_REFRESH_TOKEN');
   }
 
+  logger.info('🔄 TOKEN_FOUND_IN_DB', { 
+    jti: payload.jti, 
+    revokedAt: storedToken.revokedAt?.toISOString() || null,
+    rotationCount: storedToken.rotationCount,
+    createdAt: storedToken.createdAt?.toISOString()
+  });
+
   if (storedToken.revokedAt) {
-    logger.warn('Attempt to use revoked refresh token', { jti: payload.jti, userId: payload.userId });
+    const timeSinceRevoked = Date.now() - new Date(storedToken.revokedAt).getTime();
+    logger.error('🔴🔴🔴 TOKEN_REUSE_DETECTED 🔴🔴🔴', { 
+      jti: payload.jti, 
+      userId: payload.userId,
+      tfid: payload.tfid,
+      revokedAt: storedToken.revokedAt.toISOString(),
+      now: new Date().toISOString(),
+      timeSinceRevokedMs: timeSinceRevoked,
+      timeSinceRevokedSec: (timeSinceRevoked / 1000).toFixed(2),
+      rotationCount: storedToken.rotationCount,
+      DIAGNOSIS: timeSinceRevoked < 5000 ? 'LIKELY_RACE_CONDITION_OR_DOUBLE_USEEFFECT' : 'POSSIBLE_REPLAY_ATTACK'
+    });
     
     await db.update(refreshTokens)
       .set({ revokedAt: new Date() })
