@@ -12,6 +12,7 @@ interface AuthState {
   logout: () => Promise<void>;
   setUser: (user: User) => void;
   checkAuth: () => Promise<void>;
+  setAuthInitialized: (initialized: boolean) => void;
 }
 
 export const useAuthStore = create<AuthState>()((set, get) => ({
@@ -64,5 +65,9 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
         authInitialized: true,
       });
     }
+  },
+
+  setAuthInitialized: (initialized: boolean) => {
+    set({ authInitialized: initialized });
   },
 }));

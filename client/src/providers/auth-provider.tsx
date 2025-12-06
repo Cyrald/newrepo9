@@ -4,15 +4,21 @@ import { initializeAuth } from "@/lib/api";
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const checkAuth = useAuthStore((state) => state.checkAuth);
+  const setAuthInitialized = useAuthStore((state) => state.setAuthInitialized);
 
   useEffect(() => {
     const initAuth = async () => {
-      await initializeAuth();
-      await checkAuth();
+      const hasValidToken = await initializeAuth();
+      
+      if (hasValidToken) {
+        await checkAuth();
+      } else {
+        setAuthInitialized(true);
+      }
     };
     
     initAuth();
-  }, [checkAuth]);
+  }, [checkAuth, setAuthInitialized]);
 
   return <>{children}</>;
 }

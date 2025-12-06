@@ -31,6 +31,25 @@ let accessToken: string | null = null;
 let isRefreshing = false;
 let refreshPromise: Promise<string> | null = null;
 
+const PROTECTED_ENDPOINTS = [
+  '/api/cart',
+  '/api/wishlist',
+  '/api/addresses',
+  '/api/payment-cards',
+  '/api/orders',
+  '/api/admin',
+  '/api/support',
+  '/api/promocodes',
+  '/api/auth/me',
+  '/api/auth/logout',
+  '/api/auth/password',
+  '/api/auth/sessions',
+];
+
+function isProtectedEndpoint(endpoint: string): boolean {
+  return PROTECTED_ENDPOINTS.some(protectedPath => endpoint.startsWith(protectedPath));
+}
+
 export function setAccessToken(token: string | null) {
   accessToken = token;
 }
@@ -71,9 +90,21 @@ async function refreshAccessToken(): Promise<string> {
 
 export async function initializeAuth(): Promise<boolean> {
   try {
-    await refreshAccessToken();
+    const response = await fetch("/api/auth/refresh", {
+      method: "POST",
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      accessToken = null;
+      return false;
+    }
+
+    const data = await response.json();
+    accessToken = data.accessToken;
     return true;
   } catch (error) {
+    accessToken = null;
     return false;
   }
 }
@@ -105,6 +136,17 @@ async function fetchApi<T>(
 
   if (response.status === 401 && retryCount === 0) {
     if (endpoint.includes("/auth/login") || endpoint.includes("/auth/register") || endpoint.includes("/auth/refresh")) {
+      const errorData = await response.json().catch(() => ({
+        message: "Произошла ошибка",
+      }));
+      throw new ApiError(
+        response.status, 
+        errorData.message || "Произошла ошибка",
+        errorData.code
+      );
+    }
+    
+    if (!isProtectedEndpoint(endpoint)) {
       const errorData = await response.json().catch(() => ({
         message: "Произошла ошибка",
       }));
