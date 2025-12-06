@@ -1,0 +1,1630 @@
+7:18:56 PM [express] serving on port 5000
+2025-12-06 19:18:56 [info] : Starting data retention cleanup...
+2025-12-06 19:18:56 [info] : Data retention scheduler started {"dataRetentionMonths":37,"logRetentionDays":120}
+2025-12-06 19:18:56 [info] : Deleted 0 old support messages
+2025-12-06 19:18:56 [info] : Anonymized 0 old orders
+2025-12-06 19:18:56 [info] : Created logs directory
+2025-12-06 19:18:56 [info] : Deleted 0 old log files
+2025-12-06 19:18:56 [info] : Data retention cleanup completed successfully
+2025-12-06 19:19:16 [debug] : CORS development mode - allowing all origins {}
+[cSdSUrKSHQ] GET / 200 - 70ms
+2025-12-06 19:19:24 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:24 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[kdrSCc2zN2] GET /@react-refresh 200 - 49ms
+2025-12-06 19:19:24 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[QloHLz2s-x] GET /src/main.tsx 200 - 65ms
+2025-12-06 19:19:25 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:25 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[0GqRFk4QB3] GET /@vite/client 200 - 1365ms
+
+A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[rcgMoK66pp] GET /src/App.tsx 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[uEC1UmDyl5] GET /src/index.css 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[1sIuqiifz7] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/vite/dist/client/env.mjs 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ZC-SUE-P31] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react.js 200 - 94ms
+[2wlqhJzML5] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react_jsx-dev-runtime.js 200 - 850ms
+[3xIpCmuS-u] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react-dom_client.js 200 - 827ms
+[YpkePhJWSn] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/wouter.js 200 - 52ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[2RwwM9cOuE] GET /src/lib/queryClient.ts 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[i-gMR1kPc7] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@tanstack_react-query.js 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[buA9tEdK9t] GET /src/components/ui/toaster.tsx 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[OjC5Bn1JVY] GET /src/components/ui/tooltip.tsx 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[na1qJPzihl] GET /src/providers/theme-provider.tsx 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[n0yFdEnc4l] GET /src/providers/auth-provider.tsx 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[TDPSp0jWQu] GET /src/components/ProtectedRoute.tsx 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[F65ZLouA3-] GET /src/components/support-chat-launcher.tsx 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[SYM87FJfIT] GET /src/components/cart-loader.tsx 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[w3K2RkdTsA] GET /src/components/ErrorBoundary.tsx 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IqU9VOZzcq] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-QCHXOAYK.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[gEvWFYxqNc] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-WOOG5QLI.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[u7qHDLC-_U] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-RPCDYKBN.js 200 - 5ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[jRpDiN8e7x] GET /src/hooks/use-toast.ts 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[sV1PpaQhyQ] GET /src/components/ui/toast.tsx 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[L9-rUYUIHy] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KBTYAULA.js 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ANuV8cs0WN] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-tooltip.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[j6r8AKTXJp] GET /src/lib/utils.ts 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[zJy0YoB0Cu] GET /src/stores/authStore.ts 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[XOEo1PTH1K] GET /src/lib/api.ts 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[AQ5RL7ZDrC] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/lucide-react.js 200 - 6ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[xRCrwAMUWB] GET /src/components/ui/button.tsx 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[kZOk9W8Wa0] GET /src/components/support-chat-widget.tsx 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[o7aulQ_hmE] GET /src/stores/chatStore.ts 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[LK99bh75rA] GET /src/hooks/useCart.ts 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[bB-07DP2HZ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-toast.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[KM0-uRYLdU] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/class-variance-authority.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NB8DKRFOUv] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/clsx.js 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[uZWWbEmFNv] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/tailwind-merge.js 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[DRShzatluw] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-SWCSEZXG.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[4QUOFOYOiW] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-67UHDRY5.js 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[39CSKblxF5] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-SXHWZU2M.js 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[5jBHusVEye] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-GLBLW2AM.js 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[1F6Z-vUaBO] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-E6PNPDKY.js 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[JT5NxMmZcN] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KCFVMCIE.js 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IRTEH0H9I8] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-3R3LPCWV.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Uu40BO9SAE] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-CVIRTCS4.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[P_U0yTJsqE] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-CIWSPAEX.js 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[T7n1Lnm6uD] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-JDYSANEB.js 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[shptu7Qqia] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/zustand.js 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[kpBdhBkdvh] GET /src/stores/cartStore.ts 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[RBgkJEZu03] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-slot.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[0JMKjkeSwo] GET /src/components/ui/textarea.tsx 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[BW6f92QD4y] GET /src/components/ui/scroll-area.tsx 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[91rp9HC_tO] GET /src/lib/websocket.ts 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[J-Db1TJa4k] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/date-fns.js 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[F378ClcPXQ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/date-fns_locale.js 200 - 8ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[pD2uEBGCLm] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-U7P2NEEE.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Ci0X26kAy3] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-O2LWC6XU.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ZScrgGUzYf] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-GTF7DNNX.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[7zBu16a9E5] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-scroll-area.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ScaPxLlFnH] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-IIGUYIAY.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[DJWG9u9a6l] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-6ZMM2PAV.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[pfhE7pPZKy] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-4RO2SXZU.js 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[FfnjEzUZvD] POST /refresh 401 - 28ms
+[ubeFvTMwM2] GET /src/pages/home-page.tsx 200 - 108ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[vUXQZ4hqSn] GET /src/components/ui/alert-dialog.tsx 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[zO6ZmzS468] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Hero_section_background_image_b0dcdc6c.png 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[vWf1XhsbFQ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Honey_category_image_cdb40b0f.png 200 - 1ms
+[zacJ8ZRYPV] GET /src/components/footer.tsx 200 - 14ms
+[I5ZXkOBPNW] GET /src/components/ui/card.tsx 200 - 15ms
+[cznJd3X4UF] GET /src/components/header.tsx 200 - 44ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[4_vP_iouYH] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Herbs_category_image_2680fbbd.png 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[5yRzLE3LGj] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Cosmetics_category_image_81e7ff29.png 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[BynK0O0Kjt] GET /src/components/product-card.tsx 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[78QO3V7tjb] GET /src/components/category-card.tsx 200 - 0ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[GKJ2E17qaP] GET /src/hooks/useCategories.ts 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[X5WUt64zNU] GET /src/hooks/useProducts.ts 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NV2ijufs7P] GET /src/hooks/useWishlist.ts 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[dK_u2tnTIM] GET /src/hooks/usePrefetchRoutes.ts 200 - 1ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[-D-qjZqoob] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-alert-dialog.js 200 - 3ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[DToGk4IkXg] GET /src/components/ui/input.tsx 200 - 35ms
+[odlgkSazJn] GET /src/components/ui/badge.tsx 200 - 25ms
+[fRU1ut7cRL] GET /src/components/theme-toggle.tsx 200 - 25ms
+[P4uzHfQLYX] GET /src/components/ui/sheet.tsx 200 - 24ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[vo93gXwDG_] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-NVWSFRFU.js 200 - 28ms
+[elckOwn59q] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-O5NM2W4X.js 200 - 5ms
+[7PkhudiTXq] GET /favicon.png 200 - 63ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[1kbhiWKMvL] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-dialog.js 200 - 3ms
+[vypsM7fNEW] GET /favicon.png 200 - 4ms
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:26 [debug] : CORS development mode - allowing all origins {}
+[rersPNo2vH] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Hero_section_background_image_b0dcdc6c.png 200 - 56ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[KwXzymydOw] GET /src/pages/register-page.tsx 200 - 28ms
+[NsKJYqO7eY] GET /src/pages/login-page.tsx 200 - 47ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[4uMrB9oqS0] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react-hook-form.js 200 - 9ms
+[dbABVHwIZP] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@hookform_resolvers_zod.js 200 - 11ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[VZ4qt-X-Eo] GET /src/components/ui/form.tsx 200 - 54ms
+[jOwuycHK4r] GET /src/hooks/useAuth.ts 200 - 13ms
+[4lSNl_4acV] GET /src/components/ui/checkbox.tsx 200 - 14ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[EYy4BPDuGN] GET / 200 - 179ms
+[yJ_eMu88_c] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/shared/schema.ts 200 - 73ms
+[-gHbmvqQXz] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-E7DHLT2A.js 200 - 10ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[SNWv3gLq2b] GET / 200 - 198ms
+[azh-fJVSwx] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-checkbox.js 200 - 8ms
+[ctZJVh0dF3] GET /src/components/ui/label.tsx 200 - 15ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[_R-rGE6u8E] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/drizzle-orm.js 200 - 0ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[XIOLgfi7rr] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/drizzle-orm_pg-core.js 200 - 1ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Ox90PBs4L2] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/drizzle-zod.js 200 - 0ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[0Kjn9m16MB] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/zod.js 200 - 0ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[CbcH5hmQqH] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-43G6IMPT.js 200 - 1ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[8Gjn4Wl0f-] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-label.js 200 - 1ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[DLFfJI7_mc] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KSDPB6MD.js 200 - 1ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IKb89tNQPa] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-FQZB52Q7.js 200 - 1ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[EHJJ28vAhR] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-QBU4JD5W.js 200 - 1ms
+[CTITjQ_41B] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Herbs_category_image_2680fbbd.png 200 - 27ms
+[dqIVoiSMlZ] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Honey_category_image_cdb40b0f.png 200 - 29ms
+[lWmMVNJSLU] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Cosmetics_category_image_81e7ff29.png 200 - 29ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[j8ansIBz6N] GET /src/pages/catalog-page.tsx 200 - 69ms
+[Q1_wVKEXma] GET /src/pages/product-detail-page.tsx 200 - 88ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NlDaxUfeFy] GET /src/components/empty-state.tsx 200 - 24ms
+[uFtd1LGgq6] GET /src/hooks/useDebounce.ts 200 - 36ms
+[OwbF3tgauM] GET /src/components/ui/slider.tsx 200 - 37ms
+[Mo767ddLlk] GET /src/components/loading-state.tsx 200 - 39ms
+[vTbJYdFO58] GET /src/components/ui/select.tsx 200 - 37ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Xgx5zbdZhq] GET /src/components/ui/separator.tsx 200 - 4ms
+[5MAnprk_tI] GET /src/components/ui/tabs.tsx 200 - 22ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[HjShvSSe-n] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-select.js 200 - 2ms
+[eeeHk5lKHv] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-slider.js 200 - 6ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[fbuu_WygOJ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-tabs.js 200 - 2ms
+[SUlroHAhsu] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-separator.js 200 - 3ms
+[AP6qv_ggSY] GET /src/components/ui/skeleton.tsx 200 - 16ms
+2025-12-06 19:19:27 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[2CK8CP-6Pk] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-HKSBINJF.js 200 - 2ms
+2025-12-06 19:19:29 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[S3PRpEN4Jk] GET /src/pages/privacy-policy-page.tsx 200 - 10ms
+2025-12-06 19:19:30 [debug] : CORS development mode - allowing all origins {}
+[jG7XifVEDk] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Hero_section_background_image_b0dcdc6c.png 200 - 17ms
+2025-12-06 19:19:32 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:32 [debug] : Access token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","tokenVersion":1}
+2025-12-06 19:19:32 [debug] : Refresh token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","jti":"ZHBcLqm4IV0VS7GGEPSGu"}
+2025-12-06 19:19:32 [info] : User logged in {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","sessionId":"8df1dbf0-eed1-42f8-971a-b9ba5167a1be"}
+[VANj9x1F0m] POST /login 200 - 308ms
+2025-12-06 19:19:32 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:32 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:32 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:32 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:32 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:32 [debug] : CORS development mode - allowing all origins {}
+[EWA2OS_xYl] GET / 200 - 12ms
+[tUfr1W3JWo] GET / 200 - 5ms
+2025-12-06 19:19:32 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:32 [debug] : CORS development mode - allowing all origins {}
+[9vZXMT4BhX] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Honey_category_image_cdb40b0f.png 200 - 24ms
+[N7VcSc1JCc] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Hero_section_background_image_b0dcdc6c.png 200 - 26ms
+[nJc6WbSpe6] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Herbs_category_image_2680fbbd.png 200 - 25ms
+2025-12-06 19:19:32 [debug] : CORS development mode - allowing all origins {}
+[XfoVpx4HSy] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Cosmetics_category_image_81e7ff29.png 200 - 28ms
+[y0oh2cWybZ] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Honey_category_image_cdb40b0f.png 200 - 20ms
+[s9gezzm2t2] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Herbs_category_image_2680fbbd.png 200 - 19ms
+[zqNPu3Yw9C] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Cosmetics_category_image_81e7ff29.png 200 - 15ms
+2025-12-06 19:19:33 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:33 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:33 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Ngxmvs5jw4] GET /src/pages/cart-page.tsx 200 - 32ms
+[iOSoe0bwmU] GET /src/pages/wishlist-page.tsx 200 - 37ms
+[C2MlqNkdYH] GET /src/pages/profile-page.tsx 200 - 46ms
+2025-12-06 19:19:33 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ffagMFwOeD] GET /src/hooks/useOrders.ts 200 - 0ms
+2025-12-06 19:19:33 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[mQyJRbrPoX] GET /src/hooks/useAddresses.ts 200 - 1ms
+2025-12-06 19:19:33 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[j8Tqbdh3rc] GET /src/pages/admin/dashboard-page.tsx 200 - 36ms
+2025-12-06 19:19:33 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NiV2i4ojyB] GET /src/components/admin-layout.tsx 200 - 4ms
+2025-12-06 19:19:33 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:33 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IuaJSVbJG3] GET /src/components/app-sidebar-admin.tsx 200 - 3ms
+[Lsu89Y4vDW] GET /src/components/ui/sidebar.tsx 200 - 17ms
+2025-12-06 19:19:33 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[gTZ9GS4JPX] GET /src/hooks/use-mobile.tsx 200 - 2ms
+2025-12-06 19:19:33 [debug] : CORS development mode - allowing all origins {}
+[DicEexPVvE] GET /stats 200 - 7ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IOv-uYbQOu] GET /src/pages/admin/products-page.tsx 200 - 72ms
+[E3NgOOOIbf] GET /src/pages/admin/categories-page.tsx 200 - 80ms
+[4pUzW-IA-T] GET /src/pages/admin/orders-page.tsx 200 - 87ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[cXAMqLNvj3] GET /src/components/product-form-dialog.tsx 200 - 109ms
+[NlwVIkMiy_] GET /src/components/ui/table.tsx 200 - 124ms
+[2UPHmDUAVb] GET /src/components/ui/dropdown-menu.tsx 200 - 123ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[m9pn4c6RZ0] GET /src/components/category-form-dialog.tsx 200 - 131ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[o2OT8kUQbB] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-dropdown-menu.js 200 - 15ms
+[BMw7ZVtpwR] GET /src/components/ui/dialog.tsx 200 - 25ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[uXZraCVUs2] GET /src/pages/admin/promocodes-page.tsx 200 - 79ms
+[xFXpx6tq05] GET /src/pages/admin/users-page.tsx 200 - 62ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[vvr0ZEBFtc] GET /src/hooks/usePromocodes.ts 200 - 18ms
+[2W4BDjb4Cv] GET /src/pages/admin/support-chat-page.tsx 200 - 96ms
+[mo3UNPD3bU] GET /src/components/promocode-form-dialog.tsx 200 - 41ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[vIVR3_3QtF] GET /src/pages/checkout-page.tsx 200 - 56ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[OkHe5pUPwU] GET /src/components/ui/radio-group.tsx 200 - 3ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[k3KCELDoXd] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-radio-group.js 200 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {}
+[9ku40QgNZ4] GET / 200 - 7ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[rmNtOoQQEU] GET /@vite/client 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Si-8Msg5zN] GET /src/main.tsx 200 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[3K4cDo183A] GET /@react-refresh 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[5mWWepwgZD] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/vite/dist/client/env.mjs 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[nrDNrram7t] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react_jsx-dev-runtime.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[-BfdmoBNYT] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react-dom_client.js 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[2VjFxB57Wc] GET /src/App.tsx 200 - 2ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[c5p88eFMIS] GET /src/index.css 200 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[YchhAGsNok] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-QCHXOAYK.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Kguwd6xR92] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-WOOG5QLI.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[l1bdeeKc3c] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-RPCDYKBN.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[GRj3g1PWFk] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[4lLkcQUMm3] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/wouter.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[rE4F9W344t] GET /src/lib/queryClient.ts 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[5L99W7pvyd] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@tanstack_react-query.js 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[pZij2OOHHs] GET /src/components/ui/toaster.tsx 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[dUAipLfjGV] GET /src/components/ui/tooltip.tsx 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Np4UpJdWtK] GET /src/providers/theme-provider.tsx 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Ek6617qtoR] GET /src/providers/auth-provider.tsx 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[C3csarC3JP] GET /src/components/ProtectedRoute.tsx 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[CA9VqYbOzD] GET /src/components/support-chat-launcher.tsx 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[yPBweJ-niB] GET /src/components/cart-loader.tsx 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[YeOcxl890X] GET /src/components/ErrorBoundary.tsx 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[-2os7E6VwL] GET /src/hooks/use-toast.ts 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[BgZkN0MkcA] GET /src/components/ui/toast.tsx 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[VWu5gzmTob] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-tooltip.js 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[c56CDBHsKy] GET /src/lib/utils.ts 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[AdRlck1TKh] GET /src/stores/authStore.ts 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[N7MUOcRnn9] GET /src/lib/api.ts 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[n_ylhNY09p] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KBTYAULA.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[MyXpUHqNgH] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/lucide-react.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[5VTTnQ2t9x] GET /src/components/ui/button.tsx 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[H1Gjiwy3WK] GET /src/components/support-chat-widget.tsx 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[_sFUy8L8I0] GET /src/stores/chatStore.ts 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[o-w-ZYUt7H] GET /src/hooks/useCart.ts 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Kl4M7C5cPY] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-toast.js 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[HFAZNZq1Gu] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/class-variance-authority.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IJTCc-6u3M] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-SWCSEZXG.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[stvb0yrLPQ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-67UHDRY5.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[iWhnPY8hrR] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-SXHWZU2M.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[021YgTO1df] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-GLBLW2AM.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[fu25jQK2uN] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-E6PNPDKY.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[zd9fwMWhz7] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KCFVMCIE.js 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[wV1IFz1ji3] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-3R3LPCWV.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[wacu-OgPwk] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-CVIRTCS4.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[D95JmJuJOM] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-CIWSPAEX.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[qWGpsWREYp] GET /src/stores/cartStore.ts 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[2ilpTgxt77] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-JDYSANEB.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[yYtTTXe_is] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/clsx.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[oRQaoAzB4x] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/tailwind-merge.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[OsUwc1icYj] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/zustand.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[7yVFa_DukM] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-slot.js 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[tHFybO0LYu] GET /src/components/ui/textarea.tsx 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[iOJvH8ob45] GET /src/components/ui/scroll-area.tsx 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[rQKa8vgvNV] GET /src/lib/websocket.ts 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IE6g_p9_Qb] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/date-fns.js 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[YUN0hFfrsh] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/date-fns_locale.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ogbe8s65k9] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-O2LWC6XU.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9MghUfry1-] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-U7P2NEEE.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[nO0B6BWRLt] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-GTF7DNNX.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[zqmkm93iMO] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-scroll-area.js 304 - 0ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[o0O6bkpJNm] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-IIGUYIAY.js 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[zcauNAfaB7] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-6ZMM2PAV.js 304 - 1ms
+2025-12-06 19:19:34 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[myIjZppi1G] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-4RO2SXZU.js 304 - 1ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:35 [info] : JTI added to blacklist {"jti":"ZHBcLqm4IV0VS7GGEPSGu","userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","reason":"rotation","expiresAt":"2025-12-20T14:19:32.528Z"}
+2025-12-06 19:19:35 [debug] : Access token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","tokenVersion":1}
+2025-12-06 19:19:35 [debug] : Refresh token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","jti":"z5n0utF77c7jdg3TMzzXU"}
+2025-12-06 19:19:35 [info] : Tokens refreshed {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","rotationCount":1}
+[0wMMSCHzMm] POST /refresh 200 - 72ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {}
+[KQ1S6jbcsr] GET /favicon.png 200 - 8ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {}
+[1Axq-4WamH] GET /me 200 - 11ms
+[Us5n27GE4B] GET /favicon.png 200 - 4ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9xg15s_wPL] GET /src/pages/admin/dashboard-page.tsx 304 - 1ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {}
+[nDA6WP6Ut-] GET / 200 - 2ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[xWbt6cCJ-d] GET /src/components/ui/card.tsx 304 - 0ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[8Bc-wT3OW6] GET /src/components/admin-layout.tsx 304 - 0ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[gRIU41QAH3] GET /src/components/ui/sidebar.tsx 304 - 1ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9H1r4qqGzz] GET /src/components/app-sidebar-admin.tsx 304 - 0ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[eDQFOk2PZ8] GET /src/components/theme-toggle.tsx 304 - 0ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[doP_KMC7Pb] GET /src/hooks/use-mobile.tsx 304 - 1ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[KJ9ETswV-d] GET /src/components/ui/input.tsx 304 - 1ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Ipe5s-AlMk] GET /src/components/ui/separator.tsx 304 - 1ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ThlRBlwNd0] GET /src/components/ui/sheet.tsx 304 - 1ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[yckIgpXORV] GET /src/components/ui/skeleton.tsx 304 - 1ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[bB7WXgCkmj] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-separator.js 304 - 0ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[TL2tJPCnGj] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-dialog.js 304 - 0ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[UJDJc6-cQb] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-NVWSFRFU.js 304 - 0ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ZCsNbAUXC6] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-O5NM2W4X.js 304 - 0ms
+2025-12-06 19:19:35 [debug] : CORS development mode - allowing all origins {}
+[JfJlI4_0m4] GET /stats 200 - 8ms
+2025-12-06 19:19:37 [debug] : CORS development mode - allowing all origins {}
+[GUX9-7Fyxq] GET / 200 - 4ms
+2025-12-06 19:19:40 [debug] : CORS development mode - allowing all origins {}
+[Ks_QrpTnDr] GET / 200 - 5ms
+2025-12-06 19:19:40 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[f2hX9OEUEs] GET /@vite/client 200 - 7ms
+2025-12-06 19:19:40 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IElZktMGaQ] GET /src/main.tsx 200 - 0ms
+[YnKS8xRsAk] GET / 200 - 7ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[M8s0ivaJKY] GET /@react-refresh 200 - 5ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[fkCZ-rG0uv] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/vite/dist/client/env.mjs 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[h-AihgE6Ed] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react_jsx-dev-runtime.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9zilexF2qv] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react-dom_client.js 200 - 0ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[AvyyBkWz2d] GET /src/App.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[kdNRrOu7BX] GET /src/index.css 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9TbUjZllht] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-QCHXOAYK.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[xVriNgu-P8] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-WOOG5QLI.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[QQ93DiIOJV] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-RPCDYKBN.js 200 - 14ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Z9aQyeSL9f] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[tlExdQs4Mi] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/wouter.js 200 - 2ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[7KJnD4sevk] GET /src/lib/queryClient.ts 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[DXIQf0xS3X] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@tanstack_react-query.js 200 - 2ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Hh2kfNzAiR] GET /src/components/ui/toaster.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[uueBqyutSg] GET /src/components/ui/tooltip.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[0REZEtYZIu] GET /src/providers/theme-provider.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[xrdP5-joqj] GET /src/providers/auth-provider.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[_we5gBel2v] GET /src/components/ProtectedRoute.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[z_IgFG1TwO] GET /src/components/support-chat-launcher.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[hSbJQ_pHRL] GET /src/components/cart-loader.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[U1BLSr2lNh] GET /src/components/ErrorBoundary.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NK_Ag02EL5] GET /src/hooks/use-toast.ts 200 - 0ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[dwUK0CIPH9] GET /src/components/ui/toast.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[rthKy4dLsQ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KBTYAULA.js 200 - 0ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[2GGNGxjw0d] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-tooltip.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[4DtTSHAQoy] GET /src/lib/utils.ts 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[l4zGgzDMg1] GET /src/stores/authStore.ts 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[aWkE_KAiHK] GET /src/lib/api.ts 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[y4IRexQeNR] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/lucide-react.js 200 - 8ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[_Hh-LTIZ7y] GET /src/components/ui/button.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[lOrk0obAOm] GET /src/components/support-chat-widget.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[p05o1rYqMZ] GET /src/stores/chatStore.ts 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[i0N3B-fuQX] GET /src/hooks/useCart.ts 200 - 0ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[dqosga8XC0] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-toast.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[QYtHB_pIFp] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/class-variance-authority.js 200 - 0ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ZMM0_tMSpv] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-SWCSEZXG.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[aAoV2Kp6uL] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-67UHDRY5.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[pbovi8yrMh] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-SXHWZU2M.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[3FEv33NZek] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-GLBLW2AM.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[HIUqnqnU8G] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-E6PNPDKY.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[HqCEJD9nT-] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KCFVMCIE.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[jIeSCzrHl2] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-3R3LPCWV.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[wGfbv1ZLbh] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-CVIRTCS4.js 200 - 0ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[aaYWeEGIMT] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-CIWSPAEX.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[f7d06ibWiG] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-JDYSANEB.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[cpnNswQ4K6] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/clsx.js 200 - 0ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[cCjd7D4dAV] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/tailwind-merge.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[3nCqjJQk5S] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/zustand.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[xn2UPkl1Mq] GET /src/stores/cartStore.ts 200 - 2ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[yOowy0dPIb] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-slot.js 200 - 2ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[DzaWGGoCkw] GET /src/components/ui/textarea.tsx 200 - 0ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ECXQUDw-Ap] GET /src/components/ui/scroll-area.tsx 200 - 2ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[8XlrdrYxHq] GET /src/lib/websocket.ts 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9uZTr8v_k5] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/date-fns.js 200 - 3ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[1pwh-bZeDT] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/date-fns_locale.js 200 - 8ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[5ycAnMc3PM] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-O2LWC6XU.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[dofmnojcen] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-U7P2NEEE.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[WG369y3IKe] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-GTF7DNNX.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[kKHlxIfeaC] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-scroll-area.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9YhJgfryLi] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-IIGUYIAY.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ezrVNP2nKg] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-6ZMM2PAV.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9TnJkUpQi0] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-4RO2SXZU.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:19:41 [info] : JTI added to blacklist {"jti":"z5n0utF77c7jdg3TMzzXU","userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","reason":"rotation","expiresAt":"2025-12-20T14:19:35.098Z"}
+2025-12-06 19:19:41 [debug] : Access token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","tokenVersion":1}
+2025-12-06 19:19:41 [debug] : Refresh token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","jti":"M_E0rI08lnRIKj5BFmrDP"}
+2025-12-06 19:19:41 [info] : Tokens refreshed {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","rotationCount":2}
+[hp0354fUlD] POST /refresh 200 - 87ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {}
+[-tWKQfXcWF] GET /favicon.png 200 - 2ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {}
+[_jdSXDo2Ew] GET /favicon.png 200 - 3ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {}
+[1ErXPAOqXv] GET /me 200 - 4ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[dgpbw7itQ6] GET /src/pages/admin/dashboard-page.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[5BS6BYTC-c] GET /src/components/ui/card.tsx 200 - 0ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[iOl6X68Aae] GET /src/components/admin-layout.tsx 200 - 0ms
+[T7ndpBbVJ4] GET / 200 - 7ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[CaDi2xNuEz] GET /src/components/ui/sidebar.tsx 200 - 2ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[DY0kpzK8nV] GET /src/components/app-sidebar-admin.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[2RVA89qBQs] GET /src/components/theme-toggle.tsx 200 - 0ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Yns503dgtw] GET /src/hooks/use-mobile.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[_e51SDNyTp] GET /src/components/ui/input.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9UEHDO5pC_] GET /src/components/ui/separator.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[UvmWCSpjHw] GET /src/components/ui/sheet.tsx 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[QYYGrCYx3m] GET /src/components/ui/skeleton.tsx 200 - 0ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[iOllxNtSRl] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-separator.js 200 - 0ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[cdINz1QI6j] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-dialog.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9u2IDhOfPy] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-NVWSFRFU.js 200 - 0ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[RnfLObD7YS] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-O5NM2W4X.js 200 - 1ms
+2025-12-06 19:19:41 [debug] : CORS development mode - allowing all origins {}
+[02XWu8w-NC] GET /stats 200 - 8ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {}
+[PmL-0XZwKg] GET / 200 - 4ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Zs6wqTqkMX] GET /@vite/client 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[HsB74K6e3U] GET /src/main.tsx 200 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[VvDhv4H1RM] GET /@react-refresh 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[jTaw2Gsb5D] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/vite/dist/client/env.mjs 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[tPBeM0iSso] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react_jsx-dev-runtime.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[AXSlsKKZtK] GET /src/App.tsx 200 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[lWbXPaFFMs] GET /src/index.css 200 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[jk4mT01Bp-] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react-dom_client.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[U9A4Eb-lhC] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-QCHXOAYK.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Hhq44O0ZvW] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-WOOG5QLI.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NNWW-0ACYu] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react.js 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[-SqbkFQDyD] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/wouter.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Sq-cFcq_xG] GET /src/lib/queryClient.ts 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[zXoQRbgqvQ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@tanstack_react-query.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[7Rr5SCvGYX] GET /src/components/ui/toaster.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[cq3ReFrl0N] GET /src/components/ui/tooltip.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[GhR5z7AJ9t] GET /src/providers/theme-provider.tsx 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Li7ETvVwLM] GET /src/providers/auth-provider.tsx 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[4UzRq4o6YY] GET /src/components/ProtectedRoute.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[88uwxaPNJZ] GET /src/components/support-chat-launcher.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[AGrCXZ0ECJ] GET /src/components/cart-loader.tsx 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[8D30hNayIV] GET /src/components/ErrorBoundary.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ifW1hd2KBj] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-RPCDYKBN.js 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[e2dT85yVom] GET /src/hooks/use-toast.ts 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[1qrd_Qh0IF] GET /src/components/ui/toast.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[PkFWto17Ax] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-tooltip.js 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[nHppwPdrLk] GET /src/lib/utils.ts 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[7bOSnyklNS] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KBTYAULA.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[oG83ofZSqY] GET /src/stores/authStore.ts 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[aEgZChL8qa] GET /src/lib/api.ts 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Du38GDBsEv] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/lucide-react.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[DYH27ADvYR] GET /src/components/ui/button.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[aIuOrLC7E-] GET /src/components/support-chat-widget.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[3Vy_Nlfep7] GET /src/stores/chatStore.ts 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[dSVEwddk_v] GET /src/hooks/useCart.ts 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[2V192kc6ii] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-toast.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[b-6rjJlNvA] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/class-variance-authority.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Ws4Qclezdi] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-SWCSEZXG.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[RXwbA2uvxM] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-67UHDRY5.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[2QIXAJIl1Q] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-SXHWZU2M.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[3j5wZAZYuO] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-GLBLW2AM.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[eIKuda_Hzr] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-E6PNPDKY.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[_dO_kxFYq6] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KCFVMCIE.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[rLtqcMEcpw] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-3R3LPCWV.js 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[VZ5u1Lar5A] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-CVIRTCS4.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[N5O3QDITYO] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-CIWSPAEX.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[sLCsUujhRv] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-JDYSANEB.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[5IdexcmdEi] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/clsx.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[PYN_w91KUW] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/tailwind-merge.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[uf2bwBCl4C] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/zustand.js 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ygDAAzI7sf] GET /src/stores/cartStore.ts 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[i5_aqUrGNq] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-slot.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[SY4y7u7xtL] GET /src/components/ui/textarea.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[45x0mQKb1y] GET /src/components/ui/scroll-area.tsx 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[nTpr9hszvd] GET /src/lib/websocket.ts 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[qyk1kfNJP0] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/date-fns.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[To-8JUVV9U] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/date-fns_locale.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[PsgpNAdnOM] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-O2LWC6XU.js 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[7lzvkqBs2O] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-U7P2NEEE.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[c7tE3pEfz2] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-GTF7DNNX.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[12g4D-BCYk] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-scroll-area.js 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[qIVJjhn6zO] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-IIGUYIAY.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[QOZkvxPhMH] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-6ZMM2PAV.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[W4xkkua2eU] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-4RO2SXZU.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[3dQ_bybRfp] GET /src/pages/home-page.tsx 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[KN-UsIV5B6] GET /src/components/ui/card.tsx 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[B9iA3KHT0k] GET /src/components/ui/alert-dialog.tsx 304 - 0ms
+2025-12-06 19:20:17 [info] : JTI added to blacklist {"jti":"M_E0rI08lnRIKj5BFmrDP","userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","reason":"rotation","expiresAt":"2025-12-20T14:19:41.468Z"}
+2025-12-06 19:20:17 [debug] : Access token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","tokenVersion":1}
+2025-12-06 19:20:17 [debug] : Refresh token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","jti":"akUxZfkeXDnkvNhNeKB-O"}
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[-3TGC_l-ml] GET /src/components/header.tsx 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ooPxlXi4L2] GET /src/components/footer.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[atD_eWbPGu] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Hero_section_background_image_b0dcdc6c.png 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Jpv9ByzTtq] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Honey_category_image_cdb40b0f.png 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ZXVnPsWTEg] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Herbs_category_image_2680fbbd.png 304 - 0ms
+2025-12-06 19:20:17 [info] : Tokens refreshed {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","rotationCount":3}
+[pvRxI6LuJh] POST /refresh 200 - 99ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[U1XksssNIO] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Cosmetics_category_image_81e7ff29.png 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[alha_mi_GR] GET /src/components/product-card.tsx 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[2UwgHXq1MF] GET /src/hooks/useCategories.ts 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[2VV8aJBSLX] GET /src/components/category-card.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[7NXjZ7M7Cm] GET /src/hooks/useProducts.ts 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[X4TDhCvSUD] GET /src/hooks/useWishlist.ts 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[gAg5PfPWPl] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-alert-dialog.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[RKl4Cv8uPe] GET /src/components/ui/input.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[rAdckYmF_V] GET /src/hooks/usePrefetchRoutes.ts 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[5sS1L3px2O] GET /src/components/ui/badge.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[EBuv9Lij6T] GET /src/components/theme-toggle.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[4cI-Bzn-IC] GET /src/components/ui/sheet.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {}
+[zfr5lRJlxt] GET /me 200 - 3ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[OSMzlm94RC] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-NVWSFRFU.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[uvo_qT2Tpy] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-dialog.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[FvKnJyDfdd] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-O5NM2W4X.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {}
+[leUU98U6iH] GET / 200 - 4ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {}
+[-BbdHtYm6X] GET / 200 - 4ms
+[Vmap2OjePX] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Hero_section_background_image_b0dcdc6c.png 200 - 11ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ynP473_XwZ] GET /src/pages/catalog-page.tsx 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[L2Viz3NTVd] GET /src/pages/product-detail-page.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[fahW_DKBAh] GET /src/components/loading-state.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[YvPeU-DVWR] GET /src/components/empty-state.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[3Jy1uo7jDj] GET /src/components/ui/select.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[CV-V1MGJFK] GET /src/components/ui/checkbox.tsx 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Vph_g3uU7r] GET /src/components/ui/label.tsx 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[WWaRbKatyW] GET /src/components/ui/slider.tsx 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[W8crgBtQg2] GET /src/hooks/useDebounce.ts 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[sy2gFhmson] GET /src/components/ui/tabs.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NPn0YjGFEk] GET /src/components/ui/separator.tsx 304 - 0ms
+[O-pIUnj9-l] GET / 200 - 48ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[BGXIp0c9qX] GET /src/components/ui/skeleton.tsx 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[PR8G1kw_fV] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-select.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[3biHil2pxI] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-checkbox.js 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IuNKmAwZdI] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-label.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[c7JvcRoCVb] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-slider.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[47T0XOq6Vq] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-tabs.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ZJMa8hzTyc] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-separator.js 304 - 0ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ibq8nCE8ip] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-43G6IMPT.js 304 - 1ms
+2025-12-06 19:20:17 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[YKM3ktMljJ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-HKSBINJF.js 304 - 0ms
+[f8EehwRuYB] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Honey_category_image_cdb40b0f.png 200 - 53ms
+[t1Bf80_d36] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Herbs_category_image_2680fbbd.png 200 - 68ms
+[2SaIhput9D] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Cosmetics_category_image_81e7ff29.png 200 - 69ms
+[XcoLw2Ovmf] GET / 200 - 127ms
+2025-12-06 19:20:18 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[T1OEiG_3Zb] GET /src/pages/cart-page.tsx 304 - 1ms
+2025-12-06 19:20:18 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[qeSXEJAHZQ] GET /src/pages/wishlist-page.tsx 304 - 0ms
+2025-12-06 19:20:18 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[RkVQmS_f-d] GET /src/pages/profile-page.tsx 304 - 0ms
+2025-12-06 19:20:18 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[SP_QH7-cz8] GET /src/hooks/useAuth.ts 304 - 1ms
+2025-12-06 19:20:18 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[RqXPpBHYk2] GET /src/hooks/useOrders.ts 304 - 0ms
+2025-12-06 19:20:18 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[DyuBhXhxA7] GET /src/hooks/useAddresses.ts 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {}
+[c1sBiG2D0S] GET / 200 - 3ms
+[zux6Mka_Cw] GET /me 200 - 6ms
+[NSPPw87eKF] GET / 200 - 6ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[akvqAJDA4Y] GET /src/pages/admin/dashboard-page.tsx 304 - 1ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[YTWsRNThpq] GET /src/pages/admin/products-page.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[upjQHWEd1i] GET /src/pages/admin/categories-page.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[SVndPC_f7p] GET /src/components/admin-layout.tsx 304 - 1ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[TLubBRXEds] GET /src/components/ui/table.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[4_f1ufD7BO] GET /src/components/ui/dropdown-menu.tsx 304 - 1ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[YKOZdHt3es] GET /src/components/category-form-dialog.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[A-7LfDlpxZ] GET /src/components/product-form-dialog.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[hL7fMfrYj0] GET /src/components/ui/sidebar.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[q0OmRg-ZQD] GET /src/components/app-sidebar-admin.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[rmIDtnvIn0] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-dropdown-menu.js 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[PW2lLSe2dT] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react-hook-form.js 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[BZFRR9Lusc] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@hookform_resolvers_zod.js 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NW4jYPRGlg] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/zod.js 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[tJov6xoXbj] GET /src/components/ui/dialog.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Umq80e5U0Q] GET /src/components/ui/form.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9EIyYbjvU-] GET /src/hooks/use-mobile.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[jHpCoW3fCq] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-E7DHLT2A.js 304 - 1ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[YTmQR-XvBH] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-QBU4JD5W.js 304 - 1ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ZJVcAotTy-] GET /src/pages/admin/orders-page.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[GAUkUC1R27] GET /src/pages/admin/promocodes-page.tsx 304 - 6ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Y1-gqFe2PW] GET /src/pages/admin/users-page.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[6-2loRWIQH] GET /src/pages/admin/support-chat-page.tsx 304 - 1ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Dloi1DPhOc] GET /src/hooks/usePromocodes.ts 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[f4V2v-F-tU] GET /src/components/promocode-form-dialog.tsx 304 - 1ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9GjOQIQjmi] GET /src/pages/checkout-page.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[n8KP_jo9_Z] GET /src/pages/privacy-policy-page.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[fQ23NrtIas] GET /src/components/ui/radio-group.tsx 304 - 0ms
+2025-12-06 19:20:19 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[VnxT4dL7VD] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-radio-group.js 304 - 0ms
+2025-12-06 19:20:28 [debug] : CORS development mode - allowing all origins {}
+[0NDe7swBc7] GET / 200 - 160ms
+2025-12-06 19:20:29 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NuQwc8sn4N] POST / 200 - 11ms
+2025-12-06 19:20:29 [debug] : CORS development mode - allowing all origins {}
+[YHKRyfcPdx] GET / 200 - 2ms
+2025-12-06 19:20:30 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[BoIg4UIEM3] PUT /b84852f0-24e2-4e18-9dd8-4b75d5302366 200 - 3ms
+2025-12-06 19:20:30 [debug] : CORS development mode - allowing all origins {}
+[040xDo6lP3] GET / 200 - 2ms
+2025-12-06 19:20:30 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[iq1uaIaR3a] PUT /b84852f0-24e2-4e18-9dd8-4b75d5302366 200 - 3ms
+2025-12-06 19:20:30 [debug] : CORS development mode - allowing all origins {}
+[6d7pKWibCS] GET / 200 - 1ms
+2025-12-06 19:20:30 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[5blL2aypE-] PUT /b84852f0-24e2-4e18-9dd8-4b75d5302366 200 - 3ms
+2025-12-06 19:20:30 [debug] : CORS development mode - allowing all origins {}
+[fy5mHODNgJ] GET / 200 - 1ms
+2025-12-06 19:20:31 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[4u58HZhElQ] PUT /b84852f0-24e2-4e18-9dd8-4b75d5302366 200 - 3ms
+2025-12-06 19:20:31 [debug] : CORS development mode - allowing all origins {}
+[xjOQWuJ9BM] GET / 200 - 2ms
+2025-12-06 19:20:31 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[e_IIBaIlvi] PUT /b84852f0-24e2-4e18-9dd8-4b75d5302366 200 - 3ms
+2025-12-06 19:20:31 [debug] : CORS development mode - allowing all origins {}
+[ThVz3wBX-_] GET / 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {}
+[CbtxiF5yDy] GET / 200 - 4ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ElI2WU63Ua] GET /@vite/client 200 - 11ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[K-phgFlFHu] GET /src/main.tsx 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[jbbcXfzYzl] GET /@react-refresh 200 - 6ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[hhmd_tg_h4] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/vite/dist/client/env.mjs 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[sXE2KqOVml] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react_jsx-dev-runtime.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9pHYn8O5ip] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react-dom_client.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[lQw2SNA_iV] GET /src/App.tsx 200 - 2ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[XHIc4Xvqfg] GET /src/index.css 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[BvWnBF2X_8] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-QCHXOAYK.js 200 - 2ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IhpUcdVjdV] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-WOOG5QLI.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[tso3zuKLbu] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-RPCDYKBN.js 200 - 7ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[G17OaGGgxR] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[koWZZJ_qRJ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/wouter.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[tvcvSgWzbl] GET /src/lib/queryClient.ts 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[O9fU-OLPqA] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@tanstack_react-query.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[xvSa3O17tq] GET /src/components/ui/toaster.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NdNC-punX8] GET /src/components/ui/tooltip.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[x-X7G5rMxN] GET /src/providers/theme-provider.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[OJznBfScw4] GET /src/providers/auth-provider.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IC75ApnQXn] GET /src/components/ProtectedRoute.tsx 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[PQrh8TzxJJ] GET /src/components/support-chat-launcher.tsx 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ql8WuAy-Kz] GET /src/components/cart-loader.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ySXmGZUEpa] GET /src/components/ErrorBoundary.tsx 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[dwdT5RAaSp] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KBTYAULA.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[6QPJMahiyL] GET /src/hooks/use-toast.ts 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[heQMmmldl9] GET /src/components/ui/toast.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[WveHMF3vN1] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-tooltip.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[WUQidk_OZp] GET /src/lib/utils.ts 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[C1dNREztEj] GET /src/stores/authStore.ts 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[XzeVM-1_kk] GET /src/lib/api.ts 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[oRO2s6AYfH] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/lucide-react.js 200 - 4ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[JzSFCCfIBG] GET /src/components/ui/button.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[iLwsU-X3DW] GET /src/components/support-chat-widget.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[6dN_J7uLBT] GET /src/stores/chatStore.ts 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Pb4FWYj1AL] GET /src/hooks/useCart.ts 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[TX6GHLUjOK] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-toast.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[80RvXzWUn9] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/class-variance-authority.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NXGgN1oWXu] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-SWCSEZXG.js 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[gbbew0z2gT] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-67UHDRY5.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[6OWBbCzRWd] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-SXHWZU2M.js 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[61sfKv3t-p] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-GLBLW2AM.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[LpgRtM3LjQ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-E6PNPDKY.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[2ytAmiZGU6] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KCFVMCIE.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[eUiVLIwRJq] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-3R3LPCWV.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[PmWd-L-5so] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-CVIRTCS4.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[lTVsPlxsWG] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-CIWSPAEX.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[C-F8c7gXQk] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-JDYSANEB.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[74e473nIYt] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/clsx.js 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[cy2O0lsxgB] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/tailwind-merge.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[L_U4hVUAGE] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/zustand.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[2xc3hhkjZR] GET /src/stores/cartStore.ts 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[5w6X4KrW1V] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-slot.js 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[zhjnBdz46b] GET /src/components/ui/textarea.tsx 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IYEG-GwaTf] GET /src/components/ui/scroll-area.tsx 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[qEw6b6X-hK] GET /src/lib/websocket.ts 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[_sDhC8CoGe] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/date-fns.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[wTBzr7LLc-] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/date-fns_locale.js 200 - 5ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[QvETWXFW1E] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-O2LWC6XU.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[E-1GaVV-EU] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-U7P2NEEE.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[J4Iem5KCbk] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-GTF7DNNX.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Qlr4z_6koH] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-scroll-area.js 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NrIjH5-kAg] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-IIGUYIAY.js 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ioVF5NvIG0] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-6ZMM2PAV.js 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[rav4xVuXgM] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-4RO2SXZU.js 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[BR_T4dGsZK] GET /src/pages/home-page.tsx 200 - 2ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[GkY1ptfMSi] GET /src/components/ui/card.tsx 200 - 1ms
+2025-12-06 19:20:37 [info] : JTI added to blacklist {"jti":"akUxZfkeXDnkvNhNeKB-O","userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","reason":"rotation","expiresAt":"2025-12-20T14:20:17.763Z"}
+2025-12-06 19:20:37 [debug] : Access token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","tokenVersion":1}
+2025-12-06 19:20:37 [debug] : Refresh token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","jti":"Y3XdUbZYVxYxWUTiMksVc"}
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[asEPJUaX2-] GET /src/components/ui/alert-dialog.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[WaEFhNOsDe] GET /src/components/header.tsx 200 - 1ms
+2025-12-06 19:20:37 [info] : Tokens refreshed {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","rotationCount":4}
+[fFnfQ6h4K7] POST /refresh 200 - 71ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[RwBLEc0ILD] GET /src/components/footer.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[_e4qzFhDmB] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Hero_section_background_image_b0dcdc6c.png 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[gwP0bl5DJf] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Honey_category_image_cdb40b0f.png 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[YqH1B50Ccv] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Herbs_category_image_2680fbbd.png 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[HA93IK6fUM] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Cosmetics_category_image_81e7ff29.png 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[s0YhqED2bu] GET /src/components/product-card.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Ge6pF2TUBy] GET /src/components/category-card.tsx 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[cQ5B6RKh-9] GET /src/hooks/useCategories.ts 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[sLPP-_IaBV] GET /src/hooks/useProducts.ts 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[c-R0jXVp8F] GET /src/hooks/useWishlist.ts 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[bGZccTu3GU] GET /src/hooks/usePrefetchRoutes.ts 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[j6eHqlcxbz] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-alert-dialog.js 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[eR_5phGjIJ] GET /src/components/ui/input.tsx 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[QziOf-t6XW] GET /src/components/ui/badge.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[_xaNcrcWvE] GET /src/components/theme-toggle.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Ef6v5XUFyr] GET /src/components/ui/sheet.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[WQrKra6-aL] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-NVWSFRFU.js 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ANPrEYS8Nn] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-O5NM2W4X.js 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[A033RGlkH9] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-dialog.js 200 - 0ms
+[qwvGxzwm14] GET /me 200 - 6ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {}
+[CyL7z9EM0e] GET / 200 - 3ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {}
+[ORsl4ZVceW] GET / 200 - 5ms
+[fBLlaHymSe] GET / 200 - 3ms
+[zMs0xM7wJR] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Hero_section_background_image_b0dcdc6c.png 200 - 14ms
+[BKkeao5BA-] GET / 200 - 12ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Mxnt6P4DYg] GET /src/pages/catalog-page.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[FqyEF7xqEW] GET /src/pages/product-detail-page.tsx 200 - 2ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Wiog_i0CCt] GET /src/components/loading-state.tsx 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[eCoeiKKJsE] GET /src/components/empty-state.tsx 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[pZFlICLGts] GET /src/components/ui/select.tsx 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[F9MQrSFpK7] GET /src/components/ui/checkbox.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[u90UiFaNY9] GET /src/components/ui/label.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[iwI5jEp5wj] GET /src/components/ui/slider.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[bqCG1MWfdm] GET /src/hooks/useDebounce.ts 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IBeURYAVC1] GET /src/components/ui/tabs.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[6fZbx4999_] GET /src/components/ui/separator.tsx 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[FO__s1zbcA] GET /src/components/ui/skeleton.tsx 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[OlVMObS6rO] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-select.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[h-b7kl9JiC] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-checkbox.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[CwwgEp8Ruv] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-label.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[INapVy5iCj] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-slider.js 200 - 0ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[kLMGdjpy6d] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-tabs.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[cnmFbYosqy] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-separator.js 200 - 1ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[q5uAbAQDUZ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-43G6IMPT.js 200 - 1ms
+[ksaDWi4EjU] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Honey_category_image_cdb40b0f.png 200 - 45ms
+[KyHmVeX1sS] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Herbs_category_image_2680fbbd.png 200 - 45ms
+2025-12-06 19:20:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Y9DKEWN6iX] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-HKSBINJF.js 200 - 0ms
+[XazkJ2TCGW] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Cosmetics_category_image_81e7ff29.png 200 - 75ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[c7WVrSf33a] GET /src/pages/cart-page.tsx 200 - 1ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[_Qy01gn_sZ] GET /src/pages/wishlist-page.tsx 200 - 0ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[2tAS8PR6Ez] GET /src/pages/profile-page.tsx 200 - 1ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ha5KDtSDv7] GET /src/hooks/useAuth.ts 200 - 0ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[YcDCTHV9-E] GET /src/hooks/useOrders.ts 200 - 0ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[H5fSFjiu6o] GET /src/hooks/useAddresses.ts 200 - 0ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[mNntD0qadZ] GET /src/pages/admin/dashboard-page.tsx 200 - 1ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[BgcA8Z5WuD] GET /src/pages/admin/products-page.tsx 200 - 1ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[JekuG1n5ns] GET /src/pages/admin/categories-page.tsx 200 - 1ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[mAuUkiYfcG] GET /src/components/admin-layout.tsx 200 - 0ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[W3yp_eUuJ3] GET /src/components/product-form-dialog.tsx 200 - 2ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[yorLyhIlnw] GET /src/components/ui/table.tsx 200 - 1ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[EHdOdyec2K] GET /src/components/ui/dropdown-menu.tsx 200 - 0ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[GN0SZyyP7P] GET /src/components/category-form-dialog.tsx 200 - 1ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[85fmdE8Lzi] GET /src/components/ui/sidebar.tsx 200 - 2ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[c49s3bPCPj] GET /src/components/app-sidebar-admin.tsx 200 - 1ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[iPxfIlOPdh] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react-hook-form.js 200 - 0ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Pxj3lcnhmo] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@hookform_resolvers_zod.js 200 - 1ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[kLiFHYJQ0Z] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/zod.js 200 - 1ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[JwE3tunje6] GET /src/components/ui/dialog.tsx 200 - 1ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[HZz0jw-i1z] GET /src/components/ui/form.tsx 200 - 1ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[vPTp79By3e] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-dropdown-menu.js 200 - 2ms
+2025-12-06 19:20:38 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[A1hdxqOAFw] GET /src/hooks/use-mobile.tsx 200 - 0ms
+2025-12-06 19:20:39 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[PiTUPBmIjl] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-E7DHLT2A.js 200 - 1ms
+2025-12-06 19:20:39 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[rWt3m2_j54] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-QBU4JD5W.js 200 - 1ms
+2025-12-06 19:20:39 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[4cRLPJ9XaR] GET /src/pages/admin/orders-page.tsx 200 - 1ms
+2025-12-06 19:20:39 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[24PyOmOOpL] GET /src/pages/admin/promocodes-page.tsx 200 - 2ms
+2025-12-06 19:20:39 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[hm6xDmcvil] GET /src/pages/admin/users-page.tsx 200 - 4ms
+2025-12-06 19:20:39 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9MBq8IA7dk] GET /src/pages/admin/support-chat-page.tsx 200 - 7ms
+2025-12-06 19:20:39 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[jHdqfxWXLX] GET /src/hooks/usePromocodes.ts 200 - 0ms
+2025-12-06 19:20:39 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[tst_U3s40b] GET /src/components/promocode-form-dialog.tsx 200 - 2ms
+2025-12-06 19:20:39 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[GxHD8RhXaU] GET /src/pages/checkout-page.tsx 200 - 2ms
+2025-12-06 19:20:39 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[rlNahd5CGs] GET /src/pages/privacy-policy-page.tsx 200 - 1ms
+2025-12-06 19:20:39 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[vtbyfbav6e] GET /src/components/ui/radio-group.tsx 200 - 0ms
+2025-12-06 19:20:39 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[rUY7WPcDY-] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-radio-group.js 200 - 0ms
+2025-12-06 19:20:40 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:40 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:40 [debug] : CORS development mode - allowing all origins {}
+[RQDwWcSMyO] GET / 200 - 3ms
+[aTRRctMA0R] GET /me 200 - 7ms
+[bLbE6LiFtn] GET / 200 - 6ms
+2025-12-06 19:20:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:20:41 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:41 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:41 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:41 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:20:41 [info] : Token family added to blacklist {"tfid":"mOEox7dhKL2hUUbt8jfK7","userId":"5fd603ab-58ea-4333-8556-e86453350add","expiresAt":"2025-12-20T14:20:37.363Z"}
+2025-12-06 19:20:41 [info] : User logged out {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"mOEox7dhKL2hUUbt8jfK7","sessionId":"8df1dbf0-eed1-42f8-971a-b9ba5167a1be"}
+[2TSVmZn3SX] POST /logout 200 - 19ms
+[YlB2dfH170] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Honey_category_image_cdb40b0f.png 200 - 20ms
+[tbX9B2kV6Z] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Hero_section_background_image_b0dcdc6c.png 200 - 22ms
+[H8igIKGKFe] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Herbs_category_image_2680fbbd.png 200 - 20ms
+[Y4ctIzIYu5] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Cosmetics_category_image_81e7ff29.png 200 - 20ms
+2025-12-06 19:20:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[nxNiF_zreF] GET /src/pages/login-page.tsx 304 - 1ms
+2025-12-06 19:20:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[CiUmZrxqJZ] GET /src/pages/register-page.tsx 304 - 0ms
+2025-12-06 19:20:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[3GrACNzZUj] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/shared/schema.ts 304 - 1ms
+2025-12-06 19:20:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[yKCIdgkstM] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/drizzle-orm.js 304 - 1ms
+2025-12-06 19:20:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[HnAuTNbIij] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/drizzle-orm_pg-core.js 304 - 0ms
+2025-12-06 19:20:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[phf47TwXfm] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/drizzle-zod.js 304 - 0ms
+2025-12-06 19:20:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[WWekpbr35G] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KSDPB6MD.js 304 - 1ms
+2025-12-06 19:20:41 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[370BK7lqdc] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-FQZB52Q7.js 304 - 1ms
+2025-12-06 19:21:09 [debug] : CORS development mode - allowing all origins {}
+[ctqoxSE0NV] GET / 200 - 158ms
+2025-12-06 19:21:19 [debug] : CORS development mode - allowing all origins {}
+[-quHMCo80l] GET / 200 - 19ms
+2025-12-06 19:21:20 [debug] : CORS development mode - allowing all origins {}
+[sQne6QcFOF] GET / 200 - 16ms
+2025-12-06 19:21:21 [debug] : CORS development mode - allowing all origins {}
+[DTEIDIeBu3] GET / 200 - 14ms
+2025-12-06 19:21:22 [debug] : CORS development mode - allowing all origins {}
+[mpW6rzZko6] GET / 200 - 11ms
+2025-12-06 19:21:23 [debug] : CORS development mode - allowing all origins {}
+[QkqTeba8kv] GET / 200 - 11ms
+2025-12-06 19:21:26 [debug] : CORS development mode - allowing all origins {}
+[Ssp3acMVqM] GET / 200 - 14ms
+2025-12-06 19:21:27 [debug] : CORS development mode - allowing all origins {}
+[QHvWizb6nE] GET / 200 - 11ms
+2025-12-06 19:21:27 [debug] : CORS development mode - allowing all origins {}
+[m6PiRTnaIB] GET / 200 - 13ms
+2025-12-06 19:21:28 [debug] : CORS development mode - allowing all origins {}
+[CCPq_sxxBD] GET / 200 - 12ms
+2025-12-06 19:21:28 [debug] : CORS development mode - allowing all origins {}
+[mFiTp8TNbn] GET / 200 - 13ms
+2025-12-06 19:21:29 [debug] : CORS development mode - allowing all origins {}
+[7dNLy8gI53] GET / 200 - 12ms
+2025-12-06 19:21:30 [debug] : CORS development mode - allowing all origins {}
+[dIQ9U-swUJ] GET / 200 - 11ms
+2025-12-06 19:21:31 [debug] : CORS development mode - allowing all origins {}
+[s8qB-y9yFO] GET / 200 - 12ms
+2025-12-06 19:21:36 [debug] : CORS development mode - allowing all origins {}
+[2h9oiKlMDw] GET /Users/nic/Desktop/newrepo50-main/attached_assets/generated_images/Hero_section_background_image_b0dcdc6c.png 200 - 6ms
+2025-12-06 19:21:37 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:21:37 [debug] : Access token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"-CYJfjUxA3KMARNFf4v-R","tokenVersion":1}
+2025-12-06 19:21:37 [debug] : Refresh token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"-CYJfjUxA3KMARNFf4v-R","jti":"nIHHbZ4udRG3-iZicJRx5"}
+2025-12-06 19:21:37 [info] : User logged in {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"-CYJfjUxA3KMARNFf4v-R","sessionId":"c591b4ec-980e-4230-969f-0b30fba2724e"}
+[NQ0-I6TDxJ] POST /login 200 - 76ms
+2025-12-06 19:21:37 [debug] : CORS development mode - allowing all origins {}
+[GCBt1ytq8Z] GET / 200 - 3ms
+2025-12-06 19:21:37 [debug] : CORS development mode - allowing all origins {}
+[GRcL86Lc3D] GET / 200 - 3ms
+2025-12-06 19:21:45 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[skZLTfz32Z] PUT /b84852f0-24e2-4e18-9dd8-4b75d5302366 200 - 3ms
+2025-12-06 19:21:45 [debug] : CORS development mode - allowing all origins {}
+[PXZgqAN0zo] GET / 200 - 1ms
+2025-12-06 19:21:50 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[aQ8LOR8CQQ] PUT /b84852f0-24e2-4e18-9dd8-4b75d5302366 200 - 2ms
+2025-12-06 19:21:50 [debug] : CORS development mode - allowing all origins {}
+[x8bQobtjTk] GET / 200 - 1ms
+2025-12-06 19:21:54 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[xmdfC0Qdan] PUT /b84852f0-24e2-4e18-9dd8-4b75d5302366 200 - 4ms
+2025-12-06 19:21:54 [debug] : CORS development mode - allowing all origins {}
+[BkEUfjFY2S] GET / 200 - 2ms
+2025-12-06 19:21:59 [debug] : CORS development mode - allowing all origins {}
+[LQc4KskPxo] GET / 200 - 6ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {}
+[mYuojvN9je] GET / 200 - 6ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {}
+[HP_BX92Bml] GET / 200 - 6ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[zQvbT8j5I4] GET /@vite/client 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[uoO0rm4JpZ] GET /src/main.tsx 200 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[7HLKotssmg] GET /@react-refresh 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[j_ZLtpWVeE] GET /src/App.tsx 200 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[QJSYerD8Sf] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/vite/dist/client/env.mjs 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[qm-zCYGjEx] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react_jsx-dev-runtime.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[78YxIn3phC] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react-dom_client.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[tmArP_8Ta-] GET /src/index.css 200 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[vtPDOwU7p7] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/react.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[zkTCS92y6b] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/wouter.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[KYC__hUDty] GET /src/lib/queryClient.ts 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[D-38crgble] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@tanstack_react-query.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[7gTnJZzABb] GET /src/components/ui/toaster.tsx 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[qaBfGIsgBd] GET /src/components/ui/tooltip.tsx 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[6zzTFOi-JF] GET /src/providers/theme-provider.tsx 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[AqmYve9n5V] GET /src/providers/auth-provider.tsx 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[WsAghf4V45] GET /src/components/ProtectedRoute.tsx 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[v1Jb9d5Xul] GET /src/components/support-chat-launcher.tsx 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[4AU3yFC548] GET /src/components/cart-loader.tsx 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[UtNXK2eRSY] GET /src/components/ErrorBoundary.tsx 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[wZupMizBbi] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-QCHXOAYK.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Q9-VteapbD] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-WOOG5QLI.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[aUkeWbkHQt] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-RPCDYKBN.js 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[ozIzMFNU_F] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KBTYAULA.js 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NwCCvSlMsu] GET /src/hooks/use-toast.ts 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[J6REhsOV2z] GET /src/components/ui/toast.tsx 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[sPZMz9Vsc1] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-tooltip.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[WLAyrYvVIa] GET /src/lib/utils.ts 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[fDh--ePj-0] GET /src/stores/authStore.ts 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[WL_AKVZdWR] GET /src/lib/api.ts 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[R9tE5Mw_QX] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/lucide-react.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Q-__x8VcR0] GET /src/components/ui/button.tsx 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[W979cCo8MO] GET /src/components/support-chat-widget.tsx 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[K-X0FhL9gj] GET /src/stores/chatStore.ts 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[oEKtShtIoR] GET /src/hooks/useCart.ts 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[sgM-jk4b2N] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-toast.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Gz3TgQBxM5] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/class-variance-authority.js 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[edna_VnuRQ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-SWCSEZXG.js 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[WwOEORRzkx] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-67UHDRY5.js 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[0lIZ3vWJDQ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-SXHWZU2M.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Dz4p-E1FAo] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-GLBLW2AM.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[URx3zlTLcF] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-E6PNPDKY.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[LU2NupN5fm] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-KCFVMCIE.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[bd-7CSRmhI] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-3R3LPCWV.js 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[qVEi0oLLdg] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-CVIRTCS4.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[IHmYjCr4aN] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-CIWSPAEX.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[NyhMSSXVTs] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-JDYSANEB.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[FlMwWIiv4W] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/clsx.js 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[xDwpNBBCyF] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/tailwind-merge.js 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Wkn3QWWucQ] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/zustand.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[gupNEBKuGh] GET /src/stores/cartStore.ts 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[SxQ2eKtVVK] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-slot.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[j4Xdke0Mxm] GET /src/components/ui/textarea.tsx 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[mQgZTHw2pw] GET /src/components/ui/scroll-area.tsx 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[JyNW3ZBivy] GET /src/lib/websocket.ts 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[9Bxq2mjRe2] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/date-fns.js 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[UwNogXCEW_] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/date-fns_locale.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[VdFoDGLsM1] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-O2LWC6XU.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[DH64rfDV09] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-U7P2NEEE.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[aD7ctQY9Ym] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-GTF7DNNX.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[41yX916lRi] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-scroll-area.js 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[dyiPDr8fp1] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-IIGUYIAY.js 304 - 1ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[K_cGPt8Muq] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-6ZMM2PAV.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[WzbCwvtpTU] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-4RO2SXZU.js 304 - 0ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+2025-12-06 19:22:03 [info] : JTI added to blacklist {"jti":"nIHHbZ4udRG3-iZicJRx5","userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"-CYJfjUxA3KMARNFf4v-R","reason":"rotation","expiresAt":"2025-12-20T14:21:37.374Z"}
+2025-12-06 19:22:03 [debug] : Access token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"-CYJfjUxA3KMARNFf4v-R","tokenVersion":1}
+2025-12-06 19:22:03 [debug] : Refresh token generated {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"-CYJfjUxA3KMARNFf4v-R","jti":"SgzaAmBsJ7pE6GsjHphHt"}
+2025-12-06 19:22:03 [info] : Tokens refreshed {"userId":"5fd603ab-58ea-4333-8556-e86453350add","tfid":"-CYJfjUxA3KMARNFf4v-R","rotationCount":1}
+[N3Iaoq1N5Z] POST /refresh 200 - 39ms
+2025-12-06 19:22:03 [debug] : CORS development mode - allowing all origins {}
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {}
+[9Jzc-WHa51] GET /me 200 - 4ms
+[5Ygq-UB1Q4] GET /favicon.png 200 - 2ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {}
+[a9OGYjn1ki] GET /favicon.png 200 - 1ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[YTTGcoOIvj] GET /src/pages/cart-page.tsx 304 - 0ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {}
+[3BwWurUr5r] GET / 200 - 1ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[HuvqnfjsnR] GET /src/components/header.tsx 304 - 1ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[23jJ-dlmCY] GET /src/components/footer.tsx 304 - 0ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[v-Nj-fBAnt] GET /src/components/ui/card.tsx 304 - 0ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[P1tNXJQguR] GET /src/components/ui/input.tsx 304 - 0ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[_ULiAcp67Q] GET /src/components/ui/separator.tsx 304 - 1ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[1NER3uTDJl] GET /src/components/empty-state.tsx 304 - 0ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[B8Qcw_6UDi] GET /src/components/ui/badge.tsx 304 - 0ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[WYA1LXzssc] GET /src/components/theme-toggle.tsx 304 - 0ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[41P2l695XI] GET /src/components/ui/sheet.tsx 304 - 0ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[HjkgVFpqjH] GET /src/components/ui/alert-dialog.tsx 304 - 0ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[VzwJwVH1oD] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-separator.js 304 - 0ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[EoVMnWKcXo] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-dialog.js 304 - 0ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[Scvuw5BxJB] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/@radix-ui_react-alert-dialog.js 304 - 0ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[dlYI0bO9jr] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-NVWSFRFU.js 304 - 1ms
+2025-12-06 19:22:04 [debug] : CORS development mode - allowing all origins {"origin":"http://localhost:5000"}
+[0upDR9UfL0] GET /@fs/C:/Users/nic/Desktop/newrepo50-main/node_modules/.vite/deps/chunk-O5NM2W4X.js 304 - 1ms
